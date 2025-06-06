@@ -5,927 +5,406 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10K Embajadores de Cristo</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Estilos Generales (sin cambios) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .section { padding: 4rem 1rem; }
+        .section-title { text-align: center; font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 2.5rem; background: linear-gradient(135deg, #dc2626, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.2; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
+        /* Header (sin cambios) */
+        .header { background: linear-gradient(135deg, rgba(220, 38, 127, 0.95), rgba(59, 130, 246, 0.95)); color: white; padding: 0.8rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(15px); box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .logo { font-size: 1.3rem; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); flex: 1; }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; padding: 0.5rem; }
+        .menu-toggle span { width: 25px; height: 3px; background: white; margin: 3px 0; transition: 0.3s; border-radius: 2px; }
+        .nav-links { display: flex; list-style: none; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; transition: all 0.3s ease; padding: 0.5rem 1rem; border-radius: 25px; font-size: 0.9rem; }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
-        /* Header mejorado para móviles */
-        .header {
-            background: linear-gradient(135deg, rgba(220, 38, 127, 0.95), rgba(59, 130, 246, 0.95));
-            color: white;
-            padding: 0.8rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
+        /* Hero Section (Botón principal removido) */
+        .hero { background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('457568327_1046449717491636_3086216187365000014_n.png'); background-size: cover; background-position: center; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 2rem 1rem; }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1rem; text-shadow: 3px 3px 6px rgba(0,0,0,0.5); animation: slideDown 1s ease-out; line-height: 1.2; }
+        .hero p { font-size: clamp(1.1rem, 3vw, 1.4rem); margin-bottom: 2rem; opacity: 0.95; animation: slideUp 1s ease-out 0.3s both; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+        /* --- NUEVA SECCIÓN: Detalles de Inscripción --- */
+        .inscription-details { background: #f8fafc; }
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; text-align: center; }
+        .detail-card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .detail-card h3 { font-size: 1.5rem; color: #dc2626; margin-bottom: 1rem; }
+        .detail-card p { font-size: 1.2rem; color: #374151; font-weight: 500; }
+        .kit-includes { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); grid-column: 1 / -1; }
+        .kit-includes h3 { text-align: center; font-size: 1.5rem; color: #3b82f6; margin-bottom: 1.5rem; }
+        .kit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; text-align: center; }
+        .kit-item span { font-size: 3rem; }
+        .kit-item p { font-weight: 500; color: #374151; margin-top: 0.5rem; }
 
-        .logo {
-            font-size: 1.3rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            flex: 1;
-        }
+        /* --- SECCIÓN CATEGORÍAS (MODIFICADA) --- */
+        .categories { background: linear-gradient(45deg, #f8fafc, #e2e8f0); }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .category-card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .category-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .category-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #1f2937; }
+        .category-card p { color: #6b7280; margin-bottom: 1.5rem; font-size: 0.95rem; flex-grow: 1; }
+        .prizes { margin-bottom: 1.5rem; }
+        .prizes h4 { font-size: 1.1rem; color: #374151; margin-bottom: 0.5rem; }
+        .prizes ul { list-style: none; padding: 0; }
+        .prizes li { background: #f3f4f6; padding: 0.5rem; border-radius: 8px; margin-bottom: 0.5rem; font-weight: 500; }
+        .cta-button-category { display: inline-block; background: linear-gradient(45deg, #dc2626, #ef4444); color: white; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all 0.3s ease; text-align: center; }
+        .cta-button-category:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3); }
 
-        /* Menú hamburguesa para móviles */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
+        /* --- SECCIÓN GALERÍA (MODIFICADA) --- */
+        .gallery { background: linear-gradient(45deg, #f8fafc, #e2e8f0); }
+        .carousel-container { position: relative; max-width: 900px; margin: 0 auto; padding: 0 50px; }
+        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .carousel-slide { min-width: 100%; box-sizing: border-box; padding: 0 10px; }
+        .carousel-slide img { width: 100%; height: auto; border-radius: 15px; cursor: pointer; transition: transform 0.3s ease; }
+        .carousel-slide img:hover { transform: scale(1.03); }
+        .slide-caption { text-align: center; padding: 1rem 0; }
+        .slide-caption h4 { font-size: 1.2rem; color: #333; }
+        .slide-caption p { font-size: 0.9rem; color: #6b7280; }
+        .carousel-button { position: absolute; top: 40%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; font-size: 2rem; padding: 0.5rem 1rem; border-radius: 50%; cursor: pointer; z-index: 10; }
+        .prev-button { left: -10px; }
+        .next-button { right: -10px; }
+        
+        /* Estilos del Lightbox (Pantalla Completa) */
+        .lightbox { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .lightbox-content { max-width: 90%; max-height: 85%; }
+        .lightbox-close { position: absolute; top: 25px; right: 40px; color: #fff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .lightbox-close:hover { color: #bbb; }
 
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
+        /* --- SECCIÓN RECORRIDO (MODIFICADA) --- */
+        .map-section { background: white; }
+        .map-container { background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 20px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .map-container img { width: 100%; max-width: 800px; height: auto; border: 0; border-radius: 15px; margin-top: 1.5rem; }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
+        /* Contact Section y Footer (sin cambios mayores) */
+        .contact { background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(59, 130, 246, 0.05)); }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .contact-card { background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .contact-icon { width: 50px; height: 50px; background: linear-gradient(135deg, #dc2626, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.2rem; }
+        .footer { background: linear-gradient(135deg, #1f2937, #374151); color: white; padding: 2rem 1rem 1rem; text-align: center; }
+        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .social-link { width: 45px; height: 45px; background: linear-gradient(135deg, #dc2626, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; font-size: 1.2rem; }
+        .social-link:hover { transform: translateY(-3px) scale(1.1); }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section optimizado */
-        .hero {
-            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('457568327_1046449717491636_3086216187365000014_n.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: scroll; /* Cambiado de fixed para mejor rendimiento móvil */
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            padding: 2rem 1rem;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 1rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 4rem); /* Responsive font size */
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            animation: slideDown 1s ease-out;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: slideUp 1s ease-out 0.3s both;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #ffffff, #f8fafc);
-            color: #dc2626;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: slideUp 1s ease-out 0.6s both;
-            min-width: 200px;
-            text-align: center;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Secciones con mejor espaciado móvil */
-        .section {
-            padding: 3rem 1rem;
-        }
-
-        .categories {
-            background: linear-gradient(45deg, #f8fafc, #e2e8f0);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #dc2626, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-
-        /* Grid mejorado para móviles */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .category-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(135deg, #dc2626, #3b82f6);
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .category-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
-        }
-
-        .category-card p {
-            color: #6b7280;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .branches {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .branch {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(59, 130, 246, 0.1));
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #374151;
-        }
-
-        /* Contact Section mejorado */
-        .contact {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(59, 130, 246, 0.05));
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .contact-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #dc2626, #3b82f6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .contact-card p {
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Map Section mejorado */
-        .map-section {
-            background: white;
-        }
-
-        .map-container {
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            border-radius: 20px;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 300px;
-            border: 0;
-            border-radius: 15px;
-            margin-top: 1rem;
-        }
-
-        /* Gallery mejorada */
-        .gallery {
-            background: linear-gradient(45deg, #f8fafc, #e2e8f0);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            height: 180px;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(59, 130, 246, 0.2));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6b7280;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .gallery-overlay {
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 8px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
-        /* Footer mejorado */
-        .footer {
-            background: linear-gradient(135deg, #1f2937, #374151);
-            color: white;
-            padding: 2rem 1rem 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #dc2626, #3b82f6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-link:hover {
-            transform: translateY(-3px) scale(1.1);
-        }
-
-        .footer p {
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Botón de WhatsApp flotante */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 24px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7); }
-            100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-        }
-
-        /* Responsive Design */
+        /* Responsive Design (con ajustes para nuevos módulos) */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: linear-gradient(135deg, rgba(220, 38, 127, 0.98), rgba(59, 130, 246, 0.98));
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                transition: left 0.3s ease;
-                padding-top: 2rem;
-                backdrop-filter: blur(10px);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 1rem 0;
-            }
-            
-            .nav-links a {
-                font-size: 1.2rem;
-                padding: 1rem 2rem;
-            }
-            
-            .logo {
-                font-size: 1.1rem;
-            }
-            
-            .hero {
-                min-height: 90vh;
-                padding: 1rem;
-            }
-            
-            .section {
-                padding: 2rem 1rem;
-            }
-            
-            .categories-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-            
-            .gallery-item {
-                height: 150px;
-            }
-            
-            .map-container iframe {
-                height: 250px;
-            }
-            
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                font-size: 20px;
-                bottom: 15px;
-                right: 15px;
-            }
+            .section { padding: 2.5rem 1rem; }
+            .nav-links { position: fixed; top: 60px; left: -100%; width: 100%; height: calc(100vh - 60px); background: linear-gradient(135deg, rgba(220, 38, 127, 0.98), rgba(59, 130, 246, 0.98)); flex-direction: column; justify-content: flex-start; align-items: center; transition: left 0.3s ease; padding-top: 2rem; }
+            .nav-links.active { left: 0; }
+            .menu-toggle { display: flex; }
+            .details-grid, .kit-grid, .categories-grid { grid-template-columns: 1fr; }
+            .carousel-container { padding: 0; }
+            .carousel-button { top: 35%; }
         }
-
-        @media (max-width: 480px) {
-            .hero-content {
-                padding: 0.5rem;
-            }
-            
-            .cta-button {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
-            
-            .category-card,
-            .contact-card {
-                padding: 1.2rem;
-            }
-            
-            .map-container {
-                padding: 1.5rem 0.8rem;
-            }
-            
-            .section-title {
-                margin-bottom: 1.5rem;
-            }
-        }
-
-        /* Mejoras de rendimiento */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading animation */
-        .loading {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .loading.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        
+        /* Animaciones (sin cambios) */
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .loading { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .loading.loaded { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <!-- WhatsApp flotante -->
-    <a href="https://wa.me/50212345678" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
-        💬
-    </a>
 
-    <!-- Header -->
     <header class="header">
         <nav class="nav">
             <div class="logo">10K Embajadores de Cristo</div>
             <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#detalles">Inscripción</a></li>
                 <li><a href="#categorias">Categorías</a></li>
-                <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#recorrido">Recorrido</a></li>
                 <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>10K Embajadores de Cristo</h1>
-            <p>Únete a la carrera que une fe, deporte y comunidad en el corazón de Zona 9, Barrio Garibaldi</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" target="_blank" class="cta-button">
-                ¡Inscríbete Ahora!
-            </a>
-        </div>
+            <p>Únete a la carrera que une fe, deporte y comunidad en el corazón de Zona 9, Barrio Garibaldi.</p>
+            </div>
     </section>
-
-    <!-- Categories Section -->
-    <section class="categories section" id="categorias">
+    
+    <section class="section inscription-details" id="detalles">
         <div class="container">
-            <h2 class="section-title">Categorías de Competencia</h2>
-            <div class="categories-grid">
-                <div class="category-card loading">
-                    <h3>🏃‍♂️ Libre</h3>
-                    <p>Categoría abierta para todos los corredores que deseen participar sin restricciones de edad.</p>
-                    <div class="branches">
-                        <span class="branch">Femenino</span>
-                        <span class="branch">Masculino</span>
-                    </div>
+            <h2 class="section-title">Detalles de la Inscripción</h2>
+            <div class="details-grid">
+                <div class="detail-card loading">
+                    <h3>Costo</h3>
+                    <p>Q100.00</p>
                 </div>
-                
-                <div class="category-card loading">
-                    <h3>🏆 Máster</h3>
-                    <p>Categoría especial diseñada para corredores de mayor experiencia y edad.</p>
-                    <div class="branches">
-                        <span class="branch">Femenino</span>
-                        <span class="branch">Masculino</span>
-                    </div>
+                <div class="detail-card loading">
+                    <h3>Fecha Límite</h3>
+                    <p>15 de Julio de 2025</p>
                 </div>
-                
-                <div class="category-card loading">
-                    <h3>🏠 Local</h3>
-                    <p>Categoría exclusiva para residentes del Barrio Garibaldi, Zona 9, donde nacieron nuestras raíces.</p>
-                    <div class="branches">
-                        <span class="branch">Femenino</span>
-                        <span class="branch">Masculino</span>
+                <div class="kit-includes loading">
+                    <h3>Tu Pago Incluye (Kit del Corredor)</h3>
+                    <div class="kit-grid">
+                        <div class="kit-item">
+                            <span>👕</span>
+                            <p>Playera Oficial</p>
+                        </div>
+                        <div class="kit-item">
+                            <span>🏅</span>
+                            <p>Medalla de Finalista</p>
+                        </div>
+                        <div class="kit-item">
+                            <span>🔢</span>
+                            <p>Número de Corredor</p>
+                        </div>
+                        <div class="kit-item">
+                            <span>💧</span>
+                            <p>Hidratación</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <section class="categories section" id="categorias">
+        <div class="container">
+            <h2 class="section-title">Categorías y Premios</h2>
+            <div class="categories-grid">
+                <div class="category-card loading">
+                    <h3>🏃‍♂️ Libre</h3>
+                    <p>Categoría abierta para todos los corredores que deseen participar sin restricciones de edad (ramas Femenino y Masculino).</p>
+                    <div class="prizes">
+                        <h4>Premios</h4>
+                        <ul>
+                            <li>🥇 1er Lugar: Q500</li>
+                            <li>🥈 2do Lugar: Q300</li>
+                            <li>🥉 3er Lugar: Q200</li>
+                        </ul>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" target="_blank" class="cta-button-category">¡Inscríbete Aquí!</a>
+                </div>
+                
+                <div class="category-card loading">
+                    <h3>🏆 Máster</h3>
+                    <p>Categoría especial diseñada para corredores de mayor experiencia y edad (ramas Femenino y Masculino).</p>
+                     <div class="prizes">
+                        <h4>Premios</h4>
+                        <ul>
+                            <li>🥇 1er Lugar: Q500</li>
+                            <li>🥈 2do Lugar: Q300</li>
+                            <li>🥉 3er Lugar: Q200</li>
+                        </ul>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" target="_blank" class="cta-button-category">¡Inscríbete Aquí!</a>
+                </div>
+                
+                <div class="category-card loading">
+                    <h3>🏠 Local</h3>
+                    <p>Categoría exclusiva para residentes del Barrio Garibaldi, Zona 9, donde nacieron nuestras raíces (ramas Femenino y Masculino).</p>
+                     <div class="prizes">
+                        <h4>Premios</h4>
+                        <ul>
+                            <li>🥇 1er Lugar: Q500</li>
+                            <li>🥈 2do Lugar: Q300</li>
+                            <li>🥉 3er Lugar: Q200</li>
+                        </ul>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" target="_blank" class="cta-button-category">¡Inscríbete Aquí!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section section" id="recorrido">
+        <div class="container">
+            <div class="map-container loading">
+                <h2 class="section-title">Recorrido de la Carrera</h2>
+                <p>Conoce la ruta completa de 10 kilómetros que recorreremos juntos.</p>
+                <img src="https://via.placeholder.com/800x450/e2e8f0/6b7280?text=Imagen+del+Recorrido+Aquí" alt="Mapa del recorrido de la carrera 10K">
+            </div>
+        </div>
+    </section>
+    
+    <section class="gallery section" id="galeria">
+        <div class="container">
+            <h2 class="section-title">Revive Ediciones Anteriores</h2>
+            <div class="carousel-container loading">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/800x500/cccccc/000000?text=Salida+2023" alt="Foto de la Salida 2023" data-full="https://via.placeholder.com/1200x800/cccccc/000000?text=Salida+2023">
+                        <div class="slide-caption">
+                            <h4>Salida Emocionante</h4>
+                            <p>Edición 2023</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/800x500/eeeeee/000000?text=Meta+2023" alt="Foto de la Meta 2023" data-full="https://via.placeholder.com/1200x800/eeeeee/000000?text=Meta+2023">
+                        <div class="slide-caption">
+                            <h4>Llegada a la Meta</h4>
+                            <p>Edición 2023</p>
+                        </div>
+                    </div>
+                     <div class="carousel-slide">
+                         <img src="https://via.placeholder.com/800x500/dddddd/000000?text=Premiación" alt="Foto de la Premiación" data-full="https://via.placeholder.com/1200x800/dddddd/000000?text=Premiación">
+                        <div class="slide-caption">
+                            <h4>Premiación de Ganadores</h4>
+                            <p>Momentos de Gloria</p>
+                        </div>
+                    </div>
+                     <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/800x500/cccccc/000000?text=Participantes" alt="Foto de Participantes" data-full="https://via.placeholder.com/1200x800/cccccc/000000?text=Participantes">
+                        <div class="slide-caption">
+                            <h4>Nuestros Corredores</h4>
+                            <p>La energía de la comunidad</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-button prev-button">❮</button>
+                <button class="carousel-button next-button">❯</button>
+            </div>
+        </div>
+    </section>
+    
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
     <section class="contact section" id="contacto">
         <div class="container">
-            <h2 class="section-title">Información de Contacto e Inscripción</h2>
+            <h2 class="section-title">Información y Contacto</h2>
             <div class="contact-grid">
                 <div class="contact-card loading">
                     <div class="contact-icon">📱</div>
-                    <h3>Contacto</h3>
+                    <h3>Contacto Directo</h3>
                     <p><strong>Teléfono:</strong> +502 1234-5678</p>
                     <p><strong>Email:</strong> info@10kembajadores.com</p>
-                    <p><strong>WhatsApp:</strong> +502 9876-5432</p>
                 </div>
                 
                 <div class="contact-card loading">
                     <div class="contact-icon">💳</div>
                     <h3>Cuentas para Pago</h3>
-                    <p><strong>Banco Industrial:</strong><br>Cuenta: 123-456789-0</p>
-                    <p><strong>Banrural:</strong><br>Cuenta: 987-654321-0</p>
-                    <p><strong>Banco G&T:</strong><br>Cuenta: 456-789123-0</p>
+                    <p><strong>Banco Industrial:</strong> 123-456789-0</p>
+                    <p><strong>Banrural:</strong> 987-654321-0</p>
                 </div>
                 
                 <div class="contact-card loading">
                     <div class="contact-icon">📍</div>
-                    <h3>Ubicación</h3>
-                    <p><strong>Punto de Salida:</strong><br>Barrio Garibaldi, Zona 9</p>
-                    <p><strong>Ciudad:</strong> Guatemala</p>
-                    <p>Síguenos en redes sociales para más información</p>
+                    <h3>Ubicación del Evento</h3>
+                    <p><strong>Punto de Salida y Meta:</strong></p>
+                    <p>Barrio Garibaldi, Zona 9, Guatemala</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Map Section -->
-    <section class="map-section section" id="recorrido">
-        <div class="container">
-            <div class="map-container loading">
-                <h2 class="section-title">Recorrido de la Carrera</h2>
-                <p>Conoce la ruta completa de 10 kilómetros que recorreremos juntos</p>
-                
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15425.44865122131!2d-91.5522651!3d14.8610138!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858e990805c360f7%3A0x3f8e91a7598c3b65!2sIglesia%20Evang%C3%A9lica%20Linaje%20de%20Israel!5e0!3m2!1ses!2sgt!4v1749089087645!5m2!1ses!2sgt"
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery section" id="galeria">
-        <div class="container">
-            <h2 class="section-title">Ediciones Anteriores</h2>
-            <p style="text-align: center; color: #6b7280; margin-bottom: 2rem; font-size: 1rem;">
-                Revive los mejores momentos de nuestras carreras pasadas
-            </p>
-            <div class="gallery-grid">
-                <div class="gallery-item loading" style="background-image: url('1.jpg'); background-size: cover; background-position: center;">
-                    <div class="gallery-overlay">
-                        📸 Foto 1<br><small>Salida 2023</small>
-                    </div>
-                </div>
-                
-                <div class="gallery-item loading" style="background-image: url('2.jpg'); background-size: cover; background-position: center;">
-                    <div class="gallery-overlay">
-                        📸 Foto 2<br><small>Meta 2023</small>
-                    </div>
-                </div>
-                
-                <div class="gallery-item loading" style="background-image: url('3.jpg'); background-size: cover; background-position: center;">
-                    <div class="gallery-overlay">
-                        📸 Foto 3<br><small>Premiación</small>
-                    </div>
-                </div>
-                
-                <div class="gallery-item loading" style="background-image: url('4.jpg'); background-size: cover; background-position: center;">
-                    <div class="gallery-overlay">
-                        📸 Foto 4<br><small>Participantes</small>
-                    </div>
-                </div>
-                
-                <div class="gallery-item loading" style="background-image: url('5.jpg'); background-size: cover; background-position: center;">
-                    <div class="gallery-overlay">
-                        📸 Foto 5<br><small>Ambiente</small>
-                    </div>
-                </div>
-                
-                <div class="gallery-item loading" style="background-image: url('6.jpg'); background-size: cover; background-position: center;">
-                    <div class="gallery-overlay">
-                        📸 Foto 6<br><small>Comunidad</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="social-links">
                 <a href="#" class="social-link" title="Facebook">📘</a>
                 <a href="#" class="social-link" title="Instagram">📷</a>
-                <a href="#" class="social-link" title="Twitter">🐦</a>
-                <a href="#" class="social-link" title="WhatsApp">📱</a>
             </div>
-            <p>&copy; 2025 10K Embajadores de Cristo. Todos los derechos reservados.</p>
+            <p>© 2025 10K Embajadores de Cristo. Todos los derechos reservados.</p>
             <p>Barrio Garibaldi, Zona 9 - Guatemala</p>
         </div>
     </footer>
 
     <script>
-        // Menú hamburguesa
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-
-        // Cerrar menú al hacer click en un enlace
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menú hamburguesa
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
             });
-        });
-
-        // Smooth scrolling para navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer para animaciones
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('loaded');
-                }
-            });
-        }, observerOptions);
-
-        // Observar elementos para animaciones
-        document.querySelectorAll('.loading').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Optimización de scrolling
-        let ticking = false;
-
-        function updateScrollEffects() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            
-            // Parallax effect más sutil para mejor rendimiento
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-            
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollEffects);
-                ticking = true;
-            }
-        });
-
-        // Cerrar menú al hacer scroll
-        window.addEventListener('scroll', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        });
-
-        // Lazy loading para imágenes
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.removeAttribute('data-src');
-                            imageObserver.unobserve(img);
-                        }
-                    }
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
                 });
             });
 
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
+            // Animaciones al hacer scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('loaded');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.loading').forEach(el => {
+                observer.observe(el);
             });
-        }
-
-        // Preload critical resources
-        const preloadLink = document.createElement('link');
-        preloadLink.href = '457568327_1046449717491636_3086216187365000014_n.png';
-        preloadLink.rel = 'preload';
-        preloadLink.as = 'image';
-        document.head.appendChild(preloadLink);
-
-        // Service Worker para cache (opcional)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(() => console.log('SW registered'))
-                    .catch(() => console.log('SW registration failed'));
-            });
-        }
-
-        // Touch gestures para móviles
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 100;
-            const diff = touchStartX - touchEndX;
             
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    // Swipe left - cerrar menú si está abierto
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                    }
-                } else {
-                    // Swipe right - abrir menú si está cerrado
-                    if (!navLinks.classList.contains('active') && touchStartX < 50) {
-                        navLinks.classList.add('active');
-                        menuToggle.classList.add('active');
-                    }
-                }
-            }
-        }
+            // Lógica del Carrusel
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = document.querySelector('.next-button');
+            const prevButton = document.querySelector('.prev-button');
+            const slideWidth = slides[0].getBoundingClientRect().width;
 
-        // Performance monitoring
-        if ('performance' in window) {
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    const perfData = performance.getEntriesByType('navigation')[0];
-                    console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-                }, 0);
+            let currentIndex = 0;
+            const moveToSlide = (targetIndex) => {
+                track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
+                currentIndex = targetIndex;
+            }
+
+            nextButton.addEventListener('click', e => {
+                const nextIndex = (currentIndex + 1) % slides.length;
+                moveToSlide(nextIndex);
             });
-        }
 
-        // Error handling
-        window.addEventListener('error', (e) => {
-            console.error('Error occurred:', e.error);
-        });
+            prevButton.addEventListener('click', e => {
+                let prevIndex = currentIndex - 1;
+                if (prevIndex < 0) {
+                    prevIndex = slides.length - 1;
+                }
+                moveToSlide(prevIndex);
+            });
 
-        // Accessibility improvements
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-                menuToggle.focus();
+            window.addEventListener('resize', () => {
+                 const newSlideWidth = slides[0].getBoundingClientRect().width;
+                 track.style.transition = 'none'; // Desactiva la transición para el reajuste
+                 track.style.transform = 'translateX(-' + newSlideWidth * currentIndex + 'px)';
+                 setTimeout(() => {
+                     track.style.transition = 'transform 0.5s ease-in-out'; // Reactiva la transición
+                 }, 50);
+            });
+            
+            // Lógica del Lightbox (ver en pantalla completa)
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+
+            slides.forEach(slide => {
+                const img = slide.querySelector('img');
+                img.addEventListener('click', () => {
+                    lightbox.style.display = 'flex';
+                    lightboxImg.src = img.dataset.full; // Usa la imagen de alta resolución
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.style.display = 'none';
             }
-        });
 
-        // Focus management for mobile menu
-        menuToggle.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                menuToggle.click();
-            }
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) { // Cierra si se hace clic en el fondo
+                    closeLightbox();
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+
         });
     </script>
 </body>
