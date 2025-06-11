@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10K Embajadores de Cristo</title>
     <style>
+        /* ------ GLOBAL ------ */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background: #f8fafc; line-height: 1.6; }
         img { max-width: 100%; height: auto; border-radius: 10px;}
         a { color: inherit; text-decoration: none; }
+        /* ------ HEADER/NAV ------ */
         .header { background: linear-gradient(135deg, #dc267f 95%, #3b82f6 100%); color: #fff; padding: 0.8rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.07);}
         .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 1rem;}
         .logo { font-size: 1.3rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.18); flex: 1; }
@@ -17,19 +19,29 @@
         .nav-links { display: flex; list-style: none; gap: 1.5rem; }
         .nav-links a { color: #fff; text-decoration: none; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 22px; transition: background 0.2s;}
         .nav-links a:hover { background: rgba(255,255,255,0.2);}
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex;}
+            .nav-links {
+                position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px);
+                background: linear-gradient(135deg, #dc267f 97%, #3b82f6 100%);
+                flex-direction: column; justify-content: flex-start; align-items: center;
+                transition: left 0.3s ease; padding-top: 2rem;
+            }
+            .nav-links.active { left: 0;}
+            .nav-links li { margin: 1rem 0;}
+            .nav-links a { font-size: 1.2rem; padding: 1rem 2rem; }
+            .logo { font-size: 1.08rem; }
+        }
+        /* ------ HERO ------ */
         .hero {
             min-height: 100vh;
+            /* Cambia la imagen de portada aquí */
             background: linear-gradient(135deg,rgba(0,0,0,0.7) 70%,rgba(59,130,246,.18)), url('hero-carrera.jpg') center/cover no-repeat;
             display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;
             position: relative; margin-bottom: 2rem; padding: 2rem 1rem 1.2rem 1rem;
         }
         .hero-content {
-            background: rgba(0,0,0,0.25);
-            border-radius: 20px;
-            padding: 2rem 1rem 1.3rem 1rem;
-            max-width: 500px;
-            margin: auto;
-            box-shadow: 0 8px 35px rgba(59,130,246,0.1);
+            background: rgba(0,0,0,0.25); border-radius: 20px; padding: 2rem 1rem 1.3rem 1rem; max-width: 500px; margin: auto; box-shadow: 0 8px 35px rgba(59,130,246,0.1);
         }
         .hero h1 { font-size: clamp(2.15rem, 6vw, 3.7rem); text-shadow: 2px 2px 12px rgba(0,0,0,0.28); margin-bottom: 0.8rem; }
         .hero .slogan { font-size: 1.15rem; margin-bottom: 2rem; color: #f3f4f6; font-weight: 500; text-shadow: 1px 1px 3px rgba(0,0,0,0.15); }
@@ -50,19 +62,7 @@
         }
         .cta-button:hover { transform: scale(1.04); background: linear-gradient(135deg,#dc2626,#3b82f6);}
         @keyframes pulse-btn { 0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.14);} 50%{box-shadow:0 14px 44px 2px rgba(220,38,127,0.13);} }
-        @media (max-width: 768px) {
-            .menu-toggle { display: flex;}
-            .nav-links {
-                position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px);
-                background: linear-gradient(135deg, #dc267f 97%, #3b82f6 100%);
-                flex-direction: column; justify-content: flex-start; align-items: center;
-                transition: left 0.3s ease; padding-top: 2rem;
-            }
-            .nav-links.active { left: 0;}
-            .nav-links li { margin: 1rem 0;}
-            .nav-links a { font-size: 1.2rem; padding: 1rem 2rem; }
-            .logo { font-size: 1.08rem; }
-        }
+        /* ------ SECCIONES ------ */
         .section { padding: 4rem 1rem; }
         .section-title {
             text-align: center;
@@ -71,6 +71,7 @@
             background: linear-gradient(135deg, #dc2626, #3b82f6);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
+        /* ------ CATEGORÍAS ------ */
         .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:2rem; margin-bottom:2rem;}
         .category-card {
             background:#fff; padding:2rem 1rem 1.3rem 1rem; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.09); text-align:center; display:flex; flex-direction:column; gap:0.7rem; position:relative;
@@ -80,13 +81,14 @@
         .category-card .branch { background: #e2e8f0; padding:0.35rem 0.85rem; border-radius: 20px; font-size:0.9rem; color:#374151;}
         .category-card .prizes-list {list-style:none; color:#6b7280; margin-bottom:0; padding:0;}
         .category-card .prizes-list li {margin-bottom:0.2rem;}
+        /* ---- BOTÓN INSCRIBIRSE CATEGORÍA ---- */
         .cta-button-category {
             display: inline-block;
             background: linear-gradient(90deg, #ff0080 0%, #7928ca 100%);
             color: #fff;
             border: none;
-            padding: 0.7rem 2.2rem;
-            font-size: 1.06rem;
+            padding: 0.65rem 1.7rem;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 30px;
             box-shadow: 0 5px 24px #3b82f626;
@@ -97,14 +99,17 @@
             transition: background 0.22s, transform 0.14s, box-shadow 0.25s;
             text-shadow: 1px 2px 8px #3b82f6cc;
             outline: none;
+            min-width: 110px;
+            max-width: 220px;
         }
         .cta-button-category:hover, .cta-button-category:focus {
             background: linear-gradient(90deg,#7928ca 0%, #ff0080 100%);
             transform: scale(1.05);
         }
         @media (max-width: 600px) {
-            .cta-button-category { width: auto; padding: 0.8rem 1.3rem; font-size: 1rem;}
+            .cta-button-category { width: auto; padding: 0.8rem 1.2rem; font-size: 1rem; min-width: 80px; max-width: 100%;}
         }
+        /* ------ KIT INCLUYE ------ */
         .kit-section .kit-grid {
             display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; overflow-x: auto; margin-bottom: 0.7rem; scrollbar-width: thin;
         }
@@ -122,12 +127,14 @@
         .kit-icon { font-size: 2.2rem; margin-bottom: 0.18rem;}
         .kit-item h3 { font-size: 0.97rem; color: #1f2937; margin-bottom: 0; font-weight: 600; }
         @media (max-width: 600px) { .kit-item { min-width: 80px; max-width:90px; padding: 0.7rem 0.2rem;} .kit-icon { font-size: 1.5rem;} }
+        /* ------ INSCRIPCIÓN / CONTACTO ------ */
         .inscription-info { text-align:center; margin-bottom:2.5rem; padding:1.5rem; background:#fff; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.08);}
         .inscription-info h3 { font-size:1.5rem; color:#1f2937; }
         .price { font-size:2rem; font-weight:bold; color:#dc2626;}
         .contact-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
         .contact-card { background:#fff;padding:1.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:center;}
         .contact-icon {width:50px;height:50px;background:linear-gradient(135deg,#dc2626,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-size:1.2rem;}
+        /* ------ MAPA Y UBICACIÓN ------ */
         .map-section .section-title,
         #ubicacion .section-title { text-align: center; }
         .map-container, .location-map-container {
@@ -153,6 +160,7 @@
         .open-maps-btn:hover {
             background: linear-gradient(135deg, #dc2626, #3b82f6); transform: translateY(-2px) scale(1.04);
         }
+        /* ------ GALERÍA CARRUSEL ------ */
         .gallery-carrusel-container {
             position: relative;
             max-width: 470px;
@@ -173,7 +181,8 @@
         }
         .gallery-carrusel-slide img {
             width: 100%;
-            height: 250px;
+            /* Cambia el alto de las fotos aquí */
+            height: 340px;
             object-fit: cover;
             display: block;
         }
@@ -185,13 +194,35 @@
         .gallery-carrusel-button:hover { background-color: #fff; transform: translateY(-50%) scale(1.1);}
         .gallery-carrusel-button.prev { left: 13px;}
         .gallery-carrusel-button.next { right: 13px;}
-        @media (max-width: 600px) {.gallery-carrusel-container { max-width: 99vw;} .gallery-carrusel-slide img { height: 160px;}}
-        /* Lightbox para galería */
+        @media (max-width: 600px) {.gallery-carrusel-container { max-width: 99vw;} .gallery-carrusel-slide img { height: 200px;}}
+        /* ------ LIGHTBOX GALERÍA ------ */
         .lightbox { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.93); justify-content: center; align-items: center;}
         .lightbox-content { max-width: 96vw; max-height: 85vh; border-radius: 13px; display: block; margin: auto; box-shadow: 0 8px 40px 10px rgba(59,130,246,0.10);}
         .lightbox-close { position: absolute; top: 18px; right: 26px; color: #fff; font-size: 38px; font-weight: bold; transition: 0.3s; cursor: pointer;}
         .lightbox-close:hover { color: #bbb;}
-        /* Patrocinadores carrusel mejorado */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+        .lightbox-btn {
+            background: rgba(255,255,255,0.85);
+            border: none;
+            border-radius: 50%;
+            font-size: 2rem;
+            width: 48px; height: 48px;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #0002;
+            pointer-events: auto;
+            margin: 0 10px;
+            color: #333;
+            transition: background .2s;
+        }
+        .lightbox-btn:hover { background: #fff; }
+        /* ------ PATROCINADORES CARRUSEL ------ */
         .sponsors-section { background: #fff; padding: 2rem 0.5rem 1.6rem 0.5rem; text-align: center; margin-top: -1rem;}
         .sponsors-title { font-size: 1.4rem; margin-bottom: 1.3rem; color: #1f2937; text-align: center;}
         .sponsors-slider-container { position: relative; max-width: 1100px; margin: 0 auto; overflow: hidden;}
@@ -200,6 +231,7 @@
             will-change: transform;
         }
         .sponsor-logo {
+            /* Cambia aquí el tamaño de los logos de patrocinador */
             width: 100px; height: 55px; object-fit: contain; border-radius: 10px; background: #f1f5f9; padding: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); flex: 0 0 auto;
             transition: box-shadow 0.2s;
         }
@@ -212,11 +244,8 @@
         .sponsors-slider-button.prev { left: 6px;}
         .sponsors-slider-button.next { right: 6px;}
         .sponsors-slider-button:hover { background: #fff; }
-        @media(max-width: 600px) {
-            .sponsor-logo { width: 65px; height: 35px; padding: 0.3rem;}
-            .sponsors-slider-track { gap: 0.7rem;}
-        }
-        /* FAQ Accordion */
+        @media(max-width: 600px) { .sponsor-logo { width: 65px; height: 35px; padding: 0.3rem;} .sponsors-slider-track { gap: 0.7rem;} }
+        /* ------ FAQ ACCORDION ------ */
         .faq-section { background: #f8fafc; padding: 3rem 1rem; }
         .faq-title { text-align: center; font-size: clamp(1.5rem, 4vw, 2.1rem); margin-bottom: 2rem; color: #3b82f6; }
         .faq-list { max-width: 650px; margin: 0 auto; padding: 0; list-style: none; }
@@ -240,16 +269,19 @@
             line-height: 1.5;
         }
         .faq-item.active .faq-answer { display:block; }
+        /* ------ BOTÓN FLOTANTE WHATSAPP ------ */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
             background: linear-gradient(135deg, #25d366, #128c7e);
             color: white; border-radius: 50%; text-align: center;
-            font-size: 24px; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            font-size: 32px; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             z-index: 1000; display: flex; align-items: center; justify-content: center;
             text-decoration: none; transition: all 0.3s ease; animation: pulse 2s infinite;
         }
+        .whatsapp-float svg { width: 34px; height: 34px; }
         .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 25px rgba(37,211,102,0.6);}
         @keyframes pulse { 0% { box-shadow: 0 4px 20px rgba(37,211,102,0.4);} 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7);} 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4);} }
+        /* ------ FOOTER ------ */
         .footer { background: linear-gradient(135deg, #1f2937, #374151); color: #fff; text-align: center; padding: 2rem 1rem 1rem;}
         .footer-content { max-width: 1200px; margin: 0 auto;}
         .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -259,13 +291,18 @@
     </style>
 </head>
 <body>
-    <a href="https://wa.me/50212345678" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">💬</a>
+    <!-- Botón flotante WhatsApp (cambia el número aquí) -->
+    <a href="https://wa.me/50212345678" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
+        <!-- Logo SVG WhatsApp para máxima calidad -->
+        <svg viewBox="0 0 32 32" fill="currentColor">
+            <path d="M16 3C9.373 3 4 8.373 4 15c0 2.448.805 4.73 2.168 6.627L4 29l7.561-2.039A12.919 12.919 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22.8c-2.155 0-4.24-.631-6.017-1.824l-.429-.272-4.497 1.211 1.203-4.381-.28-.436A10.792 10.792 0 0 1 5.2 15C5.2 9.251 9.947 4.5 16 4.5S26.8 9.251 26.8 15.001 22.053 25.8 16 25.8zm5.273-7.176c-.291-.145-1.748-.862-2.02-.96-.272-.099-.47-.145-.669.146-.197.291-.767.96-.94 1.157-.173.194-.346.22-.637.073-.291-.145-1.229-.454-2.341-1.448-.866-.772-1.45-1.726-1.62-2.017-.173-.291-.018-.448.128-.592.132-.13.291-.346.436-.518.145-.173.193-.292.29-.485.097-.194.048-.364-.024-.51-.073-.145-.669-1.614-.915-2.211-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.197 0-.519.073-.792.364-.272.291-1.04 1.017-1.04 2.479 0 1.46 1.065 2.874 1.213 3.073.145.194 2.094 3.208 5.079 4.374.711.249 1.264.398 1.697.509.714.182 1.364.156 1.879.095.573-.07 1.748-.714 1.997-1.403.246-.69.246-1.282.174-1.403-.072-.118-.264-.19-.555-.334z"/>
+        </svg>
+    </a>
+    <!-- HEADER/NAV -->
     <header class="header">
         <nav class="nav">
             <div class="logo">10K Embajadores de Cristo</div>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span><span></span><span></span>
-            </div>
+            <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#categorias">Categorías</a></li>
@@ -278,6 +315,7 @@
             </ul>
         </nav>
     </header>
+    <!-- HERO (cambia la imagen de fondo en CSS) -->
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>10K Embajadores de Cristo</h1>
@@ -294,12 +332,12 @@
             <a href="#categorias" class="cta-button">¡Inscríbete ahora!</a>
         </div>
     </section>
-
-    <!-- Categorías, premios y botón de inscripción -->
+    <!-- CATEGORÍAS -->
     <section class="categories section" id="categorias">
         <div class="container">
             <h2 class="section-title">Categorías y Premios</h2>
             <div class="categories-grid">
+                <!-- Puedes duplicar o quitar tarjetas de categoría aquí -->
                 <div class="category-card">
                     <h3>🏃‍♂️ Libre</h3>
                     <p>Categoría abierta para todos los corredores sin restricción de edad.</p>
@@ -311,9 +349,9 @@
                             <li>🥈 2do Lugar: <span style="font-weight:bold;color:#dc2626;">Q300</span></li>
                             <li>🥉 3er Lugar: <span style="font-weight:bold;color:#dc2626;">Q200</span></li>
                         </ul>
-                    </div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" class="cta-button-category">Inscribirse</a>
-                </div>
+                    <div style="text-align:center;">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" class="cta-button-category">Inscribirse</a>
+</div>
                 <div class="category-card">
                     <h3>🏆 Máster</h3>
                     <p>Categoría especial para corredores de 40 años en adelante.</p>
@@ -325,9 +363,9 @@
                             <li>🥈 2do Lugar: <span style="font-weight:bold;color:#dc2626;">Q300</span></li>
                             <li>🥉 3er Lugar: <span style="font-weight:bold;color:#dc2626;">Q200</span></li>
                         </ul>
-                    </div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" class="cta-button-category">Inscribirse</a>
-                </div>
+                    <div style="text-align:center;">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" class="cta-button-category">Inscribirse</a>
+</div>
                 <div class="category-card">
                     <h3>🏠 Local</h3>
                     <p>Categoría exclusiva para residentes del Barrio Garibaldi, Zona 9.</p>
@@ -345,11 +383,12 @@
             </div>
         </div>
     </section>
-    <!-- Qué incluye -->
+    <!-- KIT (QUÉ INCLUYE) -->
     <section class="kit-section section" id="kit">
         <div class="container">
             <h2 class="section-title">¿Qué Incluye tu Inscripción?</h2>
             <div class="kit-grid">
+                <!-- Cambia el contenido y el ícono de cada cuadro aquí -->
                 <div class="kit-item"><div class="kit-icon">👕</div><h3>Playera</h3></div>
                 <div class="kit-item"><div class="kit-icon">🏅</div><h3>Medalla</h3></div>
                 <div class="kit-item"><div class="kit-icon">#️⃣</div><h3>Número</h3></div>
@@ -357,7 +396,7 @@
             </div>
         </div>
     </section>
-    <!-- Inscripción y contacto -->
+    <!-- INSCRIPCIÓN Y CONTACTO -->
     <section class="contact section" id="contacto">
         <div class="container">
             <h2 class="section-title">Información de Inscripción</h2>
@@ -367,6 +406,7 @@
                 <p><strong>Fecha Límite de Inscripción:</strong> 25 de Julio de 2025</p>
             </div>
             <div class="contact-grid">
+                <!-- Cambia los datos de contacto aquí -->
                 <div class="contact-card">
                     <div class="contact-icon">📱</div>
                     <h3>Contacto</h3>
@@ -384,38 +424,42 @@
             </div>
         </div>
     </section>
-    <!-- Recorrido -->
+    <!-- RECORRIDO -->
     <section class="map-section section" id="recorrido">
         <div class="container">
             <h2 class="section-title">Recorrido de la Carrera</h2>
             <div class="map-container">
                 <p>Conoce la ruta completa de 10 kilómetros que recorreremos juntos.</p>
+                <!-- Cambia la imagen del recorrido aquí -->
                 <img src="recorrido-carrera.jpg" alt="Mapa del recorrido de la carrera 10K Embajadores de Cristo">
             </div>
         </div>
     </section>
-    <!-- Ubicación física salida/meta -->
+    <!-- UBICACIÓN SALIDA/META -->
     <section class="section" id="ubicacion">
         <div class="container">
             <h2 class="section-title">Ubicación de Salida y Meta</h2>
             <div class="location-map-container">
+                <!-- Cambia el mapa aquí (iframe de Google Maps) -->
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.093300467061!2d-90.52123488471958!3d14.633867389772385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a1e3e9c2b41b%3A0x7b4cb8fe7a8b7e1e!2sBarrio%20Garibaldi%2C%20Zona%209%2C%20Ciudad%20de%20Guatemala!5e0!3m2!1ses!2sgt!4v1718000000000!5m2!1ses!2sgt"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                    title="Ubicación de la salida y meta"></iframe>
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación de la salida y meta"></iframe>
             </div>
             <div style="text-align:center;">
+                <!-- Cambia el link directo a Google Maps aquí -->
                 <a href="https://goo.gl/maps/2HRtCv3r2Zbdoa8f8" target="_blank" class="open-maps-btn">
                     Ver en Google Maps
                 </a>
             </div>
         </div>
     </section>
-    <!-- Galería Carrusel -->
+    <!-- GALERIA EDICIONES ANTERIORES -->
     <section class="gallery section" id="galeria">
         <div class="container">
             <h2 class="section-title">Ediciones Anteriores</h2>
             <div class="gallery-carrusel-container">
                 <div class="gallery-carrusel-track">
+                    <!-- Cambia aquí las fotos de ediciones anteriores -->
                     <div class="gallery-carrusel-slide"><img src="1.jpg" alt="Foto Salida 2023"></div>
                     <div class="gallery-carrusel-slide"><img src="2.jpg" alt="Meta 2023"></div>
                     <div class="gallery-carrusel-slide"><img src="3.jpg" alt="Premiación"></div>
@@ -429,17 +473,19 @@
             <!-- Lightbox para galería -->
             <div id="lightbox" class="lightbox">
                 <span class="lightbox-close">&times;</span>
+                <button class="lightbox-btn prev" id="lightboxPrev">&#10094;</button>
                 <img class="lightbox-content" id="lightboxImg">
+                <button class="lightbox-btn next" id="lightboxNext">&#10095;</button>
             </div>
         </div>
     </section>
-    <!-- Patrocinadores Carrusel táctil -->
+    <!-- PATROCINADORES -->
     <section class="sponsors-section" id="patrocinadores">
         <div class="sponsors-title">Patrocinadores</div>
         <div class="sponsors-slider-container">
             <button class="sponsors-slider-button prev">&#10094;</button>
             <div class="sponsors-slider-track" id="sponsors-slider-track">
-                <!-- 15 logos, duplica para infinito -->
+                <!-- Cambia aquí los logos de patrocinadores -->
                 <img src="sponsor1.png" alt="Patrocinador 1" class="sponsor-logo">
                 <img src="sponsor2.png" alt="Patrocinador 2" class="sponsor-logo">
                 <img src="sponsor3.png" alt="Patrocinador 3" class="sponsor-logo">
@@ -463,6 +509,7 @@
     <section class="faq-section section" id="faq">
         <h2 class="faq-title">Preguntas frecuentes</h2>
         <ul class="faq-list" id="faq-list">
+            <!-- Cambia o agrega preguntas frecuentes aquí -->
             <li class="faq-item">
                 <button class="faq-question">¿Cómo me inscribo?</button>
                 <div class="faq-answer">Haz clic en el botón de inscripción en la categoría que prefieras y llena el formulario. ¡Listo!</div>
@@ -485,6 +532,7 @@
             </li>
         </ul>
     </section>
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-content">
             <div class="social-links">
@@ -519,6 +567,7 @@
         });
 
         // Cuenta regresiva
+        // Cambia la fecha/hora aquí
         const countdownTarget = new Date('2025-08-17T07:00:00-06:00');
         const countdownContainer = document.getElementById('countdown');
         function updateCountdown() {
@@ -552,7 +601,7 @@
             });
         });
 
-        // Galería carrusel y lightbox
+        // GALERÍA CARRUSEL Y LIGHTBOX
         const galleryTrack = document.querySelector('.gallery-carrusel-track');
         const gallerySlides = Array.from(galleryTrack.children);
         const galleryNext = document.querySelector('.gallery-carrusel-button.next');
@@ -577,15 +626,27 @@
             else if (galleryTrack._startX - endX > 40) showGallerySlide(galleryCurrent + 1);
             galleryTrack._startX = null;
         });
-        // Lightbox para galería
+        // Lightbox
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
-        gallerySlides.forEach(slide => {
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let lightboxIndex = 0;
+        gallerySlides.forEach((slide, i) => {
             slide.addEventListener('click', () => {
                 lightbox.style.display = 'flex';
                 lightboxImg.src = slide.querySelector('img').src;
+                lightboxIndex = i;
             });
         });
+        function showLightbox(idx) {
+            if (idx < 0) idx = gallerySlides.length - 1;
+            if (idx >= gallerySlides.length) idx = 0;
+            lightboxIndex = idx;
+            lightboxImg.src = gallerySlides[lightboxIndex].querySelector('img').src;
+        }
+        lightboxPrev.onclick = function() { showLightbox(lightboxIndex - 1); };
+        lightboxNext.onclick = function() { showLightbox(lightboxIndex + 1); };
         document.querySelector('.lightbox-close').onclick = function() {
             lightbox.style.display = "none";
             lightboxImg.src = "";
@@ -599,14 +660,12 @@
         updateGallery();
         setInterval(() => showGallerySlide(galleryCurrent + 1), 5000);
 
-        // Patrocinadores carrusel táctil y botones
+        // PATROCINADORES carrusel táctil y botones
         const sponsorsTrack = document.getElementById('sponsors-slider-track');
         let sponsorsLogos = Array.from(sponsorsTrack.children);
-        // Duplicar para efecto infinito
-        sponsorsTrack.innerHTML += sponsorsTrack.innerHTML;
+        sponsorsTrack.innerHTML += sponsorsTrack.innerHTML; // Duplicar para infinito
         let sponsorsCurrent = 0;
         let sponsorsMax = sponsorsLogos.length;
-        let sponsorsVisible = Math.floor(sponsorsTrack.parentElement.offsetWidth / sponsorsLogos[0].offsetWidth) || 4;
         function updateSponsorsCarousel() {
             sponsorsTrack.style.transform = 'translateX(-' + sponsorsCurrent * (sponsorsLogos[0].offsetWidth + 22) + 'px)';
         }
@@ -618,7 +677,6 @@
         }
         document.querySelector('.sponsors-slider-button.next').onclick = () => showSponsorSlide(sponsorsCurrent + 1);
         document.querySelector('.sponsors-slider-button.prev').onclick = () => showSponsorSlide(sponsorsCurrent - 1);
-        // Touch para patrocinadores
         let sponsorsStartX = null;
         sponsorsTrack.addEventListener('touchstart', e => { sponsorsStartX = e.touches[0].clientX; });
         sponsorsTrack.addEventListener('touchend', e => {
@@ -628,12 +686,9 @@
             else if (sponsorsStartX - endX > 35) showSponsorSlide(sponsorsCurrent + 1);
             sponsorsStartX = null;
         });
-        // Auto-scroll
         setInterval(() => showSponsorSlide(sponsorsCurrent + 1), 3500);
-        // Ajuste responsive al cargar y al redimensionar
         window.addEventListener('resize', () => {
             sponsorsLogos = Array.from(sponsorsTrack.children);
-            sponsorsVisible = Math.floor(sponsorsTrack.parentElement.offsetWidth / sponsorsLogos[0].offsetWidth) || 4;
             updateSponsorsCarousel();
         });
         updateSponsorsCarousel();
