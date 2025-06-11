@@ -5,33 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10K Embajadores de Cristo</title>
     <style>
-        /* Global/Reset */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-            background: #f8fafc;
-            line-height: 1.6;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background: #f8fafc; line-height: 1.6; }
         img { max-width: 100%; height: auto; border-radius: 10px;}
         a { color: inherit; text-decoration: none; }
-
-        /* Header/Nav */
         .header { background: linear-gradient(135deg, #dc267f 95%, #3b82f6 100%); color: #fff; padding: 0.8rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.07);}
         .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 1rem;}
         .logo { font-size: 1.3rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.18); flex: 1; }
         .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
         .menu-toggle span { width: 25px; height: 3px; background: #fff; margin: 3px 0; border-radius: 2px; }
         .nav-links { display: flex; list-style: none; gap: 1.5rem; }
-        .nav-links a {
-            color: #fff; text-decoration: none; font-size: 1rem;
-            padding: 0.5rem 1rem; border-radius: 22px; transition: background 0.2s;
-        }
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        /* Hero */
+        .nav-links a { color: #fff; text-decoration: none; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 22px; transition: background 0.2s;}
+        .nav-links a:hover { background: rgba(255,255,255,0.2);}
         .hero {
             min-height: 100vh;
             background: linear-gradient(135deg,rgba(0,0,0,0.7) 70%,rgba(59,130,246,.18)), url('hero-carrera.jpg') center/cover no-repeat;
@@ -54,42 +39,38 @@
         .hero-details { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 1.5rem;}
         .hero-detail { background: rgba(255,255,255,0.16); color: #fff; border-radius: 11px; padding: 0.55rem 1.1rem; font-size: 1rem; font-weight: 500; display: flex; align-items: center; gap: 0.3rem;}
         .cta-button {
-            display: block;
-            width: 100%;
+            display: block; width: 100%;
             background: linear-gradient(135deg,#3b82f6 0%, #dc2626 100%);
-            color: #fff;
-            padding: 1.15rem 2.2rem;
-            border-radius: 50px;
-            font-size: 1.18rem;
-            font-weight: bold;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.16);
-            margin: 1.7rem auto 0 auto;
-            border: none;
-            cursor: pointer;
-            outline: none;
-            letter-spacing: 1px;
+            color: #fff; padding: 1rem 2.2rem;
+            border-radius: 50px; font-size: 1.13rem; font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.16); margin: 1.7rem auto 0 auto;
+            border: none; cursor: pointer; outline: none; letter-spacing: 1px;
             transition: transform 0.15s, box-shadow 0.2s, background 0.25s;
             animation: pulse-btn 2s infinite;
         }
         .cta-button:hover { transform: scale(1.04); background: linear-gradient(135deg,#dc2626,#3b82f6);}
         @keyframes pulse-btn { 0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.14);} 50%{box-shadow:0 14px 44px 2px rgba(220,38,127,0.13);} }
-
-        /* Responsive Nav */
         @media (max-width: 768px) {
-            .menu-toggle { display: flex; }
+            .menu-toggle { display: flex;}
             .nav-links {
                 position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px);
                 background: linear-gradient(135deg, #dc267f 97%, #3b82f6 100%);
                 flex-direction: column; justify-content: flex-start; align-items: center;
                 transition: left 0.3s ease; padding-top: 2rem;
             }
-            .nav-links.active { left: 0; }
-            .nav-links li { margin: 1rem 0; }
+            .nav-links.active { left: 0;}
+            .nav-links li { margin: 1rem 0;}
             .nav-links a { font-size: 1.2rem; padding: 1rem 2rem; }
             .logo { font-size: 1.08rem; }
         }
-
-        /* Categorías y botón inscribirse */
+        .section { padding: 4rem 1rem; }
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.7rem, 4vw, 2.5rem);
+            margin-bottom: 2.4rem;
+            background: linear-gradient(135deg, #dc2626, #3b82f6);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
         .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:2rem; margin-bottom:2rem;}
         .category-card {
             background:#fff; padding:2rem 1rem 1.3rem 1rem; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.09); text-align:center; display:flex; flex-direction:column; gap:0.7rem; position:relative;
@@ -100,41 +81,32 @@
         .category-card .prizes-list {list-style:none; color:#6b7280; margin-bottom:0; padding:0;}
         .category-card .prizes-list li {margin-bottom:0.2rem;}
         .cta-button-category {
-            display: block;
-            margin: 1.1rem auto 0 auto;
-            width: 90%;
+            display: inline-block;
             background: linear-gradient(90deg, #ff0080 0%, #7928ca 100%);
             color: #fff;
             border: none;
-            padding: 1.2rem 0;
-            font-size: 1.19rem;
+            padding: 0.7rem 2.2rem;
+            font-size: 1.06rem;
             font-weight: 700;
             border-radius: 30px;
-            box-shadow: 0 5px 30px #3b82f633;
+            box-shadow: 0 5px 24px #3b82f626;
             cursor: pointer;
+            margin-top: 1.1rem;
+            margin-bottom: 0.2rem;
             letter-spacing: 1px;
             transition: background 0.22s, transform 0.14s, box-shadow 0.25s;
-            text-shadow: 1px 2px 10px #3b82f6cc;
+            text-shadow: 1px 2px 8px #3b82f6cc;
             outline: none;
-            animation: pulse-btn 2s infinite;
         }
         .cta-button-category:hover, .cta-button-category:focus {
             background: linear-gradient(90deg,#7928ca 0%, #ff0080 100%);
-            transform: scale(1.04);
+            transform: scale(1.05);
         }
         @media (max-width: 600px) {
-            .cta-button-category,.cta-button { width: 100%; }
+            .cta-button-category { width: auto; padding: 0.8rem 1.3rem; font-size: 1rem;}
         }
-
-        /* Qué incluye (versión compacta) */
         .kit-section .kit-grid {
-            display: flex;
-            gap: 1.2rem;
-            justify-content: center;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            margin-bottom: 0.7rem;
-            scrollbar-width: thin;
+            display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; overflow-x: auto; margin-bottom: 0.7rem; scrollbar-width: thin;
         }
         .kit-item {
             background: linear-gradient(45deg,#f8fafc,#e2e8f0);
@@ -149,11 +121,101 @@
         }
         .kit-icon { font-size: 2.2rem; margin-bottom: 0.18rem;}
         .kit-item h3 { font-size: 0.97rem; color: #1f2937; margin-bottom: 0; font-weight: 600; }
-        @media (max-width: 600px) {
-            .kit-item { min-width: 80px; max-width:90px; padding: 0.7rem 0.2rem;}
-            .kit-icon { font-size: 1.5rem;}
+        @media (max-width: 600px) { .kit-item { min-width: 80px; max-width:90px; padding: 0.7rem 0.2rem;} .kit-icon { font-size: 1.5rem;} }
+        .inscription-info { text-align:center; margin-bottom:2.5rem; padding:1.5rem; background:#fff; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.08);}
+        .inscription-info h3 { font-size:1.5rem; color:#1f2937; }
+        .price { font-size:2rem; font-weight:bold; color:#dc2626;}
+        .contact-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
+        .contact-card { background:#fff;padding:1.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:center;}
+        .contact-icon {width:50px;height:50px;background:linear-gradient(135deg,#dc2626,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-size:1.2rem;}
+        .map-section .section-title,
+        #ubicacion .section-title { text-align: center; }
+        .map-container, .location-map-container {
+            background:linear-gradient(135deg,#f8fafc,#e2e8f0); border-radius:20px; padding:2rem 1rem;text-align:center;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1); margin: 0 auto;
         }
-
+        .location-map-container { max-width: 500px; margin-bottom: 1.2rem;}
+        .location-map-container iframe, .location-map-container img { width: 100%; height: 320px; border: 0; display: block; border-radius: 15px;}
+        .open-maps-btn {
+            display: inline-block;
+            margin: 1.2rem auto 0 auto;
+            background: linear-gradient(135deg, #3b82f6, #dc2626);
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: bold;
+            padding: 0.85rem 2.1rem;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.09);
+            text-align: center;
+        }
+        .open-maps-btn:hover {
+            background: linear-gradient(135deg, #dc2626, #3b82f6); transform: translateY(-2px) scale(1.04);
+        }
+        .gallery-carrusel-container {
+            position: relative;
+            max-width: 470px;
+            margin: 0 auto;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.09);
+            background: #fff;
+        }
+        .gallery-carrusel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(.4,.8,.2,1.1);
+        }
+        .gallery-carrusel-slide {
+            min-width: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+        .gallery-carrusel-slide img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-carrusel-button {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background-color: rgba(255,255,255,0.8); border: none; border-radius: 50%;
+            width: 40px; height: 40px; cursor: pointer; z-index: 10; font-size: 1.5rem; color: #333; box-shadow: 0 2px 10px rgba(0,0,0,0.13); transition: all 0.2s ease;
+        }
+        .gallery-carrusel-button:hover { background-color: #fff; transform: translateY(-50%) scale(1.1);}
+        .gallery-carrusel-button.prev { left: 13px;}
+        .gallery-carrusel-button.next { right: 13px;}
+        @media (max-width: 600px) {.gallery-carrusel-container { max-width: 99vw;} .gallery-carrusel-slide img { height: 160px;}}
+        /* Lightbox para galería */
+        .lightbox { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.93); justify-content: center; align-items: center;}
+        .lightbox-content { max-width: 96vw; max-height: 85vh; border-radius: 13px; display: block; margin: auto; box-shadow: 0 8px 40px 10px rgba(59,130,246,0.10);}
+        .lightbox-close { position: absolute; top: 18px; right: 26px; color: #fff; font-size: 38px; font-weight: bold; transition: 0.3s; cursor: pointer;}
+        .lightbox-close:hover { color: #bbb;}
+        /* Patrocinadores carrusel mejorado */
+        .sponsors-section { background: #fff; padding: 2rem 0.5rem 1.6rem 0.5rem; text-align: center; margin-top: -1rem;}
+        .sponsors-title { font-size: 1.4rem; margin-bottom: 1.3rem; color: #1f2937; text-align: center;}
+        .sponsors-slider-container { position: relative; max-width: 1100px; margin: 0 auto; overflow: hidden;}
+        .sponsors-slider-track {
+            display: flex; gap: 1.4rem; transition: transform 0.5s cubic-bezier(.4,.8,.2,1.1); align-items: center;
+            will-change: transform;
+        }
+        .sponsor-logo {
+            width: 100px; height: 55px; object-fit: contain; border-radius: 10px; background: #f1f5f9; padding: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); flex: 0 0 auto;
+            transition: box-shadow 0.2s;
+        }
+        .sponsor-logo:hover { box-shadow: 0 4px 18px #3b82f6aa;}
+        .sponsors-slider-button {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background-color: rgba(255,255,255,0.88); border: none; border-radius: 50%;
+            width: 38px; height: 38px; cursor: pointer; z-index: 5; font-size: 1.2rem; color: #333; box-shadow: 0 2px 10px rgba(0,0,0,0.12); transition: all 0.2s;
+        }
+        .sponsors-slider-button.prev { left: 6px;}
+        .sponsors-slider-button.next { right: 6px;}
+        .sponsors-slider-button:hover { background: #fff; }
+        @media(max-width: 600px) {
+            .sponsor-logo { width: 65px; height: 35px; padding: 0.3rem;}
+            .sponsors-slider-track { gap: 0.7rem;}
+        }
         /* FAQ Accordion */
         .faq-section { background: #f8fafc; padding: 3rem 1rem; }
         .faq-title { text-align: center; font-size: clamp(1.5rem, 4vw, 2.1rem); margin-bottom: 2rem; color: #3b82f6; }
@@ -178,81 +240,6 @@
             line-height: 1.5;
         }
         .faq-item.active .faq-answer { display:block; }
-
-        /* Patrocinadores (marquee/carrusel) */
-        .sponsors-section {
-            background: #fff; padding: 2rem 0.5rem 1.6rem 0.5rem; text-align: center; margin-top: -1rem;
-        }
-        .sponsors-title { font-size: 1.4rem; margin-bottom: 1.3rem; color: #1f2937; }
-        .sponsors-marquee-container {
-            overflow: hidden;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .sponsors-marquee-list {
-            display: flex;
-            gap: 1.4rem;
-            animation: sponsors-scroll 24s linear infinite;
-            align-items: center;
-        }
-        .sponsor-logo {
-            width: 100px; height: 55px; object-fit: contain; border-radius: 10px; background: #f1f5f9; padding: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-        @keyframes sponsors-scroll {
-            0% { transform: translateX(0);}
-            100% { transform: translateX(-50%);}
-        }
-        .sponsors-marquee-list:hover { animation-play-state: paused; }
-        /* Duplicado del carrusel para efecto infinito */
-        .sponsors-marquee-list > * { flex: 0 0 auto; }
-
-        @media(max-width: 600px) {
-            .sponsor-logo { width: 65px; height: 35px; padding: 0.3rem;}
-            .sponsors-marquee-list { gap: 0.7rem;}
-        }
-
-        /* Galería carrusel */
-        .gallery-carrusel-container {
-            position: relative;
-            max-width: 470px;
-            margin: 0 auto;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 6px 22px rgba(0,0,0,0.09);
-            background: #fff;
-        }
-        .gallery-carrusel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .gallery-carrusel-slide {
-            min-width: 100%;
-            position: relative;
-            cursor: pointer;
-        }
-        .gallery-carrusel-slide img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-        .gallery-carrusel-button {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background-color: rgba(255,255,255,0.8); border: none; border-radius: 50%;
-            width: 40px; height: 40px; cursor: pointer; z-index: 10; font-size: 1.5rem; color: #333; box-shadow: 0 2px 10px rgba(0,0,0,0.13); transition: all 0.2s ease;
-        }
-        .gallery-carrusel-button:hover { background-color: #fff; transform: translateY(-50%) scale(1.1);}
-        .gallery-carrusel-button.prev { left: 13px;}
-        .gallery-carrusel-button.next { right: 13px;}
-        .gallery-caption { text-align:center; color:#374151; font-size:1.08rem; min-height:2.2rem; margin:0.7rem 0 0.2rem 0;}
-        @media (max-width: 600px) {
-            .gallery-carrusel-container { max-width: 99vw;}
-            .gallery-carrusel-slide img { height: 160px;}
-        }
-
-        /* WhatsApp flotante */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
             background: linear-gradient(135deg, #25d366, #128c7e);
@@ -263,8 +250,6 @@
         }
         .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 25px rgba(37,211,102,0.6);}
         @keyframes pulse { 0% { box-shadow: 0 4px 20px rgba(37,211,102,0.4);} 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7);} 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4);} }
-
-        /* Footer */
         .footer { background: linear-gradient(135deg, #1f2937, #374151); color: #fff; text-align: center; padding: 2rem 1rem 1rem;}
         .footer-content { max-width: 1200px; margin: 0 auto;}
         .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -365,22 +350,10 @@
         <div class="container">
             <h2 class="section-title">¿Qué Incluye tu Inscripción?</h2>
             <div class="kit-grid">
-                <div class="kit-item">
-                    <div class="kit-icon">👕</div>
-                    <h3>Playera</h3>
-                </div>
-                <div class="kit-item">
-                    <div class="kit-icon">🏅</div>
-                    <h3>Medalla</h3>
-                </div>
-                <div class="kit-item">
-                    <div class="kit-icon">#️⃣</div>
-                    <h3>Número</h3>
-                </div>
-                <div class="kit-item">
-                    <div class="kit-icon">💧</div>
-                    <h3>Hidratación</h3>
-                </div>
+                <div class="kit-item"><div class="kit-icon">👕</div><h3>Playera</h3></div>
+                <div class="kit-item"><div class="kit-icon">🏅</div><h3>Medalla</h3></div>
+                <div class="kit-item"><div class="kit-icon">#️⃣</div><h3>Número</h3></div>
+                <div class="kit-item"><div class="kit-icon">💧</div><h3>Hidratación</h3></div>
             </div>
         </div>
     </section>
@@ -388,21 +361,21 @@
     <section class="contact section" id="contacto">
         <div class="container">
             <h2 class="section-title">Información de Inscripción</h2>
-            <div class="inscription-info" style="text-align:center;margin-bottom:2.5rem;padding:1.5rem;background:#fff;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);">
-                <h3 style="font-size:1.5rem;color:#1f2937;">Costo de Inscripción</h3>
-                <p class="price" style="font-size:2rem;font-weight:bold;color:#dc2626;">Q100.00</p>
+            <div class="inscription-info">
+                <h3>Costo de Inscripción</h3>
+                <p class="price">Q100.00</p>
                 <p><strong>Fecha Límite de Inscripción:</strong> 25 de Julio de 2025</p>
             </div>
-            <div class="contact-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;">
-                <div class="contact-card" style="background:#fff;padding:1.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:center;">
-                    <div class="contact-icon" style="width:50px;height:50px;background:linear-gradient(135deg,#dc2626,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-size:1.2rem;">📱</div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
                     <h3>Contacto</h3>
                     <p><strong>Teléfono:</strong> +502 1234-5678</p>
                     <p><strong>Email:</strong> info@10kembajadores.com</p>
                     <p><strong>WhatsApp:</strong> +502 9876-5432</p>
                 </div>
-                <div class="contact-card" style="background:#fff;padding:1.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:center;">
-                    <div class="contact-icon" style="width:50px;height:50px;background:linear-gradient(135deg,#dc2626,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-size:1.2rem;">💳</div>
+                <div class="contact-card">
+                    <div class="contact-icon">💳</div>
                     <h3>Cuentas para Pago</h3>
                     <p><strong>Banco Industrial:</strong><br>Cuenta: 123-456789-0</p>
                     <p><strong>Banrural:</strong><br>Cuenta: 987-654321-0</p>
@@ -414,8 +387,8 @@
     <!-- Recorrido -->
     <section class="map-section section" id="recorrido">
         <div class="container">
-            <div class="map-container" style="background:linear-gradient(135deg,#f8fafc,#e2e8f0);border-radius:20px;padding:2rem 1rem;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
-                <h2 class="section-title">Recorrido de la Carrera</h2>
+            <h2 class="section-title">Recorrido de la Carrera</h2>
+            <div class="map-container">
                 <p>Conoce la ruta completa de 10 kilómetros que recorreremos juntos.</p>
                 <img src="recorrido-carrera.jpg" alt="Mapa del recorrido de la carrera 10K Embajadores de Cristo">
             </div>
@@ -426,11 +399,9 @@
         <div class="container">
             <h2 class="section-title">Ubicación de Salida y Meta</h2>
             <div class="location-map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.093300467061!2d-90.52123488471958!3d14.633867389772385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a1e3e9c2b41b%3A0x7b4cb8fe7a8b7e1e!2sBarrio%20Garibaldi%2C%20Zona%209%2C%20Ciudad%20de%20Guatemala!5e0!3m2!1ses!2sgt!4v1718000000000!5m2!1ses!2sgt"
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.093300467061!2d-90.52123488471958!3d14.633867389772385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a1e3e9c2b41b%3A0x7b4cb8fe7a8b7e1e!2sBarrio%20Garibaldi%2C%20Zona%209%2C%20Ciudad%20de%20Guatemala!5e0!3m2!1ses!2sgt!4v1718000000000!5m2!1ses!2sgt"
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                    title="Ubicación de la salida y meta"
-                ></iframe>
+                    title="Ubicación de la salida y meta"></iframe>
             </div>
             <div style="text-align:center;">
                 <a href="https://goo.gl/maps/2HRtCv3r2Zbdoa8f8" target="_blank" class="open-maps-btn">
@@ -445,25 +416,30 @@
             <h2 class="section-title">Ediciones Anteriores</h2>
             <div class="gallery-carrusel-container">
                 <div class="gallery-carrusel-track">
-                    <div class="gallery-carrusel-slide" data-caption="Salida 2023 - El emocionante inicio de la carrera."><img src="1.jpg" alt="Foto Salida 2023"></div>
-                    <div class="gallery-carrusel-slide" data-caption="Meta 2023 - La alegría de cruzar la meta."><img src="2.jpg" alt="Meta 2023"></div>
-                    <div class="gallery-carrusel-slide" data-caption="Premiación - Reconociendo a los ganadores."><img src="3.jpg" alt="Premiación"></div>
-                    <div class="gallery-carrusel-slide" data-caption="Participantes - Corredores de todas las edades."><img src="4.jpg" alt="Participantes"></div>
-                    <div class="gallery-carrusel-slide" data-caption="Ambiente Festivo - Una fiesta de fe y deporte."><img src="5.jpg" alt="Ambiente"></div>
-                    <div class="gallery-carrusel-slide" data-caption="Comunidad Unida - Compartiendo juntos como comunidad."><img src="6.jpg" alt="Comunidad"></div>
+                    <div class="gallery-carrusel-slide"><img src="1.jpg" alt="Foto Salida 2023"></div>
+                    <div class="gallery-carrusel-slide"><img src="2.jpg" alt="Meta 2023"></div>
+                    <div class="gallery-carrusel-slide"><img src="3.jpg" alt="Premiación"></div>
+                    <div class="gallery-carrusel-slide"><img src="4.jpg" alt="Participantes"></div>
+                    <div class="gallery-carrusel-slide"><img src="5.jpg" alt="Ambiente"></div>
+                    <div class="gallery-carrusel-slide"><img src="6.jpg" alt="Comunidad"></div>
                 </div>
                 <button class="gallery-carrusel-button prev">&#10094;</button>
                 <button class="gallery-carrusel-button next">&#10095;</button>
-                <div class="gallery-caption" id="gallery-caption"></div>
+            </div>
+            <!-- Lightbox para galería -->
+            <div id="lightbox" class="lightbox">
+                <span class="lightbox-close">&times;</span>
+                <img class="lightbox-content" id="lightboxImg">
             </div>
         </div>
     </section>
-    <!-- Patrocinadores Carrusel -->
+    <!-- Patrocinadores Carrusel táctil -->
     <section class="sponsors-section" id="patrocinadores">
         <div class="sponsors-title">Patrocinadores</div>
-        <div class="sponsors-marquee-container">
-            <div class="sponsors-marquee-list" id="sponsors-list">
-                <!-- Reemplaza estos logos -->
+        <div class="sponsors-slider-container">
+            <button class="sponsors-slider-button prev">&#10094;</button>
+            <div class="sponsors-slider-track" id="sponsors-slider-track">
+                <!-- 15 logos, duplica para infinito -->
                 <img src="sponsor1.png" alt="Patrocinador 1" class="sponsor-logo">
                 <img src="sponsor2.png" alt="Patrocinador 2" class="sponsor-logo">
                 <img src="sponsor3.png" alt="Patrocinador 3" class="sponsor-logo">
@@ -479,8 +455,8 @@
                 <img src="sponsor13.png" alt="Patrocinador 13" class="sponsor-logo">
                 <img src="sponsor14.png" alt="Patrocinador 14" class="sponsor-logo">
                 <img src="sponsor15.png" alt="Patrocinador 15" class="sponsor-logo">
-                <!-- Duplicación automática para efecto infinito, JS lo hace -->
             </div>
+            <button class="sponsors-slider-button next">&#10095;</button>
         </div>
     </section>
     <!-- FAQ (acordeón) -->
@@ -521,7 +497,6 @@
             <p>Barrio Garibaldi, Zona 9 - Guatemala</p>
         </div>
     </footer>
-    <!-- Scripts mejorados -->
     <script>
         // Menú hamburguesa
         const menuToggle = document.getElementById('menuToggle');
@@ -577,19 +552,14 @@
             });
         });
 
-        // Galería carrusel
+        // Galería carrusel y lightbox
         const galleryTrack = document.querySelector('.gallery-carrusel-track');
         const gallerySlides = Array.from(galleryTrack.children);
         const galleryNext = document.querySelector('.gallery-carrusel-button.next');
         const galleryPrev = document.querySelector('.gallery-carrusel-button.prev');
-        const galleryCaptionDiv = document.getElementById('gallery-caption');
         let galleryCurrent = 0;
         function updateGallery() {
             galleryTrack.style.transform = 'translateX(-' + galleryCurrent * 100 + '%)';
-            const slide = gallerySlides[galleryCurrent];
-            if (slide && slide.dataset.caption) {
-                galleryCaptionDiv.textContent = slide.dataset.caption;
-            }
         }
         function showGallerySlide(index) {
             if (index < 0) index = gallerySlides.length - 1;
@@ -607,15 +577,66 @@
             else if (galleryTrack._startX - endX > 40) showGallerySlide(galleryCurrent + 1);
             galleryTrack._startX = null;
         });
+        // Lightbox para galería
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        gallerySlides.forEach(slide => {
+            slide.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = slide.querySelector('img').src;
+            });
+        });
+        document.querySelector('.lightbox-close').onclick = function() {
+            lightbox.style.display = "none";
+            lightboxImg.src = "";
+        };
+        window.onclick = function(event) {
+            if (event.target === lightbox) {
+                lightbox.style.display = "none";
+                lightboxImg.src = "";
+            }
+        };
         updateGallery();
-
-        // Patrocinadores carrusel infinito duplicado
-        // Duplica los logos para efecto infinito
-        const sponsorsList = document.getElementById('sponsors-list');
-        sponsorsList.innerHTML += sponsorsList.innerHTML;
-
-        // Opcional: Auto-carrusel para galería
         setInterval(() => showGallerySlide(galleryCurrent + 1), 5000);
+
+        // Patrocinadores carrusel táctil y botones
+        const sponsorsTrack = document.getElementById('sponsors-slider-track');
+        let sponsorsLogos = Array.from(sponsorsTrack.children);
+        // Duplicar para efecto infinito
+        sponsorsTrack.innerHTML += sponsorsTrack.innerHTML;
+        let sponsorsCurrent = 0;
+        let sponsorsMax = sponsorsLogos.length;
+        let sponsorsVisible = Math.floor(sponsorsTrack.parentElement.offsetWidth / sponsorsLogos[0].offsetWidth) || 4;
+        function updateSponsorsCarousel() {
+            sponsorsTrack.style.transform = 'translateX(-' + sponsorsCurrent * (sponsorsLogos[0].offsetWidth + 22) + 'px)';
+        }
+        function showSponsorSlide(idx) {
+            sponsorsCurrent = idx;
+            if (sponsorsCurrent < 0) sponsorsCurrent = sponsorsMax;
+            if (sponsorsCurrent > sponsorsMax) sponsorsCurrent = 0;
+            updateSponsorsCarousel();
+        }
+        document.querySelector('.sponsors-slider-button.next').onclick = () => showSponsorSlide(sponsorsCurrent + 1);
+        document.querySelector('.sponsors-slider-button.prev').onclick = () => showSponsorSlide(sponsorsCurrent - 1);
+        // Touch para patrocinadores
+        let sponsorsStartX = null;
+        sponsorsTrack.addEventListener('touchstart', e => { sponsorsStartX = e.touches[0].clientX; });
+        sponsorsTrack.addEventListener('touchend', e => {
+            if (sponsorsStartX === null) return;
+            let endX = e.changedTouches[0].clientX;
+            if (endX - sponsorsStartX > 35) showSponsorSlide(sponsorsCurrent - 1);
+            else if (sponsorsStartX - endX > 35) showSponsorSlide(sponsorsCurrent + 1);
+            sponsorsStartX = null;
+        });
+        // Auto-scroll
+        setInterval(() => showSponsorSlide(sponsorsCurrent + 1), 3500);
+        // Ajuste responsive al cargar y al redimensionar
+        window.addEventListener('resize', () => {
+            sponsorsLogos = Array.from(sponsorsTrack.children);
+            sponsorsVisible = Math.floor(sponsorsTrack.parentElement.offsetWidth / sponsorsLogos[0].offsetWidth) || 4;
+            updateSponsorsCarousel();
+        });
+        updateSponsorsCarousel();
     </script>
 </body>
 </html>
