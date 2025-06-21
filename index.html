@@ -11,7 +11,7 @@
         img { max-width: 100%; height: auto; border-radius: 10px;}
         a { color: inherit; text-decoration: none; }
         /* ------ HEADER/NAV ------ */
-        .header { background: linear-gradient(135deg, #dc267f 95%, #3b82f6 100%); color: #fff; padding: 0.8rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.07);}
+        .header { background: linear-gradient(135deg, #1e40af 85%, #3b82f6 100%); color: #fff; padding: 0.8rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.07);}
         .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 1rem;}
         .logo { font-size: 1.3rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.18); flex: 1; }
         .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
@@ -23,7 +23,7 @@
             .menu-toggle { display: flex;}
             .nav-links {
                 position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px);
-                background: linear-gradient(135deg, #dc267f 97%, #3b82f6 100%);
+                background: linear-gradient(135deg, #1e40af 87%, #3b82f6 100%);
                 flex-direction: column; justify-content: flex-start; align-items: center;
                 transition: left 0.3s ease; padding-top: 2rem;
             }
@@ -36,12 +36,12 @@
         .hero {
             min-height: 100vh;
             /* Cambia la imagen de portada aquí */
-            background: linear-gradient(135deg,rgba(0,0,0,0.7) 70%,rgba(59,130,246,.18)), url('Inicio.png') center/cover no-repeat;
+            background: linear-gradient(135deg,rgba(0,0,0,0.7) 70%,rgba(30,64,175,.18)), url('Inicio.png') center/cover no-repeat;
             display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;
             position: relative; margin-bottom: 2rem; padding: 2rem 1rem 1.2rem 1rem;
         }
         .hero-content {
-            background: rgba(0,0,0,0.25); border-radius: 20px; padding: 2rem 1rem 1.3rem 1rem; max-width: 500px; margin: auto; box-shadow: 0 8px 35px rgba(59,130,246,0.1);
+            background: rgba(0,0,0,0.25); border-radius: 20px; padding: 2rem 1rem 1.3rem 1rem; max-width: 500px; margin: auto; box-shadow: 0 8px 35px rgba(30,64,175,0.1);
         }
         .hero h1 { font-size: clamp(2.15rem, 6vw, 3.7rem); text-shadow: 2px 2px 12px rgba(0,0,0,0.28); margin-bottom: 0.8rem; }
         .hero .slogan { font-size: 1.15rem; margin-bottom: 2rem; color: #f3f4f6; font-weight: 500; text-shadow: 1px 1px 3px rgba(0,0,0,0.15); }
@@ -52,7 +52,7 @@
         .hero-detail { background: rgba(255,255,255,0.16); color: #fff; border-radius: 11px; padding: 0.55rem 1.1rem; font-size: 1rem; font-weight: 500; display: flex; align-items: center; gap: 0.3rem;}
         .cta-button {
             display: block; width: 100%;
-            background: linear-gradient(135deg,#3b82f6 0%, #dc2626 100%);
+            background: linear-gradient(135deg,#1e40af 0%, #3b82f6 100%);
             color: #fff; padding: 1rem 2.2rem;
             border-radius: 50px; font-size: 1.13rem; font-weight: bold;
             box-shadow: 0 10px 30px rgba(0,0,0,0.16); margin: 1.7rem auto 0 auto;
@@ -60,15 +60,15 @@
             transition: transform 0.15s, box-shadow 0.2s, background 0.25s;
             animation: pulse-btn 2s infinite;
         }
-        .cta-button:hover { transform: scale(1.04); background: linear-gradient(135deg,#dc2626,#3b82f6);}
-        @keyframes pulse-btn { 0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.14);} 50%{box-shadow:0 14px 44px 2px rgba(220,38,127,0.13);} }
+        .cta-button:hover { transform: scale(1.04); background: linear-gradient(135deg,#3b82f6,#1e40af);}
+        @keyframes pulse-btn { 0%,100%{box-shadow:0 10px 30px rgba(0,0,0,0.14);} 50%{box-shadow:0 14px 44px 2px rgba(30,64,175,0.13);} }
         /* ------ SECCIONES ------ */
         .section { padding: 4rem 1rem; }
         .section-title {
             text-align: center;
             font-size: clamp(1.7rem, 4vw, 2.5rem);
             margin-bottom: 2.4rem;
-            background: linear-gradient(135deg, #dc2626, #3b82f6);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         /* ------ CATEGORÍAS ------ */
@@ -84,26 +84,26 @@
         /* ---- BOTÓN INSCRIBIRSE CATEGORÍA ---- */
         .cta-button-category {
             display: inline-block;
-            background: linear-gradient(90deg, #ff0080 0%, #7928ca 100%);
+            background: linear-gradient(90deg, #1e40af 0%, #3b82f6 100%);
             color: #fff;
             border: none;
             padding: 0.65rem 1.7rem;
             font-size: 1rem;
             font-weight: 700;
             border-radius: 30px;
-            box-shadow: 0 5px 24px #3b82f626;
+            box-shadow: 0 5px 24px rgba(30,64,175,0.26);
             cursor: pointer;
             margin-top: 1.1rem;
             margin-bottom: 0.2rem;
             letter-spacing: 1px;
             transition: background 0.22s, transform 0.14s, box-shadow 0.25s;
-            text-shadow: 1px 2px 8px #3b82f6cc;
+            text-shadow: 1px 2px 8px rgba(30,64,175,0.8);
             outline: none;
             min-width: 110px;
             max-width: 220px;
         }
         .cta-button-category:hover, .cta-button-category:focus {
-            background: linear-gradient(90deg,#7928ca 0%, #ff0080 100%);
+            background: linear-gradient(90deg,#3b82f6 0%, #1e40af 100%);
             transform: scale(1.05);
         }
         @media (max-width: 600px) {
@@ -121,19 +121,28 @@
             max-width: 110px;
             text-align: center;
             margin: 0.2rem 0;
-            box-shadow: 0 3px 14px rgba(59,130,246,0.06);
+            box-shadow: 0 3px 14px rgba(30,64,175,0.06);
             display: flex; flex-direction: column; align-items: center;
         }
         .kit-icon { font-size: 2.2rem; margin-bottom: 0.18rem;}
         .kit-item h3 { font-size: 0.97rem; color: #1f2937; margin-bottom: 0; font-weight: 600; }
+        .special-bonus {
+            background: linear-gradient(45deg, #fef3c7, #fbbf24);
+            border: 2px solid #f59e0b;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 3px 14px rgba(245,158,11,0.3); }
+            to { box-shadow: 0 6px 20px rgba(245,158,11,0.6); }
+        }
         @media (max-width: 600px) { .kit-item { min-width: 80px; max-width:90px; padding: 0.7rem 0.2rem;} .kit-icon { font-size: 1.5rem;} }
         /* ------ INSCRIPCIÓN / CONTACTO ------ */
         .inscription-info { text-align:center; margin-bottom:2.5rem; padding:1.5rem; background:#fff; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.08);}
         .inscription-info h3 { font-size:1.5rem; color:#1f2937; }
-        .price { font-size:2rem; font-weight:bold; color:#dc2626;}
+        .price { font-size:2rem; font-weight:bold; color:#1e40af;}
         .contact-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
         .contact-card { background:#fff;padding:1.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:center;}
-        .contact-icon {width:50px;height:50px;background:linear-gradient(135deg,#dc2626,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-size:1.2rem;}
+        .contact-icon {width:50px;height:50px;background:linear-gradient(135deg,#1e40af,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#fff;font-size:1.2rem;}
         /* ------ MAPA Y UBICACIÓN ------ */
         .map-section .section-title,
         #ubicacion .section-title { text-align: center; }
@@ -146,7 +155,7 @@
         .open-maps-btn {
             display: inline-block;
             margin: 1.2rem auto 0 auto;
-            background: linear-gradient(135deg, #3b82f6, #dc2626);
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
             color: #fff;
             font-size: 1.05rem;
             font-weight: bold;
@@ -158,7 +167,7 @@
             text-align: center;
         }
         .open-maps-btn:hover {
-            background: linear-gradient(135deg, #dc2626, #3b82f6); transform: translateY(-2px) scale(1.04);
+            background: linear-gradient(135deg, #3b82f6, #1e40af); transform: translateY(-2px) scale(1.04);
         }
         /* ------ GALERÍA CARRUSEL ------ */
         .gallery-carrusel-container {
@@ -197,7 +206,7 @@
         @media (max-width: 600px) {.gallery-carrusel-container { max-width: 99vw;} .gallery-carrusel-slide img { height: 200px;}}
         /* ------ LIGHTBOX GALERÍA ------ */
         .lightbox { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.93); justify-content: center; align-items: center;}
-        .lightbox-content { max-width: 96vw; max-height: 85vh; border-radius: 13px; display: block; margin: auto; box-shadow: 0 8px 40px 10px rgba(59,130,246,0.10);}
+        .lightbox-content { max-width: 96vw; max-height: 85vh; border-radius: 13px; display: block; margin: auto; box-shadow: 0 8px 40px 10px rgba(30,64,175,0.10);}
         .lightbox-close { position: absolute; top: 18px; right: 26px; color: #fff; font-size: 38px; font-weight: bold; transition: 0.3s; cursor: pointer;}
         .lightbox-close:hover { color: #bbb;}
         .lightbox-nav {
@@ -235,7 +244,7 @@
             width: 100px; height: 55px; object-fit: contain; border-radius: 10px; background: #f1f5f9; padding: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); flex: 0 0 auto;
             transition: box-shadow 0.2s;
         }
-        .sponsor-logo:hover { box-shadow: 0 4px 18px #3b82f6aa;}
+        .sponsor-logo:hover { box-shadow: 0 4px 18px rgba(30,64,175,0.4);}
         .sponsors-slider-button {
             position: absolute; top: 50%; transform: translateY(-50%);
             background-color: rgba(255,255,255,0.88); border: none; border-radius: 50%;
@@ -247,11 +256,11 @@
         @media(max-width: 600px) { .sponsor-logo { width: 65px; height: 35px; padding: 0.3rem;} .sponsors-slider-track { gap: 0.7rem;} }
         /* ------ FAQ ACCORDION ------ */
         .faq-section { background: #f8fafc; padding: 3rem 1rem; }
-        .faq-title { text-align: center; font-size: clamp(1.5rem, 4vw, 2.1rem); margin-bottom: 2rem; color: #3b82f6; }
+        .faq-title { text-align: center; font-size: clamp(1.5rem, 4vw, 2.1rem); margin-bottom: 2rem; color: #1e40af; }
         .faq-list { max-width: 650px; margin: 0 auto; padding: 0; list-style: none; }
-        .faq-item { margin-bottom: 0.8rem; border-radius: 12px; background: #fff; box-shadow: 0 2px 10px rgba(59,130,246,0.06); }
+        .faq-item { margin-bottom: 0.8rem; border-radius: 12px; background: #fff; box-shadow: 0 2px 10px rgba(30,64,175,0.06); }
         .faq-question {
-            cursor: pointer; font-weight: bold; color: #dc2626; padding: 1.1rem 1.4rem; font-size: 1.07rem; border:none; background:none; width:100%; text-align:left; position:relative;
+            cursor: pointer; font-weight: bold; color: #1e40af; padding: 1.1rem 1.4rem; font-size: 1.07rem; border:none; background:none; width:100%; text-align:left; position:relative;
         }
         .faq-question:after {
             content: '▼';
@@ -285,14 +294,14 @@
         .footer { background: linear-gradient(135deg, #1f2937, #374151); color: #fff; text-align: center; padding: 2rem 1rem 1rem;}
         .footer-content { max-width: 1200px; margin: 0 auto;}
         .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .social-link { width: 45px; height: 45px; background: linear-gradient(135deg, #dc2626, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: all 0.3s ease; font-size: 1.2rem;}
+        .social-link { width: 45px; height: 45px; background: linear-gradient(135deg, #1e40af, #3b82f6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: all 0.3s ease; font-size: 1.2rem;}
         .social-link:hover { transform: translateY(-3px) scale(1.1);}
         .footer p { font-size: 0.9rem; margin-bottom: 0.5rem;}
     </style>
 </head>
 <body>
-    <!-- Botón flotante WhatsApp (cambia el número aquí) -->
-    <a href="https://wa.me/50212345678" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
+    <!-- Botón flotante WhatsApp (número actualizado) -->
+    <a href="https://wa.me/50234629621" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
         <!-- Logo SVG WhatsApp para máxima calidad -->
         <svg viewBox="0 0 32 32" fill="currentColor">
             <path d="M16 3C9.373 3 4 8.373 4 15c0 2.448.805 4.73 2.168 6.627L4 29l7.561-2.039A12.919 12.919 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22.8c-2.155 0-4.24-.631-6.017-1.824l-.429-.272-4.497 1.211 1.203-4.381-.28-.436A10.792 10.792 0 0 1 5.2 15C5.2 9.251 9.947 4.5 16 4.5S26.8 9.251 26.8 15.001 22.053 25.8 16 25.8zm5.273-7.176c-.291-.145-1.748-.862-2.02-.96-.272-.099-.47-.145-.669.146-.197.291-.767.96-.94 1.157-.173.194-.346.22-.637.073-.291-.145-1.229-.454-2.341-1.448-.866-.772-1.45-1.726-1.62-2.017-.173-.291-.018-.448.128-.592.132-.13.291-.346.436-.518.145-.173.193-.292.29-.485.097-.194.048-.364-.024-.51-.073-.145-.669-1.614-.915-2.211-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.197 0-.519.073-.792.364-.272.291-1.04 1.017-1.04 2.479 0 1.46 1.065 2.874 1.213 3.073.145.194 2.094 3.208 5.079 4.374.711.249 1.264.398 1.697.509.714.182 1.364.156 1.879.095.573-.07 1.748-.714 1.997-1.403.246-.69.246-1.282.174-1.403-.072-.118-.264-.19-.555-.334z"/>
@@ -337,49 +346,49 @@
         <div class="container">
             <h2 class="section-title">Categorías y Premios</h2>
             <div class="categories-grid">
-                <!-- Puedes duplicar o quitar tarjetas de categoría aquí -->
+                <!-- Categorías actualizadas -->
                 <div class="category-card">
                     <h3>🏃‍♂️ Libre</h3>
                     <p>Categoría abierta para todos los corredores sin restricción de edad.</p>
-                    <div class="branches"><span class="branch">Femenino</span><span class="branch">Masculino</span></div>
+                    <div class="branches"><span class="branch">Masculino</span><span class="branch">Femenino</span></div>
                     <div class="prizes">
                         <h4>Premios</h4>
                         <ul class="prizes-list">
-                            <li>🥇 1er Lugar: <span style="font-weight:bold;color:#dc2626;">Q500</span></li>
-                            <li>🥈 2do Lugar: <span style="font-weight:bold;color:#dc2626;">Q300</span></li>
-                            <li>🥉 3er Lugar: <span style="font-weight:bold;color:#dc2626;">Q200</span></li>
+                            <li>🏆 Premios en efectivo</li>
                         </ul>
+                    </div>
                     <div style="text-align:center;">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" class="cta-button-category">Inscribirse</a>
-</div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" class="cta-button-category">Inscribirse</a>
+                    </div>
+                </div>
                 <div class="category-card">
-                    <h3>🏆 Máster</h3>
+                    <h3>🏆 Master</h3>
                     <p>Categoría especial para corredores de 40 años en adelante.</p>
-                    <div class="branches"><span class="branch">Femenino</span><span class="branch">Masculino</span></div>
+                    <div class="branches"><span class="branch">Masculino</span><span class="branch">Femenino</span></div>
                     <div class="prizes">
                         <h4>Premios</h4>
                         <ul class="prizes-list">
-                            <li>🥇 1er Lugar: <span style="font-weight:bold;color:#dc2626;">Q500</span></li>
-                            <li>🥈 2do Lugar: <span style="font-weight:bold;color:#dc2626;">Q300</span></li>
-                            <li>🥉 3er Lugar: <span style="font-weight:bold;color:#dc2626;">Q200</span></li>
+                            <li>🏆 Premios en efectivo</li>
                         </ul>
+                    </div>
                     <div style="text-align:center;">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfXz1ICLY-N14j6TV4f3xMtUwyYtx-j3DaPi33AMA_3VhOSXQ/viewform?usp=header" class="cta-button-category">Inscribirse</a>
-</div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfXz1ICLY-N14j6TV4f3xMtUwyYtx-j3DaPi33AMA_3VhOSXQ/viewform?usp=header" class="cta-button-category">Inscribirse</a>
+                    </div>
+                </div>
                 <div class="category-card">
                     <h3>🏠 Local</h3>
                     <p>Categoría exclusiva para residentes del Barrio Garibaldi, Zona 9.</p>
-                    <div class="branches"><span class="branch">Femenino</span><span class="branch">Masculino</span></div>
+                    <div class="branches"><span class="branch">Masculino</span><span class="branch">Femenino</span></div>
                     <div class="prizes">
                         <h4>Premios</h4>
                         <ul class="prizes-list">
-                            <li>🥇 1er Lugar: <span style="font-weight:bold;color:#dc2626;">Q500</span></li>
-                            <li>🥈 2do Lugar: <span style="font-weight:bold;color:#dc2626;">Q300</span></li>
-                            <li>🥉 3er Lugar: <span style="font-weight:bold;color:#dc2626;">Q200</span></li>
+                            <li>🏆 Premios en efectivo</li>
                         </ul>
+                    </div>
                     <div style="text-align:center;">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeY2xRsOvpzCWPffaGDLoWTKJEnhbceKHmirtcXVtCpn-EAqw/viewform?usp=header" class="cta-button-category">Inscribirse</a>
-</div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeY2xRsOvpzCWPffaGDLoWTKJEnhbceKHmirtcXVtCpn-EAqw/viewform?usp=header" class="cta-button-category">Inscribirse</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -388,12 +397,16 @@
         <div class="container">
             <h2 class="section-title">¿Qué Incluye tu Inscripción?</h2>
             <div class="kit-grid">
-                <!-- Cambia el contenido y el ícono de cada cuadro aquí -->
+                <!-- Pachón agregado con estilo especial -->
+                <div class="kit-item special-bonus"><div class="kit-icon">🥪</div><h3>Pachón*</h3></div>
                 <div class="kit-item"><div class="kit-icon">👕</div><h3>Playera</h3></div>
                 <div class="kit-item"><div class="kit-icon">🏅</div><h3>Medalla</h3></div>
                 <div class="kit-item"><div class="kit-icon">#️⃣</div><h3>Número</h3></div>
                 <div class="kit-item"><div class="kit-icon">💧</div><h3>Hidratación</h3></div>
             </div>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #f59e0b; font-weight: bold;">
+                *Pachón solo para los primeros 200 en inscribirse
+            </p>
         </div>
     </section>
     <!-- INSCRIPCIÓN Y CONTACTO -->
@@ -406,20 +419,20 @@
                 <p><strong>Fecha Límite de Inscripción:</strong> 25 de Julio de 2025</p>
             </div>
             <div class="contact-grid">
-                <!-- Cambia los datos de contacto aquí -->
+                <!-- Datos de contacto actualizados -->
                 <div class="contact-card">
                     <div class="contact-icon">📱</div>
                     <h3>Contacto</h3>
-                    <p><strong>Teléfono:</strong> +502 1234-5678</p>
-                    <p><strong>Email:</strong> info@10kembajadores.com</p>
-                    <p><strong>WhatsApp:</strong> +502 9876-5432</p>
+                    <p><strong>Teléfono:</strong> 34629621</p>
+                    <p><strong>Email:</strong> 10k.embajadores.de.cristo@gmail.com</p>
+                    <p><strong>WhatsApp:</strong> 34629621</p>
                 </div>
                 <div class="contact-card">
                     <div class="contact-icon">💳</div>
-                    <h3>Cuentas para Pago</h3>
-                    <p><strong>Banco Industrial:</strong><br>Cuenta: 123-456789-0</p>
-                    <p><strong>Banrural:</strong><br>Cuenta: 987-654321-0</p>
-                    <p><strong>Banco G&T:</strong><br>Cuenta: 456-789123-0</p>
+                    <h3>Cuenta para Pago</h3>
+                    <p><strong>Banrural</strong></p>
+                    <p><strong>A nombre de:</strong> Asamblea de Dios Linaje de israel</p>
+                    <p><strong>Depósitos o transferencias:</strong><br>03208800016519</p>
                 </div>
             </div>
         </div>
@@ -529,7 +542,7 @@
             </li>
             <li class="faq-item">
                 <button class="faq-question">¿Qué incluye mi inscripción?</button>
-                <div class="faq-answer">Playera oficial, medalla de finalista, número y puntos de hidratación durante la carrera.</div>
+                <div class="faq-answer">Playera oficial, medalla de finalista, número, hidratación durante la carrera y pachón para los primeros 200 inscritos.</div>
             </li>
             <li class="faq-item">
                 <button class="faq-question">¿Dónde es la salida y meta?</button>
@@ -541,7 +554,7 @@
             </li>
             <li class="faq-item">
                 <button class="faq-question">¿Cómo pago la inscripción?</button>
-                <div class="faq-answer">Puedes pagar en las cuentas bancarias indicadas o solicitar otra forma de pago por WhatsApp.</div>
+                <div class="faq-answer">Puedes pagar mediante depósito o transferencia a la cuenta de Banrural 03208800016519 a nombre de Asamblea de Dios Linaje de israel.</div>
             </li>
         </ul>
     </section>
