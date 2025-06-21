@@ -7,9 +7,35 @@
     <style>
         /* ------ GLOBAL ------ */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background: #f8fafc; line-height: 1.6; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            color: #333; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
         img { max-width: 100%; height: auto; border-radius: 10px;}
         a { color: inherit; text-decoration: none; }
+        
+        /* ------ SCROLL ANIMATIONS ------ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ------ FLOATING ELEMENTS ------ */
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
         /* ------ HEADER/NAV ------ */
         .header { background: linear-gradient(135deg, #1e40af 85%, #3b82f6 100%); color: #fff; padding: 0.8rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.07);}
         .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 1rem;}
@@ -110,32 +136,144 @@
             .cta-button-category { width: auto; padding: 0.8rem 1.2rem; font-size: 1rem; min-width: 80px; max-width: 100%;}
         }
         /* ------ KIT INCLUYE ------ */
+        .kit-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+        }
         .kit-section .kit-grid {
-            display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; overflow-x: auto; margin-bottom: 0.7rem; scrollbar-width: thin;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .kit-item {
-            background: linear-gradient(45deg,#f8fafc,#e2e8f0);
-            padding: 1.1rem 0.7rem 0.5rem 0.7rem;
-            border-radius: 16px;
-            min-width: 100px;
-            max-width: 110px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            padding: 1.5rem 1rem;
+            border-radius: 20px;
             text-align: center;
-            margin: 0.2rem 0;
-            box-shadow: 0 3px 14px rgba(30,64,175,0.06);
-            display: flex; flex-direction: column; align-items: center;
+            box-shadow: 0 8px 25px rgba(30,64,175,0.08);
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(59,130,246,0.1);
+            position: relative;
+            overflow: hidden;
         }
-        .kit-icon { font-size: 2.2rem; margin-bottom: 0.18rem;}
-        .kit-item h3 { font-size: 0.97rem; color: #1f2937; margin-bottom: 0; font-weight: 600; }
+        .kit-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(59,130,246,0.05), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+        .kit-item:hover::before {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+        }
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+        .kit-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(30,64,175,0.15);
+        }
+        .kit-icon { 
+            font-size: 2.5rem; 
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        .kit-item:hover .kit-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        .kit-item h3 { 
+            font-size: 1rem; 
+            color: #1f2937; 
+            margin-bottom: 0; 
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .kit-item:hover h3 {
+            color: #1e40af;
+        }
         .special-bonus {
-            background: linear-gradient(45deg, #fef3c7, #fbbf24);
+            background: linear-gradient(145deg, #fef3c7 0%, #fbbf24 100%);
             border: 2px solid #f59e0b;
             animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+        .special-bonus::after {
+            content: '★';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #f59e0b;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            animation: sparkle 1.5s ease-in-out infinite;
         }
         @keyframes glow {
-            from { box-shadow: 0 3px 14px rgba(245,158,11,0.3); }
-            to { box-shadow: 0 6px 20px rgba(245,158,11,0.6); }
+            from { 
+                box-shadow: 0 8px 25px rgba(245,158,11,0.3);
+                transform: scale(1);
+            }
+            to { 
+                box-shadow: 0 12px 35px rgba(245,158,11,0.6);
+                transform: scale(1.02);
+            }
         }
-        @media (max-width: 600px) { .kit-item { min-width: 80px; max-width:90px; padding: 0.7rem 0.2rem;} .kit-icon { font-size: 1.5rem;} }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+        
+        /* Vista móvil mejorada */
+        @media (max-width: 768px) {
+            .kit-section .kit-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            .kit-item {
+                padding: 1.2rem 0.8rem;
+                min-height: 120px;
+            }
+            .kit-icon { 
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+            .kit-item h3 {
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .kit-section .kit-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 0.8rem;
+            }
+            .kit-item {
+                padding: 1rem 0.6rem;
+                min-height: 100px;
+            }
+            .kit-icon { 
+                font-size: 1.8rem;
+            }
+        }
         /* ------ INSCRIPCIÓN / CONTACTO ------ */
         .inscription-info { text-align:center; margin-bottom:2.5rem; padding:1.5rem; background:#fff; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.08);}
         .inscription-info h3 { font-size:1.5rem; color:#1f2937; }
@@ -398,7 +536,7 @@
             <h2 class="section-title">¿Qué Incluye tu Inscripción?</h2>
             <div class="kit-grid">
                 <!-- Pachón agregado con estilo especial -->
-                <div class="kit-item special-bonus"><div class="kit-icon">🥪</div><h3>Pachón*</h3></div>
+                <div class="kit-item special-bonus"><div class="kit-icon">🥤</div><h3>Pachón*</h3></div>
                 <div class="kit-item"><div class="kit-icon">👕</div><h3>Playera</h3></div>
                 <div class="kit-item"><div class="kit-icon">🏅</div><h3>Medalla</h3></div>
                 <div class="kit-item"><div class="kit-icon">#️⃣</div><h3>Número</h3></div>
@@ -718,6 +856,195 @@
             updateSponsorsCarousel();
         });
         updateSponsorsCarousel();
+
+        // ANIMACIONES DE SCROLL
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animaciones
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('fade-in');
+            observer.observe(section);
+        });
+
+        // Animación de elementos flotantes
+        document.querySelectorAll('.kit-icon').forEach(icon => {
+            icon.classList.add('floating');
+        });
+
+        // FUNCIONALIDAD ADICIONAL - Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // INDICADOR DE SCROLL
+        const createScrollIndicator = () => {
+            const indicator = document.createElement('div');
+            indicator.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 4px;
+                background: linear-gradient(90deg, #1e40af, #3b82f6);
+                z-index: 9999;
+                transition: width 0.3s ease;
+            `;
+            document.body.appendChild(indicator);
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                indicator.style.width = scrolled + '%';
+            });
+        };
+        createScrollIndicator();
+
+        // CONTADOR ANIMADO
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.count-item div:first-child');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent);
+                if (target > 0) {
+                    let current = 0;
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current);
+                        }
+                    }, 20);
+                }
+            });
+        };
+
+        // INTERACCIONES MEJORADAS
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(30,64,175,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.09)';
+            });
+        });
+
+        // PARALLAX EFFECT para el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // EFECTOS DE TIPEO para el slogan
+        const typeWriter = (element, text, speed = 100) => {
+            let i = 0;
+            const originalText = text;
+            element.textContent = '';
+            
+            const timer = setInterval(() => {
+                if (i < originalText.length) {
+                    element.textContent += originalText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        };
+
+        // Aplicar efecto de tipeo al slogan después de 1 segundo
+        setTimeout(() => {
+            const slogan = document.querySelector('.slogan');
+            if (slogan) {
+                const originalText = slogan.textContent;
+                typeWriter(slogan, originalText, 50);
+            }
+        }, 1000);
+
+        // TOAST NOTIFICATIONS para feedback
+        const showToast = (message, type = 'info') => {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 10000;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                font-size: 0.9rem;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        };
+
+        // Mostrar toast cuando se hace clic en botones de inscripción
+        document.querySelectorAll('.cta-button-category').forEach(btn => {
+            btn.addEventListener('click', () => {
+                showToast('¡Redirigiendo a formulario de inscripción!', 'success');
+            });
+        });
+
+        // LAZY LOADING para imágenes
+        const lazyImages = document.querySelectorAll('img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.3s ease';
+                    img.onload = () => {
+                        img.style.opacity = '1';
+                    };
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => {
+            imageObserver.observe(img);
+        });
     </script>
 </body>
 </html>
