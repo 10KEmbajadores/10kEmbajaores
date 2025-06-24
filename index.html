@@ -610,10 +610,13 @@
             transform: translateY(-2px);
         }
         .faq-question {
-            cursor: pointer; font-weight: bold; 
             background: linear-gradient(135deg, #1e40af 0%, #dc267f 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            padding: 1.1rem 1.4rem; font-size: 1.07rem; border:none; background:none; width:100%; text-align:left; position:relative;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: #1e40af; /* color fallback */
+        }
+
         }
         .faq-question:after {
             content: '▼';
