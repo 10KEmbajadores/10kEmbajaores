@@ -339,7 +339,7 @@ function initForm() {
     const formAlert = document.getElementById('formAlert');
 
     // URL del Google Apps Script (ACTUALIZA ESTA URL con la nueva)
-    const SCRIPT_URL = 'TU_NUEVA_URL_AQUI';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec';
 
     // Preview de imagen
     fileInput.addEventListener('change', function(e) {
@@ -416,7 +416,7 @@ function initForm() {
         }
 
         // Verificar que la URL esté configurada
-        if (!SCRIPT_URL || SCRIPT_URL === 'TU_NUEVA_URL_AQUI') {
+        if (!SCRIPT_URL || SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec') {
             showAlert('Error de configuración. Contacta al administrador.', 'error');
             return;
         }
