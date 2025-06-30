@@ -330,216 +330,136 @@
             }
         }
 
-// FORMULARIO DE INSCRIPCIÓN
-function initForm() {
-    const form = document.getElementById('inscriptionForm');
-    const fileInput = document.getElementById('comprobante');
-    const imagePreview = document.getElementById('imagePreview');
-    const submitBtn = document.getElementById('submitBtn');
-    const formAlert = document.getElementById('formAlert');
-
-    // URL del Google Apps Script (ACTUALIZA ESTA URL con la nueva)
-    const SCRIPT_URL = 'TU_NUEVA_URL_AQUI';
-
-    // Preview de imagen
-    fileInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            // Validar tamaño (5MB máximo)
-            if (file.size > 5 * 1024 * 1024) {
-                showAlert('El archivo es muy grande. Máximo 5MB permitido.', 'error');
-                fileInput.value = '';
-                return;
-            }
-
-            // Validar tipo de archivo
-            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
-            if (!allowedTypes.includes(file.type)) {
-                showAlert('Tipo de archivo no permitido. Solo JPG, PNG o PDF.', 'error');
-                fileInput.value = '';
-                return;
-            }
-
-            // Mostrar preview si es imagen
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview del comprobante">`;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                imagePreview.innerHTML = `<p>📄 ${file.name}</p>`;
-            }
-
-            // Actualizar texto del botón de upload
-            document.querySelector('.file-upload-text span').textContent = `✅ ${file.name}`;
+        /* ------ FORMULARIO DE INSCRIPCIÓN ------ */
+        .inscription-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px solid rgba(220,38,127,0.1);
+            transition: all 0.3s ease;
         }
-    });
-
-    // Preseleccionar categoría desde botones de categorías
-    document.querySelectorAll('.cta-button-category').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const categoria = btn.getAttribute('data-categoria');
-            if (categoria) {
-                document.getElementById('categoria').value = categoria;
-            }
-            document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    /* Envío del formulario */
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        console.log('🚀 Iniciando envío del formulario...');
-        
-        const formData = new FormData(form);
-        const file = fileInput.files[0];
-
-        // Validaciones
-        if (!formData.get('nombre') || !formData.get('email') || !formData.get('telefono')) {
-            showAlert('Por favor completa todos los campos requeridos.', 'error');
-            return;
+        .inscription-form-container:hover {
+            border-color: rgba(220,38,127,0.2);
+            box-shadow: 0 15px 40px rgba(220,38,127,0.1);
         }
-
-        if (!file) {
-            showAlert('Por favor selecciona un comprobante de pago.', 'error');
-            return;
+        .inscription-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
-
-        // Validar email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.get('email'))) {
-            showAlert('Por favor ingresa un email válido.', 'error');
-            return;
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
-
-        // Verificar que la URL esté configurada
-        if (!SCRIPT_URL || SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec') {
-            showAlert('Error de configuración. Contacta al administrador.', 'error');
-            return;
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
-
-        // Mostrar estado de carga
-        setSubmitState(true);
-
-        try {
-            console.log('📄 Procesando archivo:', file.name, 'Tamaño:', file.size, 'Tipo:', file.type);
-            
-            // Convertir archivo a base64
-            const base64 = await fileToBase64(file);
-            console.log('✅ Archivo convertido a base64');
-            
-            // Preparar datos
-            const submitData = {
-                nombre: formData.get('nombre').trim(),
-                email: formData.get('email').trim().toLowerCase(),
-                edad: formData.get('edad'),
-                telefono: formData.get('telefono').trim(),
-                sexo: formData.get('sexo'),
-                talla: formData.get('talla'),
-                categoria: formData.get('categoria'),
-                comprobante: base64,
-                mimeType: file.type
-            };
-
-            console.log('📤 Enviando datos...');
-
-            // Enviar al Google Apps Script
-            const response = await fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(submitData)
-            });
-
-            console.log('📡 Respuesta del servidor - Status:', response.status);
-            
-            if (!response.ok) {
-                throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
-            }
-
-            const responseText = await response.text();
-            console.log('📜 Respuesta:', responseText);
-
-            let result;
-            try {
-                result = JSON.parse(responseText);
-            } catch (parseError) {
-                console.error('❌ Error parseando respuesta:', parseError);
-                throw new Error('Respuesta inválida del servidor');
-            }
-
-            if (result.success) {
-                console.log('🎉 Inscripción exitosa!');
-                showAlert('¡Inscripción enviada exitosamente! Te contactaremos pronto. Número de registro: ' + (result.rowNumber || 'N/A'), 'success');
-                form.reset();
-                imagePreview.innerHTML = '';
-                document.querySelector('.file-upload-text span').textContent = '📷 Subir comprobante de pago';
-            } else {
-                console.error('❌ Error del servidor:', result.message);
-                showAlert('Error: ' + (result.message || 'Error desconocido del servidor'), 'error');
-            }
-
-        } catch (error) {
-            console.error('💥 Error completo:', error);
-            
-            let errorMessage = 'Hubo un error al enviar la inscripción. ';
-            
-            if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                errorMessage += 'Problema de conexión. Verifica tu internet.';
-            } else if (error.message) {
-                errorMessage += error.message;
-            }
-            
-            errorMessage += ' Si el problema persiste, contáctanos por WhatsApp.';
-            
-            showAlert(errorMessage, 'error');
+        .form-group label {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 1rem;
         }
-
-        setSubmitState(false);
-    });
-
-    function setSubmitState(loading) {
-        const btnText = submitBtn.querySelector('.btn-text');
-        const btnLoading = submitBtn.querySelector('.btn-loading');
-        
-        if (loading) {
-            btnText.style.display = 'none';
-            btnLoading.style.display = 'flex';
-            submitBtn.disabled = true;
-        } else {
-            btnText.style.display = 'block';
-            btnLoading.style.display = 'none';
-            submitBtn.disabled = false;
+        .form-group input,
+        .form-group select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
         }
-    }
-
-    function showAlert(message, type) {
-        formAlert.innerHTML = `<div class="alert alert-${type}">${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'} ${message}</div>`;
-        formAlert.style.display = 'block';
-        
-        // Auto-hide después de 8 segundos para mensajes de éxito
-        const hideDelay = type === 'success' ? 8000 : 10000;
-        setTimeout(() => {
-            formAlert.style.display = 'none';
-        }, hideDelay);
-        
-        // Scroll al mensaje
-        formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function fileToBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        });
-    }
-}
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #dc267f;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(220,38,127,0.1);
+        }
+        .file-upload-container {
+            position: relative;
+            border: 2px dashed #dc267f;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            background: #fef7f7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .file-upload-container:hover {
+            background: #fef2f2;
+            border-color: #be185d;
+        }
+        .file-upload-container input[type="file"] {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+        }
+        .file-upload-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: #dc267f;
+            font-weight: 600;
+        }
+        .file-upload-text small {
+            color: #6b7280;
+            font-weight: 400;
+        }
+        .image-preview {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .image-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #1e40af 0%, #dc267f 50%, #3b82f6 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220,38,127,0.3);
+        }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
         
         /* Responsive para formulario */
         @media (max-width: 768px) {
@@ -1736,194 +1656,215 @@ function initForm() {
         };
 
         // FORMULARIO DE INSCRIPCIÓN
-        function initForm() {
-            const form = document.getElementById('inscriptionForm');
-            const fileInput = document.getElementById('comprobante');
-            const imagePreview = document.getElementById('imagePreview');
-            const submitBtn = document.getElementById('submitBtn');
-            const formAlert = document.getElementById('formAlert');
+function initForm() {
+    const form = document.getElementById('inscriptionForm');
+    const fileInput = document.getElementById('comprobante');
+    const imagePreview = document.getElementById('imagePreview');
+    const submitBtn = document.getElementById('submitBtn');
+    const formAlert = document.getElementById('formAlert');
 
-            // Preview de imagen
-            fileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    // Validar tamaño (5MB máximo)
-                    if (file.size > 5 * 1024 * 1024) {
-                        showAlert('El archivo es muy grande. Máximo 5MB permitido.', 'error');
-                        fileInput.value = '';
-                        return;
-                    }
+    // URL del Google Apps Script (ACTUALIZA ESTA URL con la nueva)
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec';
 
-                    // Mostrar preview si es imagen
-                    if (file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview del comprobante">`;
-                        };
-                        reader.readAsDataURL(file);
-                    } else {
-                        imagePreview.innerHTML = `<p>📄 ${file.name}</p>`;
-                    }
-
-                    // Actualizar texto del botón de upload
-                    document.querySelector('.file-upload-text span').textContent = `✅ ${file.name}`;
-                }
-            });
-
-            // Preseleccionar categoría desde botones de categorías
-            document.querySelectorAll('.cta-button-category').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const categoria = btn.getAttribute('data-categoria');
-                    if (categoria) {
-                        document.getElementById('categoria').value = categoria;
-                    }
-                    document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-
-            // Envío del formulario
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                console.log('🚀 Iniciando envío del formulario...');
-                console.log('📍 SCRIPT_URL:', SCRIPT_URL);
-                
-                const formData = new FormData(form);
-                const file = fileInput.files[0];
-
-                if (!file) {
-                    showAlert('Por favor selecciona un comprobante de pago.', 'error');
-                    return;
-                }
-
-                // Mostrar estado de carga
-                setSubmitState(true);
-
-                try {
-                    console.log('📄 Procesando archivo:', file.name, 'Tamaño:', file.size, 'Tipo:', file.type);
-                    
-                    // Convertir archivo a base64
-                    const base64 = await fileToBase64(file);
-                    console.log('✅ Archivo convertido a base64');
-                    
-                    // Preparar datos
-                    const submitData = {
-                        nombre: formData.get('nombre'),
-                        email: formData.get('email'),
-                        edad: formData.get('edad'),
-                        telefono: formData.get('telefono'),
-                        sexo: formData.get('sexo'),
-                        talla: formData.get('talla'),
-                        categoria: formData.get('categoria'),
-                        comprobante: base64,
-                        mimeType: file.type
-                    };
-
-                    console.log('📤 Datos a enviar:', {
-                        ...submitData,
-                        comprobante: '[BASE64_DATA]' // No mostrar el base64 completo en la consola
-                    });
-
-                    // Verificar que la URL esté configurada
-                    if (!SCRIPT_URL || SCRIPT_URL.includes('TU_SCRIPT_ID_AQUI')) {
-                        throw new Error('URL del Google Apps Script no configurada. Por favor actualiza SCRIPT_URL en el código.');
-                    }
-
-                    console.log('🌐 Enviando petición a:', SCRIPT_URL);
-
-                    // Enviar al Google Apps Script
-                    const response = await fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(submitData)
-                    });
-
-                    console.log('📡 Respuesta del servidor - Status:', response.status, 'OK:', response.ok);
-                    
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                    }
-
-                    const responseText = await response.text();
-                    console.log('📜 Respuesta cruda:', responseText);
-
-                    let result;
-                    try {
-                        result = JSON.parse(responseText);
-                        console.log('📋 Respuesta parseada:', result);
-                    } catch (parseError) {
-                        console.error('❌ Error parseando JSON:', parseError);
-                        throw new Error('Respuesta inválida del servidor: ' + responseText.substring(0, 100));
-                    }
-
-                    if (result.success) {
-                        console.log('🎉 Inscripción exitosa!');
-                        showAlert('¡Inscripción enviada exitosamente! Te contactaremos pronto.', 'success');
-                        form.reset();
-                        imagePreview.innerHTML = '';
-                        document.querySelector('.file-upload-text span').textContent = '📷 Subir comprobante de pago';
-                    } else {
-                        console.error('❌ Error del servidor:', result.message);
-                        throw new Error(result.message || 'Error desconocido del servidor');
-                    }
-
-                } catch (error) {
-                    console.error('💥 Error completo:', error);
-                    console.error('Stack trace:', error.stack);
-                    
-                    let errorMessage = 'Hubo un error al enviar la inscripción. ';
-                    if (error.message) {
-                        errorMessage += `Detalle: ${error.message}`;
-                    }
-                    errorMessage += ' Revisa la consola para más detalles o contáctanos por WhatsApp.';
-                    
-                    showAlert(errorMessage, 'error');
-                }
-
-                setSubmitState(false);
-            });
-
-            function setSubmitState(loading) {
-                const btnText = submitBtn.querySelector('.btn-text');
-                const btnLoading = submitBtn.querySelector('.btn-loading');
-                
-                if (loading) {
-                    btnText.style.display = 'none';
-                    btnLoading.style.display = 'flex';
-                    submitBtn.disabled = true;
-                } else {
-                    btnText.style.display = 'block';
-                    btnLoading.style.display = 'none';
-                    submitBtn.disabled = false;
-                }
+    // Preview de imagen
+    fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            // Validar tamaño (5MB máximo)
+            if (file.size > 5 * 1024 * 1024) {
+                showAlert('El archivo es muy grande. Máximo 5MB permitido.', 'error');
+                fileInput.value = '';
+                return;
             }
 
-            function showAlert(message, type) {
-                formAlert.innerHTML = `<div class="alert alert-${type}">${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'} ${message}</div>`;
-                formAlert.style.display = 'block';
-                
-                // Auto-hide después de 5 segundos
-                setTimeout(() => {
-                    formAlert.style.display = 'none';
-                }, 5000);
-                
-                // Scroll al mensaje
-                formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // Validar tipo de archivo
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+            if (!allowedTypes.includes(file.type)) {
+                showAlert('Tipo de archivo no permitido. Solo JPG, PNG o PDF.', 'error');
+                fileInput.value = '';
+                return;
             }
 
-            function fileToBase64(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = error => reject(error);
-                });
+            // Mostrar preview si es imagen
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview del comprobante">`;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.innerHTML = `<p>📄 ${file.name}</p>`;
             }
+
+            // Actualizar texto del botón de upload
+            document.querySelector('.file-upload-text span').textContent = `✅ ${file.name}`;
         }
+    });
+
+    // Preseleccionar categoría desde botones de categorías
+    document.querySelectorAll('.cta-button-category').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const categoria = btn.getAttribute('data-categoria');
+            if (categoria) {
+                document.getElementById('categoria').value = categoria;
+            }
+            document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Envío del formulario
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        console.log('🚀 Iniciando envío del formulario...');
+        
+        const formData = new FormData(form);
+        const file = fileInput.files[0];
+
+        // Validaciones
+        if (!formData.get('nombre') || !formData.get('email') || !formData.get('telefono')) {
+            showAlert('Por favor completa todos los campos requeridos.', 'error');
+            return;
+        }
+
+        if (!file) {
+            showAlert('Por favor selecciona un comprobante de pago.', 'error');
+            return;
+        }
+
+        // Validar email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.get('email'))) {
+            showAlert('Por favor ingresa un email válido.', 'error');
+            return;
+        }
+
+        // Verificar que la URL esté configurada
+        if (!SCRIPT_URL || SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec) {
+            showAlert('Error de configuración. Contacta al administrador.', 'error');
+            return;
+        }
+
+        // Mostrar estado de carga
+        setSubmitState(true);
+
+        try {
+            console.log('📄 Procesando archivo:', file.name, 'Tamaño:', file.size, 'Tipo:', file.type);
+            
+            // Convertir archivo a base64
+            const base64 = await fileToBase64(file);
+            console.log('✅ Archivo convertido a base64');
+            
+            // Preparar datos
+            const submitData = {
+                nombre: formData.get('nombre').trim(),
+                email: formData.get('email').trim().toLowerCase(),
+                edad: formData.get('edad'),
+                telefono: formData.get('telefono').trim(),
+                sexo: formData.get('sexo'),
+                talla: formData.get('talla'),
+                categoria: formData.get('categoria'),
+                comprobante: base64,
+                mimeType: file.type
+            };
+
+            console.log('📤 Enviando datos...');
+
+            // Enviar al Google Apps Script
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submitData)
+            });
+
+            console.log('📡 Respuesta del servidor - Status:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
+            }
+
+            const responseText = await response.text();
+            console.log('📜 Respuesta:', responseText);
+
+            let result;
+            try {
+                result = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error('❌ Error parseando respuesta:', parseError);
+                throw new Error('Respuesta inválida del servidor');
+            }
+
+            if (result.success) {
+                console.log('🎉 Inscripción exitosa!');
+                showAlert('¡Inscripción enviada exitosamente! Te contactaremos pronto. Número de registro: ' + (result.rowNumber || 'N/A'), 'success');
+                form.reset();
+                imagePreview.innerHTML = '';
+                document.querySelector('.file-upload-text span').textContent = '📷 Subir comprobante de pago';
+            } else {
+                console.error('❌ Error del servidor:', result.message);
+                showAlert('Error: ' + (result.message || 'Error desconocido del servidor'), 'error');
+            }
+
+        } catch (error) {
+            console.error('💥 Error completo:', error);
+            
+            let errorMessage = 'Hubo un error al enviar la inscripción. ';
+            
+            if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                errorMessage += 'Problema de conexión. Verifica tu internet.';
+            } else if (error.message) {
+                errorMessage += error.message;
+            }
+            
+            errorMessage += ' Si el problema persiste, contáctanos por WhatsApp.';
+            
+            showAlert(errorMessage, 'error');
+        }
+
+        setSubmitState(false);
+    });
+
+    function setSubmitState(loading) {
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+        
+        if (loading) {
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'flex';
+            submitBtn.disabled = true;
+        } else {
+            btnText.style.display = 'block';
+            btnLoading.style.display = 'none';
+            submitBtn.disabled = false;
+        }
+    }
+
+    function showAlert(message, type) {
+        formAlert.innerHTML = `<div class="alert alert-${type}">${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'} ${message}</div>`;
+        formAlert.style.display = 'block';
+        
+        // Auto-hide después de 8 segundos para mensajes de éxito
+        const hideDelay = type === 'success' ? 8000 : 10000;
+        setTimeout(() => {
+            formAlert.style.display = 'none';
+        }, hideDelay);
+        
+        // Scroll al mensaje
+        formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+}
 
         // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', function() {
