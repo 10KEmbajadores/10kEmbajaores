@@ -329,153 +329,6 @@
                 font-size: 1.8rem;
             }
         }
-
-        /* ------ FORMULARIO DE INSCRIPCIÓN ------ */
-        .inscription-form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 2px solid rgba(220,38,127,0.1);
-            transition: all 0.3s ease;
-        }
-        .inscription-form-container:hover {
-            border-color: rgba(220,38,127,0.2);
-            box-shadow: 0 15px 40px rgba(220,38,127,0.1);
-        }
-        .inscription-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .form-group label {
-            font-weight: 600;
-            color: #1f2937;
-            font-size: 1rem;
-        }
-        .form-group input,
-        .form-group select {
-            padding: 0.75rem 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #f9fafb;
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #dc267f;
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(220,38,127,0.1);
-        }
-        .file-upload-container {
-            position: relative;
-            border: 2px dashed #dc267f;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            background: #fef7f7;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .file-upload-container:hover {
-            background: #fef2f2;
-            border-color: #be185d;
-        }
-        .file-upload-container input[type="file"] {
-            position: absolute;
-            left: -9999px;
-            opacity: 0;
-        }
-        .file-upload-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            color: #dc267f;
-            font-weight: 600;
-        }
-        .file-upload-text small {
-            color: #6b7280;
-            font-weight: 400;
-        }
-        .image-preview {
-            margin-top: 1rem;
-            text-align: center;
-        }
-        .image-preview img {
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .submit-btn {
-            background: linear-gradient(135deg, #1e40af 0%, #dc267f 50%, #3b82f6 100%);
-            color: #fff;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            min-height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(220,38,127,0.3);
-        }
-        .submit-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid #fff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 0.5rem;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Responsive para formulario */
-        @media (max-width: 768px) {
-            .inscription-form-container {
-                padding: 1.5rem;
-                margin: 0 1rem;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .file-upload-container {
-                padding: 1.5rem 1rem;
-            }
-        }
-
         /* ------ INSCRIPCIÓN / CONTACTO ------ */
         .inscription-info { 
             text-align:center; margin-bottom:2.5rem; padding:1.5rem; background:#fff; border-radius:20px; 
@@ -488,6 +341,144 @@
             background: linear-gradient(135deg, #1e40af 0%, #dc267f 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
+        
+        /* ------ FORMULARIO DE INSCRIPCIÓN ------ */
+        .inscription-form-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px solid rgba(220,38,127,0.1);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .inscription-form {
+            width: 100%;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #dc267f;
+            box-shadow: 0 0 0 3px rgba(220,38,127,0.1);
+        }
+        .file-upload-area {
+            position: relative;
+            border: 2px dashed #e5e7eb;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+        .file-upload-area:hover {
+            border-color: #dc267f;
+            background: #fef7f7;
+        }
+        .file-upload-area input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .file-upload-text span {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        .file-upload-text small {
+            color: #6b7280;
+        }
+        .file-preview {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f3f4f6;
+            border-radius: 8px;
+            display: none;
+        }
+        .file-preview.show {
+            display: block;
+        }
+        .file-preview img {
+            max-width: 200px;
+            max-height: 150px;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1e40af 0%, #dc267f 50%, #3b82f6 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(30,64,175,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(220,38,127,0.4);
+        }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .inscription-form-container {
+                padding: 1.5rem;
+                margin: 0 1rem 2rem 1rem;
+            }
+        }
+        
         .contact-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
         .contact-card { 
             background:#fff;padding:1.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:center;
@@ -767,6 +758,7 @@
             width: 100%;
             text-align: left;
             position: relative;
+            cursor: pointer;
         }
         .faq-question:after {
             content: '▼';
@@ -814,31 +806,28 @@
         }
         .social-link:hover { transform: translateY(-3px) scale(1.1);}
         .footer p { font-size: 0.9rem; margin-bottom: 0.5rem;}
-
-        /* ------ ALERTS Y NOTIFICATIONS ------ */
-        .alert {
+        
+        /* Estilos de notificaciones */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
             padding: 1rem 1.5rem;
             border-radius: 10px;
-            margin: 1rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 300px;
+            font-size: 0.9rem;
         }
-        .alert-success {
-            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-            color: #065f46;
-            border: 1px solid #34d399;
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
         }
-        .alert-error {
-            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-            color: #991b1b;
-            border: 1px solid #f87171;
-        }
-        .alert-info {
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            color: #1e40af;
-            border: 1px solid #60a5fa;
+        .notification.show {
+            transform: translateX(0);
         }
     </style>
 </head>
@@ -885,7 +874,7 @@
                 <div class="hero-detail">📍 Barrio Garibaldi, Zona 9</div>
                 <div class="hero-detail">💵 Q100 inscripción</div>
             </div>
-            <a href="#contacto" class="cta-button">¡Inscríbete ahora!</a>
+            <a href="#categorias" class="cta-button">¡Inscríbete ahora!</a>
         </div>
     </section>
 
@@ -905,7 +894,7 @@
                         </ul>
                     </div>
                     <div style="text-align:center;">
-                        <a href="#contacto" class="cta-button-category" data-categoria="Libre">Inscribirse</a>
+                        <a href="#contacto" class="cta-button-category">Inscribirse</a>
                     </div>
                 </div>
                 <div class="category-card">
@@ -919,7 +908,7 @@
                         </ul>
                     </div>
                     <div style="text-align:center;">
-                        <a href="#contacto" class="cta-button-category" data-categoria="Master">Inscribirse</a>
+                        <a href="#contacto" class="cta-button-category">Inscribirse</a>
                     </div>
                 </div>
                 <div class="category-card">
@@ -933,7 +922,7 @@
                         </ul>
                     </div>
                     <div style="text-align:center;">
-                        <a href="#contacto" class="cta-button-category" data-categoria="Local">Inscribirse</a>
+                        <a href="#contacto" class="cta-button-category">Inscribirse</a>
                     </div>
                 </div>
             </div>
@@ -960,17 +949,18 @@
     <!-- INSCRIPCIÓN Y CONTACTO -->
     <section class="contact section" id="contacto">
         <div class="container">
-            <h2 class="section-title">Inscripción</h2>
+            <h2 class="section-title">Información de Inscripción</h2>
             <div class="inscription-info">
                 <h3>Costo de Inscripción</h3>
                 <p class="price">Q100.00</p>
                 <p><strong>Fecha Límite de Inscripción:</strong> 25 de Julio de 2025</p>
             </div>
-
+            
             <!-- FORMULARIO DE INSCRIPCIÓN -->
             <div class="inscription-form-container">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: #1e40af;">Formulario de Inscripción</h3>
                 <form id="inscriptionForm" class="inscription-form">
-                    <div class="form-row">
+                    <div class="form-grid">
                         <div class="form-group">
                             <label for="nombre">Nombre Completo *</label>
                             <input type="text" id="nombre" name="nombre" required>
@@ -979,24 +969,18 @@
                             <label for="email">Correo Electrónico *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-                    </div>
-                    
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="edad">Edad *</label>
-                            <input type="number" id="edad" name="edad" min="10" max="100" required>
+                            <input type="number" id="edad" name="edad" min="5" max="99" required>
                         </div>
                         <div class="form-group">
                             <label for="telefono">Número de Teléfono *</label>
                             <input type="tel" id="telefono" name="telefono" required>
                         </div>
-                    </div>
-                    
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="sexo">Sexo *</label>
                             <select id="sexo" name="sexo" required>
-                                <option value="">Selecciona una opción</option>
+                                <option value="">Seleccionar</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
@@ -1004,50 +988,42 @@
                         <div class="form-group">
                             <label for="talla">Talla de Playera *</label>
                             <select id="talla" name="talla" required>
-                                <option value="">Selecciona una talla</option>
+                                <option value="">Seleccionar</option>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
+                                <option value="XL">XL</option>
                             </select>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="categoria">Confirma tu categoría *</label>
-                        <select id="categoria" name="categoria" required>
-                            <option value="">Selecciona una categoría</option>
-                            <option value="Libre">Libre</option>
-                            <option value="Master">Master (40+ años)</option>
-                            <option value="Local">Local (Barrio Garibaldi)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="comprobante">Comprobante de Pago *</label>
-                        <div class="file-upload-container" onclick="document.getElementById('comprobante').click()">
-                            <input type="file" id="comprobante" name="comprobante" accept="image/*,.pdf" required>
-                            <div class="file-upload-text">
-                                <span>📷 Subir comprobante de pago</span>
-                                <small>Formato: JPG, PNG, PDF (máx. 5MB)</small>
-                            </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoría *</label>
+                            <select id="categoria" name="categoria" required>
+                                <option value="">Seleccionar</option>
+                                <option value="Libre">Libre</option>
+                                <option value="Master">Master (40+ años)</option>
+                                <option value="Local">Local (Barrio Garibaldi)</option>
+                            </select>
                         </div>
-                        <div id="imagePreview" class="image-preview"></div>
+                        <div class="form-group full-width">
+                            <label for="comprobante">Comprobante de Pago *</label>
+                            <div class="file-upload-area" id="fileUploadArea">
+                                <input type="file" id="comprobante" name="comprobante" accept="image/*,.pdf" required>
+                                <div class="file-upload-text">
+                                    <span>📁 Seleccionar archivo</span>
+                                    <small>Imagen o PDF del comprobante</small>
+                                </div>
+                            </div>
+                            <div id="filePreview" class="file-preview"></div>
+                        </div>
                     </div>
-                    
                     <button type="submit" class="submit-btn" id="submitBtn">
-                        <span class="btn-text">Enviar Inscripción</span>
-                        <span class="btn-loading" style="display: none;">
-                            <div class="spinner"></div>
-                            Enviando...
-                        </span>
+                        <span class="btn-text">Inscribirse Ahora</span>
+                        <span class="btn-loader" style="display: none;">⏳ Enviando...</span>
                     </button>
                 </form>
-                
-                <div id="formAlert" style="display: none;"></div>
             </div>
-
-            <!-- INFORMACIÓN DE CONTACTO -->
-            <div class="contact-grid" style="margin-top: 3rem;">
+            
+            <div class="contact-grid">
                 <div class="contact-card">
                     <div class="contact-icon">📱</div>
                     <h3>Contacto</h3>
@@ -1163,7 +1139,7 @@
         <ul class="faq-list" id="faq-list">
             <li class="faq-item">
                 <button class="faq-question">¿Cómo me inscribo?</button>
-                <div class="faq-answer">Llena el formulario de inscripción en esta página, sube tu comprobante de pago y ¡listo!</div>
+                <div class="faq-answer">Llena el formulario de inscripción en esta página y sube tu comprobante de pago. ¡Listo!</div>
             </li>
             <li class="faq-item">
                 <button class="faq-question">¿Qué incluye mi inscripción?</button>
@@ -1205,8 +1181,8 @@
         let gallerySlides = [];
         const backdropBlur = document.getElementById('backdropBlur');
 
-        // URL del Google Apps Script (reemplaza con tu URL)
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec';
+        // CONFIGURACIÓN DE GOOGLE APPS SCRIPT
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec'; // Cambia esto por tu URL
 
         // Menú hamburguesa
         const menuToggle = document.getElementById('menuToggle');
@@ -1228,6 +1204,135 @@
             if (navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
                 menuToggle.classList.remove('active');
+            }
+        });
+
+        // Funciones de notificación
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Manejar preview de archivo
+        document.getElementById('comprobante').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('filePreview');
+            const uploadArea = document.getElementById('fileUploadArea');
+            
+            if (file) {
+                preview.innerHTML = `
+                    <p><strong>Archivo seleccionado:</strong> ${file.name}</p>
+                    <p><strong>Tamaño:</strong> ${(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                `;
+                
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        preview.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+                
+                preview.classList.add('show');
+                uploadArea.style.borderColor = '#10b981';
+                uploadArea.style.background = '#f0fdf4';
+            }
+        });
+
+        // Convertir archivo a base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Manejar envío del formulario
+        document.getElementById('inscriptionForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
+            
+            // Deshabilitar botón y mostrar loader
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'block';
+            
+            try {
+                const formData = new FormData(this);
+                const file = document.getElementById('comprobante').files[0];
+                
+                if (!file) {
+                    throw new Error('Por favor selecciona un comprobante de pago');
+                }
+                
+                // Validar tamaño del archivo (max 10MB)
+                if (file.size > 10 * 1024 * 1024) {
+                    throw new Error('El archivo es muy grande. Máximo 10MB');
+                }
+                
+                // Convertir archivo a base64
+                const base64File = await fileToBase64(file);
+                
+                // Preparar datos para enviar
+                const dataToSend = {
+                    nombre: formData.get('nombre'),
+                    email: formData.get('email'),
+                    edad: formData.get('edad'),
+                    telefono: formData.get('telefono'),
+                    sexo: formData.get('sexo'),
+                    talla: formData.get('talla'),
+                    categoria: formData.get('categoria'),
+                    comprobante: base64File,
+                    comprobanteType: file.type
+                };
+                
+                // Enviar a Google Apps Script
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('¡Inscripción enviada exitosamente! Te contactaremos pronto.', 'success');
+                    this.reset();
+                    document.getElementById('filePreview').classList.remove('show');
+                } else {
+                    throw new Error(result.message || 'Error al enviar la inscripción');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification(error.message || 'Error al enviar la inscripción. Inténtalo de nuevo.', 'error');
+            } finally {
+                // Rehabilitar botón
+                submitBtn.disabled = false;
+                btnText.style.display = 'block';
+                btnLoader.style.display = 'none';
             }
         });
 
@@ -1620,238 +1725,12 @@
             }, speed);
         };
 
-        // TOAST NOTIFICATIONS
-        const showToast = (message, type = 'info') => {
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: ${type === 'success' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : type === 'error' ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' : 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 10px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-                z-index: 10000;
-                transform: translateX(400px);
-                transition: transform 0.3s ease;
-                max-width: 300px;
-                font-size: 0.9rem;
-            `;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.transform = 'translateX(0)';
-            }, 100);
-            
-            setTimeout(() => {
-                toast.style.transform = 'translateX(400px)';
-                setTimeout(() => {
-                    if (document.body.contains(toast)) {
-                        document.body.removeChild(toast);
-                    }
-                }, 300);
-            }, 3000);
-        };
-
-        // FORMULARIO DE INSCRIPCIÓN
-        function initForm() {
-            const form = document.getElementById('inscriptionForm');
-            const fileInput = document.getElementById('comprobante');
-            const imagePreview = document.getElementById('imagePreview');
-            const submitBtn = document.getElementById('submitBtn');
-            const formAlert = document.getElementById('formAlert');
-
-            // Preview de imagen
-            fileInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    // Validar tamaño (5MB máximo)
-                    if (file.size > 5 * 1024 * 1024) {
-                        showAlert('El archivo es muy grande. Máximo 5MB permitido.', 'error');
-                        fileInput.value = '';
-                        return;
-                    }
-
-                    // Mostrar preview si es imagen
-                    if (file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview del comprobante">`;
-                        };
-                        reader.readAsDataURL(file);
-                    } else {
-                        imagePreview.innerHTML = `<p>📄 ${file.name}</p>`;
-                    }
-
-                    // Actualizar texto del botón de upload
-                    document.querySelector('.file-upload-text span').textContent = `✅ ${file.name}`;
-                }
-            });
-
-            // Preseleccionar categoría desde botones de categorías
-            document.querySelectorAll('.cta-button-category').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const categoria = btn.getAttribute('data-categoria');
-                    if (categoria) {
-                        document.getElementById('categoria').value = categoria;
-                    }
-                    document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-
-            // Envío del formulario
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                console.log('🚀 Iniciando envío del formulario...');
-                console.log('📍 SCRIPT_URL:', SCRIPT_URL);
-                
-                const formData = new FormData(form);
-                const file = fileInput.files[0];
-
-                if (!file) {
-                    showAlert('Por favor selecciona un comprobante de pago.', 'error');
-                    return;
-                }
-
-                // Mostrar estado de carga
-                setSubmitState(true);
-
-                try {
-                    console.log('📄 Procesando archivo:', file.name, 'Tamaño:', file.size, 'Tipo:', file.type);
-                    
-                    // Convertir archivo a base64
-                    const base64 = await fileToBase64(file);
-                    console.log('✅ Archivo convertido a base64');
-                    
-                    // Preparar datos
-                    const submitData = {
-                        nombre: formData.get('nombre'),
-                        email: formData.get('email'),
-                        edad: formData.get('edad'),
-                        telefono: formData.get('telefono'),
-                        sexo: formData.get('sexo'),
-                        talla: formData.get('talla'),
-                        categoria: formData.get('categoria'),
-                        comprobante: base64,
-                        mimeType: file.type
-                    };
-
-                    console.log('📤 Datos a enviar:', {
-                        ...submitData,
-                        comprobante: '[BASE64_DATA]' // No mostrar el base64 completo en la consola
-                    });
-
-                    // Verificar que la URL esté configurada
-                    if (!SCRIPT_URL || SCRIPT_URL.includes('https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec')) {
-                        throw new Error('URL del Google Apps Script no configurada. Por favor actualiza SCRIPT_URL en el código.');
-                    }
-
-                    console.log('🌐 Enviando petición a:', SCRIPT_URL);
-
-                    // Enviar al Google Apps Script
-                    const response = await fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(submitData)
-                    });
-
-                    console.log('📡 Respuesta del servidor - Status:', response.status, 'OK:', response.ok);
-                    
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                    }
-
-                    const responseText = await response.text();
-                    console.log('📜 Respuesta cruda:', responseText);
-
-                    let result;
-                    try {
-                        result = JSON.parse(responseText);
-                        console.log('📋 Respuesta parseada:', result);
-                    } catch (parseError) {
-                        console.error('❌ Error parseando JSON:', parseError);
-                        throw new Error('Respuesta inválida del servidor: ' + responseText.substring(0, 100));
-                    }
-
-                    if (result.success) {
-                        console.log('🎉 Inscripción exitosa!');
-                        showAlert('¡Inscripción enviada exitosamente! Te contactaremos pronto.', 'success');
-                        form.reset();
-                        imagePreview.innerHTML = '';
-                        document.querySelector('.file-upload-text span').textContent = '📷 Subir comprobante de pago';
-                    } else {
-                        console.error('❌ Error del servidor:', result.message);
-                        throw new Error(result.message || 'Error desconocido del servidor');
-                    }
-
-                } catch (error) {
-                    console.error('💥 Error completo:', error);
-                    console.error('Stack trace:', error.stack);
-                    
-                    let errorMessage = 'Hubo un error al enviar la inscripción. ';
-                    if (error.message) {
-                        errorMessage += `Detalle: ${error.message}`;
-                    }
-                    errorMessage += ' Revisa la consola para más detalles o contáctanos por WhatsApp.';
-                    
-                    showAlert(errorMessage, 'error');
-                }
-
-                setSubmitState(false);
-            });
-
-            function setSubmitState(loading) {
-                const btnText = submitBtn.querySelector('.btn-text');
-                const btnLoading = submitBtn.querySelector('.btn-loading');
-                
-                if (loading) {
-                    btnText.style.display = 'none';
-                    btnLoading.style.display = 'flex';
-                    submitBtn.disabled = true;
-                } else {
-                    btnText.style.display = 'block';
-                    btnLoading.style.display = 'none';
-                    submitBtn.disabled = false;
-                }
-            }
-
-            function showAlert(message, type) {
-                formAlert.innerHTML = `<div class="alert alert-${type}">${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'} ${message}</div>`;
-                formAlert.style.display = 'block';
-                
-                // Auto-hide después de 5 segundos
-                setTimeout(() => {
-                    formAlert.style.display = 'none';
-                }, 5000);
-                
-                // Scroll al mensaje
-                formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-
-            function fileToBase64(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = error => reject(error);
-                });
-            }
-        }
-
         // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', function() {
             createScrollIndicator();
             initGallery();
             initLightbox();
             initSponsorsCarousel();
-            initForm();
             
             // Aplicar efecto de tipeo al slogan después de 1 segundo
             setTimeout(() => {
