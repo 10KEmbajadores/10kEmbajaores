@@ -1706,6 +1706,9 @@
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
+                console.log('🚀 Iniciando envío del formulario...');
+                console.log('📍 SCRIPT_URL:', SCRIPT_URL);
+                
                 const formData = new FormData(form);
                 const file = fileInput.files[0];
 
@@ -1718,8 +1721,11 @@
                 setSubmitState(true);
 
                 try {
+                    console.log('📄 Procesando archivo:', file.name, 'Tamaño:', file.size, 'Tipo:', file.type);
+                    
                     // Convertir archivo a base64
                     const base64 = await fileToBase64(file);
+                    console.log('✅ Archivo convertido a base64');
                     
                     // Preparar datos
                     const submitData = {
@@ -1734,6 +1740,18 @@
                         mimeType: file.type
                     };
 
+                    console.log('📤 Datos a enviar:', {
+                        ...submitData,
+                        comprobante: '[BASE64_DATA]' // No mostrar el base64 completo en la consola
+                    });
+
+                    // Verificar que la URL esté configurada
+                    if (!SCRIPT_URL || SCRIPT_URL.includes('TU_SCRIPT_ID_AQUI')) {
+                        throw new Error('URL del Google Apps Script no configurada. Por favor actualiza SCRIPT_URL en el código.');
+                    }
+
+                    console.log('🌐 Enviando petición a:', SCRIPT_URL);
+
                     // Enviar al Google Apps Script
                     const response = await fetch(SCRIPT_URL, {
                         method: 'POST',
@@ -1744,20 +1762,46 @@
                         body: JSON.stringify(submitData)
                     });
 
-                    const result = await response.json();
+                    console.log('📡 Respuesta del servidor - Status:', response.status, 'OK:', response.ok);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+
+                    const responseText = await response.text();
+                    console.log('📜 Respuesta cruda:', responseText);
+
+                    let result;
+                    try {
+                        result = JSON.parse(responseText);
+                        console.log('📋 Respuesta parseada:', result);
+                    } catch (parseError) {
+                        console.error('❌ Error parseando JSON:', parseError);
+                        throw new Error('Respuesta inválida del servidor: ' + responseText.substring(0, 100));
+                    }
 
                     if (result.success) {
+                        console.log('🎉 Inscripción exitosa!');
                         showAlert('¡Inscripción enviada exitosamente! Te contactaremos pronto.', 'success');
                         form.reset();
                         imagePreview.innerHTML = '';
                         document.querySelector('.file-upload-text span').textContent = '📷 Subir comprobante de pago';
                     } else {
-                        throw new Error(result.message || 'Error desconocido');
+                        console.error('❌ Error del servidor:', result.message);
+                        throw new Error(result.message || 'Error desconocido del servidor');
                     }
 
                 } catch (error) {
-                    console.error('Error:', error);
-                    showAlert('Hubo un error al enviar la inscripción. Intenta nuevamente o contáctanos por WhatsApp.', 'error');
+                    console.error('💥 Error completo:', error);
+                    console.error('Stack trace:', error.stack);
+                    
+                    let errorMessage = 'Hubo un error al enviar la inscripción. ';
+                    if (error.message) {
+                        errorMessage += `Detalle: ${error.message}`;
+                    }
+                    errorMessage += ' Revisa la consola para más detalles o contáctanos por WhatsApp.';
+                    
+                    showAlert(errorMessage, 'error');
                 }
 
                 setSubmitState(false);
