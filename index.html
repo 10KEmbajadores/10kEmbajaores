@@ -330,7 +330,7 @@
             }
         }
 
-        // FORMULARIO DE INSCRIPCIÓN
+// FORMULARIO DE INSCRIPCIÓN
 function initForm() {
     const form = document.getElementById('inscriptionForm');
     const fileInput = document.getElementById('comprobante');
@@ -339,7 +339,7 @@ function initForm() {
     const formAlert = document.getElementById('formAlert');
 
     // URL del Google Apps Script (ACTUALIZA ESTA URL con la nueva)
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec';
+    const SCRIPT_URL = 'TU_NUEVA_URL_AQUI';
 
     // Preview de imagen
     fileInput.addEventListener('change', function(e) {
@@ -388,7 +388,7 @@ function initForm() {
         });
     });
 
-    // Envío del formulario
+    /* Envío del formulario */
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -540,6 +540,21 @@ function initForm() {
         });
     }
 }
+        
+        /* Responsive para formulario */
+        @media (max-width: 768px) {
+            .inscription-form-container {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .file-upload-container {
+                padding: 1.5rem 1rem;
+            }
+        }
 
         /* ------ INSCRIPCIÓN / CONTACTO ------ */
         .inscription-info { 
@@ -1271,7 +1286,7 @@ function initForm() {
         const backdropBlur = document.getElementById('backdropBlur');
 
         // URL del Google Apps Script (reemplaza con tu URL)
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwTfzWQKLrdlUuZ0T75hj00pJALOznHTvgb19r5hhCn96KtA9ceZ7Qo3rSh8Pdpky7N/exec';
 
         // Menú hamburguesa
         const menuToggle = document.getElementById('menuToggle');
