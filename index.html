@@ -329,6 +329,153 @@
                 font-size: 1.8rem;
             }
         }
+
+        /* ------ FORMULARIO DE INSCRIPCIÓN ------ */
+        .inscription-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px solid rgba(220,38,127,0.1);
+            transition: all 0.3s ease;
+        }
+        .inscription-form-container:hover {
+            border-color: rgba(220,38,127,0.2);
+            box-shadow: 0 15px 40px rgba(220,38,127,0.1);
+        }
+        .inscription-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 1rem;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #dc267f;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(220,38,127,0.1);
+        }
+        .file-upload-container {
+            position: relative;
+            border: 2px dashed #dc267f;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            background: #fef7f7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .file-upload-container:hover {
+            background: #fef2f2;
+            border-color: #be185d;
+        }
+        .file-upload-container input[type="file"] {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+        }
+        .file-upload-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: #dc267f;
+            font-weight: 600;
+        }
+        .file-upload-text small {
+            color: #6b7280;
+            font-weight: 400;
+        }
+        .image-preview {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .image-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #1e40af 0%, #dc267f 50%, #3b82f6 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220,38,127,0.3);
+        }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive para formulario */
+        @media (max-width: 768px) {
+            .inscription-form-container {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .file-upload-container {
+                padding: 1.5rem 1rem;
+            }
+        }
+
         /* ------ INSCRIPCIÓN / CONTACTO ------ */
         .inscription-info { 
             text-align:center; margin-bottom:2.5rem; padding:1.5rem; background:#fff; border-radius:20px; 
@@ -621,9 +768,6 @@
             text-align: left;
             position: relative;
         }
-
-
-        }
         .faq-question:after {
             content: '▼';
             float: right;
@@ -670,6 +814,32 @@
         }
         .social-link:hover { transform: translateY(-3px) scale(1.1);}
         .footer p { font-size: 0.9rem; margin-bottom: 0.5rem;}
+
+        /* ------ ALERTS Y NOTIFICATIONS ------ */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        .alert-success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            border: 1px solid #34d399;
+        }
+        .alert-error {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+            border: 1px solid #f87171;
+        }
+        .alert-info {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+            border: 1px solid #60a5fa;
+        }
     </style>
 </head>
 <body>
@@ -715,7 +885,7 @@
                 <div class="hero-detail">📍 Barrio Garibaldi, Zona 9</div>
                 <div class="hero-detail">💵 Q100 inscripción</div>
             </div>
-            <a href="#categorias" class="cta-button">¡Inscríbete ahora!</a>
+            <a href="#contacto" class="cta-button">¡Inscríbete ahora!</a>
         </div>
     </section>
 
@@ -735,7 +905,7 @@
                         </ul>
                     </div>
                     <div style="text-align:center;">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkkHeP4s7MRfMk-aK4gu4hHBY0zBGJlZDXWzgZnPTSxmzmDg/viewform?usp=header" class="cta-button-category">Inscribirse</a>
+                        <a href="#contacto" class="cta-button-category" data-categoria="Libre">Inscribirse</a>
                     </div>
                 </div>
                 <div class="category-card">
@@ -749,7 +919,7 @@
                         </ul>
                     </div>
                     <div style="text-align:center;">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfXz1ICLY-N14j6TV4f3xMtUwyYtx-j3DaPi33AMA_3VhOSXQ/viewform?usp=header" class="cta-button-category">Inscribirse</a>
+                        <a href="#contacto" class="cta-button-category" data-categoria="Master">Inscribirse</a>
                     </div>
                 </div>
                 <div class="category-card">
@@ -763,7 +933,7 @@
                         </ul>
                     </div>
                     <div style="text-align:center;">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeY2xRsOvpzCWPffaGDLoWTKJEnhbceKHmirtcXVtCpn-EAqw/viewform?usp=header" class="cta-button-category">Inscribirse</a>
+                        <a href="#contacto" class="cta-button-category" data-categoria="Local">Inscribirse</a>
                     </div>
                 </div>
             </div>
@@ -790,13 +960,94 @@
     <!-- INSCRIPCIÓN Y CONTACTO -->
     <section class="contact section" id="contacto">
         <div class="container">
-            <h2 class="section-title">Información de Inscripción</h2>
+            <h2 class="section-title">Inscripción</h2>
             <div class="inscription-info">
                 <h3>Costo de Inscripción</h3>
                 <p class="price">Q100.00</p>
                 <p><strong>Fecha Límite de Inscripción:</strong> 25 de Julio de 2025</p>
             </div>
-            <div class="contact-grid">
+
+            <!-- FORMULARIO DE INSCRIPCIÓN -->
+            <div class="inscription-form-container">
+                <form id="inscriptionForm" class="inscription-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edad">Edad *</label>
+                            <input type="number" id="edad" name="edad" min="10" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Número de Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sexo">Sexo *</label>
+                            <select id="sexo" name="sexo" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="talla">Talla de Playera *</label>
+                            <select id="talla" name="talla" required>
+                                <option value="">Selecciona una talla</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="categoria">Confirma tu categoría *</label>
+                        <select id="categoria" name="categoria" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="Libre">Libre</option>
+                            <option value="Master">Master (40+ años)</option>
+                            <option value="Local">Local (Barrio Garibaldi)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comprobante">Comprobante de Pago *</label>
+                        <div class="file-upload-container" onclick="document.getElementById('comprobante').click()">
+                            <input type="file" id="comprobante" name="comprobante" accept="image/*,.pdf" required>
+                            <div class="file-upload-text">
+                                <span>📷 Subir comprobante de pago</span>
+                                <small>Formato: JPG, PNG, PDF (máx. 5MB)</small>
+                            </div>
+                        </div>
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Enviar Inscripción</span>
+                        <span class="btn-loading" style="display: none;">
+                            <div class="spinner"></div>
+                            Enviando...
+                        </span>
+                    </button>
+                </form>
+                
+                <div id="formAlert" style="display: none;"></div>
+            </div>
+
+            <!-- INFORMACIÓN DE CONTACTO -->
+            <div class="contact-grid" style="margin-top: 3rem;">
                 <div class="contact-card">
                     <div class="contact-icon">📱</div>
                     <h3>Contacto</h3>
@@ -912,7 +1163,7 @@
         <ul class="faq-list" id="faq-list">
             <li class="faq-item">
                 <button class="faq-question">¿Cómo me inscribo?</button>
-                <div class="faq-answer">Haz clic en el botón de inscripción en la categoría que prefieras y llena el formulario. ¡Listo!</div>
+                <div class="faq-answer">Llena el formulario de inscripción en esta página, sube tu comprobante de pago y ¡listo!</div>
             </li>
             <li class="faq-item">
                 <button class="faq-question">¿Qué incluye mi inscripción?</button>
@@ -953,6 +1204,9 @@
         let lightboxCurrentIndex = 0;
         let gallerySlides = [];
         const backdropBlur = document.getElementById('backdropBlur');
+
+        // URL del Google Apps Script (reemplaza con tu URL)
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqkrsqe0Rg7eoiv9DcFd81vcpCj0Pt_OhRABPrUUyNTA1goAzRdOtezC7NSGzj8zkq/exec';
 
         // Menú hamburguesa
         const menuToggle = document.getElementById('menuToggle');
@@ -1373,7 +1627,7 @@
                 position: fixed;
                 top: 100px;
                 right: 20px;
-                background: ${type === 'success' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)'};
+                background: ${type === 'success' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : type === 'error' ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' : 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)'};
                 color: white;
                 padding: 1rem 1.5rem;
                 border-radius: 10px;
@@ -1401,12 +1655,151 @@
             }, 3000);
         };
 
-        // Mostrar toast cuando se hace clic en botones de inscripción
-        document.querySelectorAll('.cta-button-category').forEach(btn => {
-            btn.addEventListener('click', () => {
-                showToast('¡Redirigiendo a formulario de inscripción!', 'success');
+        // FORMULARIO DE INSCRIPCIÓN
+        function initForm() {
+            const form = document.getElementById('inscriptionForm');
+            const fileInput = document.getElementById('comprobante');
+            const imagePreview = document.getElementById('imagePreview');
+            const submitBtn = document.getElementById('submitBtn');
+            const formAlert = document.getElementById('formAlert');
+
+            // Preview de imagen
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validar tamaño (5MB máximo)
+                    if (file.size > 5 * 1024 * 1024) {
+                        showAlert('El archivo es muy grande. Máximo 5MB permitido.', 'error');
+                        fileInput.value = '';
+                        return;
+                    }
+
+                    // Mostrar preview si es imagen
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview del comprobante">`;
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        imagePreview.innerHTML = `<p>📄 ${file.name}</p>`;
+                    }
+
+                    // Actualizar texto del botón de upload
+                    document.querySelector('.file-upload-text span').textContent = `✅ ${file.name}`;
+                }
             });
-        });
+
+            // Preseleccionar categoría desde botones de categorías
+            document.querySelectorAll('.cta-button-category').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const categoria = btn.getAttribute('data-categoria');
+                    if (categoria) {
+                        document.getElementById('categoria').value = categoria;
+                    }
+                    document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Envío del formulario
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const file = fileInput.files[0];
+
+                if (!file) {
+                    showAlert('Por favor selecciona un comprobante de pago.', 'error');
+                    return;
+                }
+
+                // Mostrar estado de carga
+                setSubmitState(true);
+
+                try {
+                    // Convertir archivo a base64
+                    const base64 = await fileToBase64(file);
+                    
+                    // Preparar datos
+                    const submitData = {
+                        nombre: formData.get('nombre'),
+                        email: formData.get('email'),
+                        edad: formData.get('edad'),
+                        telefono: formData.get('telefono'),
+                        sexo: formData.get('sexo'),
+                        talla: formData.get('talla'),
+                        categoria: formData.get('categoria'),
+                        comprobante: base64,
+                        mimeType: file.type
+                    };
+
+                    // Enviar al Google Apps Script
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(submitData)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        showAlert('¡Inscripción enviada exitosamente! Te contactaremos pronto.', 'success');
+                        form.reset();
+                        imagePreview.innerHTML = '';
+                        document.querySelector('.file-upload-text span').textContent = '📷 Subir comprobante de pago';
+                    } else {
+                        throw new Error(result.message || 'Error desconocido');
+                    }
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    showAlert('Hubo un error al enviar la inscripción. Intenta nuevamente o contáctanos por WhatsApp.', 'error');
+                }
+
+                setSubmitState(false);
+            });
+
+            function setSubmitState(loading) {
+                const btnText = submitBtn.querySelector('.btn-text');
+                const btnLoading = submitBtn.querySelector('.btn-loading');
+                
+                if (loading) {
+                    btnText.style.display = 'none';
+                    btnLoading.style.display = 'flex';
+                    submitBtn.disabled = true;
+                } else {
+                    btnText.style.display = 'block';
+                    btnLoading.style.display = 'none';
+                    submitBtn.disabled = false;
+                }
+            }
+
+            function showAlert(message, type) {
+                formAlert.innerHTML = `<div class="alert alert-${type}">${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'} ${message}</div>`;
+                formAlert.style.display = 'block';
+                
+                // Auto-hide después de 5 segundos
+                setTimeout(() => {
+                    formAlert.style.display = 'none';
+                }, 5000);
+                
+                // Scroll al mensaje
+                formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            function fileToBase64(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                });
+            }
+        }
 
         // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', function() {
@@ -1414,6 +1807,7 @@
             initGallery();
             initLightbox();
             initSponsorsCarousel();
+            initForm();
             
             // Aplicar efecto de tipeo al slogan después de 1 segundo
             setTimeout(() => {
