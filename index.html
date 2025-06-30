@@ -959,7 +959,7 @@
             <!-- FORMULARIO DE INSCRIPCIÓN -->
             <div class="inscription-form-container">
                 <h3 style="text-align: center; margin-bottom: 2rem; color: #1e40af;">Formulario de Inscripción</h3>
-                <form id="inscriptionForm" class="inscription-form">
+                <form id="inscriptionForm" action="https://formspree.io/f/xvgooooj" method="POST" class="inscription-form">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="nombre">Nombre Completo *</label>
@@ -1181,9 +1181,6 @@
         let gallerySlides = [];
         const backdropBlur = document.getElementById('backdropBlur');
 
-        // CONFIGURACIÓN DE GOOGLE APPS SCRIPT
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ7wXzX4IsardcykZyVOley02U5hr40eAT19SFnVDqfjETKZd_MP5oE2hjlOMHivBb/exec'; // Cambia esto por tu URL
-
         // Menú hamburguesa
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
@@ -1254,20 +1251,8 @@
             }
         });
 
-        // Convertir archivo a base64
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-            });
-        }
-
         // Manejar envío del formulario
-        document.getElementById('inscriptionForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
+        document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
             const submitBtn = document.getElementById('submitBtn');
             const btnText = submitBtn.querySelector('.btn-text');
             const btnLoader = submitBtn.querySelector('.btn-loader');
@@ -1277,63 +1262,20 @@
             btnText.style.display = 'none';
             btnLoader.style.display = 'block';
             
-            try {
-                const formData = new FormData(this);
-                const file = document.getElementById('comprobante').files[0];
+            // Mostrar mensaje de envío
+            showNotification('Enviando inscripción...', 'info');
+            
+            // Simular un delay para mostrar el loader
+            setTimeout(() => {
+                showNotification('¡Formulario enviado! Recibirás una confirmación por email.', 'success');
                 
-                if (!file) {
-                    throw new Error('Por favor selecciona un comprobante de pago');
-                }
-                
-                // Validar tamaño del archivo (max 10MB)
-                if (file.size > 10 * 1024 * 1024) {
-                    throw new Error('El archivo es muy grande. Máximo 10MB');
-                }
-                
-                // Convertir archivo a base64
-                const base64File = await fileToBase64(file);
-                
-                // Preparar datos para enviar
-                const dataToSend = {
-                    nombre: formData.get('nombre'),
-                    email: formData.get('email'),
-                    edad: formData.get('edad'),
-                    telefono: formData.get('telefono'),
-                    sexo: formData.get('sexo'),
-                    talla: formData.get('talla'),
-                    categoria: formData.get('categoria'),
-                    comprobante: base64File,
-                    comprobanteType: file.type
-                };
-                
-                // Enviar a Google Apps Script
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(dataToSend)
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showNotification('¡Inscripción enviada exitosamente! Te contactaremos pronto.', 'success');
-                    this.reset();
-                    document.getElementById('filePreview').classList.remove('show');
-                } else {
-                    throw new Error(result.message || 'Error al enviar la inscripción');
-                }
-                
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification(error.message || 'Error al enviar la inscripción. Inténtalo de nuevo.', 'error');
-            } finally {
-                // Rehabilitar botón
-                submitBtn.disabled = false;
-                btnText.style.display = 'block';
-                btnLoader.style.display = 'none';
-            }
+                // Rehabilitar botón después del envío
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    btnText.style.display = 'block';
+                    btnLoader.style.display = 'none';
+                }, 2000);
+            }, 1000);
         });
 
         // Cuenta regresiva
