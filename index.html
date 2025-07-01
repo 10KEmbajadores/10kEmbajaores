@@ -162,34 +162,55 @@
         }
         .category-card .prizes-list {list-style:none; color:#6b7280; margin-bottom:0; padding:0;}
         .category-card .prizes-list li {margin-bottom:0.2rem;}
-        /* ---- BOTÓN INSCRIBIRSE CATEGORÍA ---- */
-        .cta-button-category {
+        
+        /* ------ BOTÓN INSCRIPCIÓN UNIFICADO ------ */
+        .inscription-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-radius: 20px;
+            margin: 3rem 0;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+        }
+        .inscription-cta {
             display: inline-block;
-            background: linear-gradient(90deg, #1e40af 0%, #dc267f 50%, #3b82f6 100%);
+            background: linear-gradient(135deg, #1e40af 0%, #dc267f 50%, #3b82f6 100%);
             color: #fff;
-            border: none;
-            padding: 0.65rem 1.7rem;
-            font-size: 1rem;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            border-radius: 30px;
-            box-shadow: 0 5px 24px rgba(30,64,175,0.26);
-            cursor: pointer;
-            margin-top: 1.1rem;
-            margin-bottom: 0.2rem;
+            border-radius: 50px;
+            box-shadow: 0 15px 40px rgba(30, 64, 175, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
             letter-spacing: 1px;
-            transition: background 0.22s, transform 0.14s, box-shadow 0.25s;
-            text-shadow: 1px 2px 8px rgba(30,64,175,0.8);
-            outline: none;
-            min-width: 110px;
-            max-width: 220px;
+            position: relative;
+            overflow: hidden;
         }
-        .cta-button-category:hover, .cta-button-category:focus {
-            background: linear-gradient(90deg,#3b82f6 0%, #dc267f 50%, #1e40af 100%);
-            transform: scale(1.05);
+        .inscription-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
-        @media (max-width: 600px) {
-            .cta-button-category { width: auto; padding: 0.8rem 1.2rem; font-size: 1rem; min-width: 80px; max-width: 100%;}
+        .inscription-cta:hover::before {
+            left: 100%;
         }
+        .inscription-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(220, 38, 127, 0.4);
+        }
+        .inscription-text {
+            font-size: 1.1rem;
+            color: #374151;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
         /* ------ KIT INCLUYE ------ */
         .kit-section {
             background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
@@ -315,6 +336,10 @@
             .kit-item h3 {
                 font-size: 0.9rem;
             }
+            .inscription-cta {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
         }
         @media (max-width: 480px) {
             .kit-section .kit-grid {
@@ -341,144 +366,6 @@
             background: linear-gradient(135deg, #1e40af 0%, #dc267f 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        
-        /* ------ FORMULARIO DE INSCRIPCIÓN ------ */
-        .inscription-form-container {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 2px solid rgba(220,38,127,0.1);
-            margin-bottom: 2.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .inscription-form {
-            width: 100%;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-        .form-group label {
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-        .form-group input,
-        .form-group select {
-            padding: 0.75rem 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #fff;
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #dc267f;
-            box-shadow: 0 0 0 3px rgba(220,38,127,0.1);
-        }
-        .file-upload-area {
-            position: relative;
-            border: 2px dashed #e5e7eb;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #f9fafb;
-        }
-        .file-upload-area:hover {
-            border-color: #dc267f;
-            background: #fef7f7;
-        }
-        .file-upload-area input[type="file"] {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
-        .file-upload-text span {
-            display: block;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 0.5rem;
-        }
-        .file-upload-text small {
-            color: #6b7280;
-        }
-        .file-preview {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #f3f4f6;
-            border-radius: 8px;
-            display: none;
-        }
-        .file-preview.show {
-            display: block;
-        }
-        .file-preview img {
-            max-width: 200px;
-            max-height: 150px;
-            border-radius: 8px;
-            margin-top: 0.5rem;
-        }
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #1e40af 0%, #dc267f 50%, #3b82f6 100%);
-            color: #fff;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(30,64,175,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(220,38,127,0.4);
-        }
-        .submit-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .btn-loader {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .inscription-form-container {
-                padding: 1.5rem;
-                margin: 0 1rem 2rem 1rem;
-            }
-        }
-        
         .contact-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
         .contact-card { 
             background:#fff;padding:1.5rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.07);text-align:center;
@@ -806,29 +693,6 @@
         }
         .social-link:hover { transform: translateY(-3px) scale(1.1);}
         .footer p { font-size: 0.9rem; margin-bottom: 0.5rem;}
-        
-        /* Estilos de notificaciones */
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            z-index: 10000;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            max-width: 300px;
-            font-size: 0.9rem;
-        }
-        .notification.error {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        }
-        .notification.show {
-            transform: translateX(0);
-        }
     </style>
 </head>
 <body>
@@ -865,7 +729,7 @@
         <div class="hero-content">
             <h1>10K Embajadores de Cristo</h1>
             <div class="slogan">
-                ¡No es solo correr. Es demostrar de qué estás hecho.!
+                ¡No es solo correr. Es demostrar de qué estás hecho!
             </div>
             <div class="countdown" id="countdown"></div>
             <div class="hero-details">
@@ -874,7 +738,7 @@
                 <div class="hero-detail">📍 Barrio Garibaldi, Zona 9</div>
                 <div class="hero-detail">💵 Q100 inscripción</div>
             </div>
-            <a href="#categorias" class="cta-button">¡Inscríbete ahora!</a>
+            <a href="https://sites.google.com/view/10k-inscripcion/inscripcion" class="cta-button" target="_blank">¡Inscríbete ahora!</a>
         </div>
     </section>
 
@@ -893,9 +757,6 @@
                             <li>🏆 Premios en efectivo</li>
                         </ul>
                     </div>
-                    <div style="text-align:center;">
-                        <a href="#contacto" class="cta-button-category">Inscribirse</a>
-                    </div>
                 </div>
                 <div class="category-card">
                     <h3>🏆 Master</h3>
@@ -906,9 +767,6 @@
                         <ul class="prizes-list">
                             <li>🏆 Premios en efectivo</li>
                         </ul>
-                    </div>
-                    <div style="text-align:center;">
-                        <a href="#contacto" class="cta-button-category">Inscribirse</a>
                     </div>
                 </div>
                 <div class="category-card">
@@ -921,10 +779,19 @@
                             <li>🏆 Premios en efectivo</li>
                         </ul>
                     </div>
-                    <div style="text-align:center;">
-                        <a href="#contacto" class="cta-button-category">Inscribirse</a>
-                    </div>
                 </div>
+            </div>
+            
+            <!-- SECCIÓN DE INSCRIPCIÓN UNIFICADA -->
+            <div class="inscription-section">
+                <h3 style="color: #1e40af; margin-bottom: 1rem; font-size: 1.8rem;">¿Listo para el desafío?</h3>
+                <p class="inscription-text">
+                    Elige tu categoría en el formulario y únete a la 7ª edición del 10K Embajadores de Cristo. 
+                    <strong>¡Solo cuesta Q100 y recibes playera, medalla, número y más!</strong>
+                </p>
+                <a href="https://sites.google.com/view/10k-inscripcion/inscripcion" class="inscription-cta" target="_blank">
+                    🏃‍♂️ INSCRIBIRME AHORA 🏃‍♀️
+                </a>
             </div>
         </div>
     </section>
@@ -955,74 +822,6 @@
                 <p class="price">Q100.00</p>
                 <p><strong>Fecha Límite de Inscripción:</strong> 25 de Julio de 2025</p>
             </div>
-            
-            <!-- FORMULARIO DE INSCRIPCIÓN -->
-            <div class="inscription-form-container">
-                <h3 style="text-align: center; margin-bottom: 2rem; color: #1e40af;">Formulario de Inscripción</h3>
-                <form id="inscriptionForm" action="https://formspree.io/f/xvgooooj" method="POST" class="inscription-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="nombre">Nombre Completo *</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edad">Edad *</label>
-                            <input type="number" id="edad" name="edad" min="5" max="99" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Número de Teléfono *</label>
-                            <input type="tel" id="telefono" name="telefono" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="sexo">Sexo *</label>
-                            <select id="sexo" name="sexo" required>
-                                <option value="">Seleccionar</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="talla">Talla de Playera *</label>
-                            <select id="talla" name="talla" required>
-                                <option value="">Seleccionar</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="categoria">Categoría *</label>
-                            <select id="categoria" name="categoria" required>
-                                <option value="">Seleccionar</option>
-                                <option value="Libre">Libre</option>
-                                <option value="Master">Master (40+ años)</option>
-                                <option value="Local">Local (Barrio Garibaldi)</option>
-                            </select>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="comprobante">Comprobante de Pago *</label>
-                            <div class="file-upload-area" id="fileUploadArea">
-                                <input type="file" id="comprobante" name="comprobante" accept="image/*,.pdf" required>
-                                <div class="file-upload-text">
-                                    <span>📁 Seleccionar archivo</span>
-                                    <small>Imagen o PDF del comprobante</small>
-                                </div>
-                            </div>
-                            <div id="filePreview" class="file-preview"></div>
-                        </div>
-                    </div>
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <span class="btn-text">Inscribirse Ahora</span>
-                        <span class="btn-loader" style="display: none;">⏳ Enviando...</span>
-                    </button>
-                </form>
-            </div>
-            
             <div class="contact-grid">
                 <div class="contact-card">
                     <div class="contact-icon">📱</div>
@@ -1139,7 +938,7 @@
         <ul class="faq-list" id="faq-list">
             <li class="faq-item">
                 <button class="faq-question">¿Cómo me inscribo?</button>
-                <div class="faq-answer">Llena el formulario de inscripción en esta página y sube tu comprobante de pago. ¡Listo!</div>
+                <div class="faq-answer">Haz clic en cualquier botón de inscripción y llena el formulario único. Selecciona tu categoría y sube tu comprobante de pago. ¡Listo!</div>
             </li>
             <li class="faq-item">
                 <button class="faq-question">¿Qué incluye mi inscripción?</button>
@@ -1147,7 +946,7 @@
             </li>
             <li class="faq-item">
                 <button class="faq-question">¿Dónde es la salida y meta?</button>
-                <div class="faq-answer">En Barrio Garibaldi, Zona 9, Ciudad de Guatemala. Consulta la sección de "Ubicación" para ver el mapa y obtener direcciones.</div>
+                <div class="faq-answer">En Barrio Garibaldi, Zona 9, Quetzaltenango. Consulta la sección de "Ubicación" para ver el mapa y obtener direcciones.</div>
             </li>
             <li class="faq-item">
                 <button class="faq-question">¿Hasta cuándo puedo inscribirme?</button>
@@ -1202,80 +1001,6 @@
                 navLinks.classList.remove('active');
                 menuToggle.classList.remove('active');
             }
-        });
-
-        // Funciones de notificación
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => notification.classList.add('show'), 100);
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
-                }, 300);
-            }, 4000);
-        }
-
-        // Manejar preview de archivo
-        document.getElementById('comprobante').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('filePreview');
-            const uploadArea = document.getElementById('fileUploadArea');
-            
-            if (file) {
-                preview.innerHTML = `
-                    <p><strong>Archivo seleccionado:</strong> ${file.name}</p>
-                    <p><strong>Tamaño:</strong> ${(file.size / 1024 / 1024).toFixed(2)} MB</p>
-                `;
-                
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        preview.appendChild(img);
-                    };
-                    reader.readAsDataURL(file);
-                }
-                
-                preview.classList.add('show');
-                uploadArea.style.borderColor = '#10b981';
-                uploadArea.style.background = '#f0fdf4';
-            }
-        });
-
-        // Manejar envío del formulario
-        document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoader = submitBtn.querySelector('.btn-loader');
-            
-            // Deshabilitar botón y mostrar loader
-            submitBtn.disabled = true;
-            btnText.style.display = 'none';
-            btnLoader.style.display = 'block';
-            
-            // Mostrar mensaje de envío
-            showNotification('Enviando inscripción...', 'info');
-            
-            // Simular un delay para mostrar el loader
-            setTimeout(() => {
-                showNotification('¡Formulario enviado! Recibirás una confirmación por email.', 'success');
-                
-                // Rehabilitar botón después del envío
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    btnText.style.display = 'block';
-                    btnLoader.style.display = 'none';
-                }, 2000);
-            }, 1000);
         });
 
         // Cuenta regresiva
@@ -1666,6 +1391,48 @@
                 }
             }, speed);
         };
+
+        // TOAST NOTIFICATIONS
+        const showToast = (message, type = 'info') => {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 10000;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+                font-size: 0.9rem;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (document.body.contains(toast)) {
+                        document.body.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        };
+
+        // Mostrar toast cuando se hace clic en botones de inscripción
+        document.querySelectorAll('.cta-button, .inscription-cta').forEach(btn => {
+            btn.addEventListener('click', () => {
+                showToast('¡Redirigiendo a formulario de inscripción!', 'success');
+            });
+        });
 
         // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', function() {
