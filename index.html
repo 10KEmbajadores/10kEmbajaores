@@ -558,21 +558,6 @@
             box-shadow: var(--shadow-sm);
         }
 
-        .contact-info {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-light);
-        }
-
-        .contact-info p {
-            font-size: 1rem !important;
-            color: var(--text-secondary) !important;
-        }
-
         /* ------ INSCRIPCIÓN FINAL ------ */
         .inscription-section {
             background: var(--bg-primary);
@@ -1171,6 +1156,40 @@
             text-align: center; 
             padding: 2.5rem 2rem;
         }
+
+        /* Sección de contacto separada */
+        .contact-section {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .contact-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-info p {
+            font-size: 1rem !important;
+            color: var(--text-secondary) !important;
+            background: var(--bg-secondary);
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--border-light);
+            margin: 0 !important;
+        }
         
         .social-links { 
             display: flex; 
@@ -1306,24 +1325,24 @@
                 gap: 1rem; 
             }
 
-            /* Optimización del kit para móvil */
+            /* Optimización del kit para móvil - 2 columnas */
             .kit-grid { 
-                grid-template-columns: repeat(3, 1fr); 
+                grid-template-columns: repeat(2, 1fr); 
                 gap: 1rem; 
                 max-width: none;
             }
             
             .kit-item { 
-                padding: 1rem 0.5rem; 
+                padding: 1.25rem 0.75rem; 
             }
             
             .kit-icon { 
-                font-size: 1.8rem;
+                font-size: 2rem;
                 margin-bottom: 0.5rem; 
             }
 
             .kit-item h3 {
-                font-size: 0.8rem;
+                font-size: 0.85rem;
             }
             
             .gallery-slide img { 
@@ -1398,7 +1417,12 @@
 
             .contact-info {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.75rem;
+            }
+
+            .contact-info p {
+                font-size: 0.9rem !important;
+                padding: 0.75rem 1rem !important;
             }
 
             .map-container iframe {
@@ -1416,6 +1440,15 @@
             .sponsors-section {
                 padding: 2rem 1rem;
             }
+
+            .contact-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .contact-title {
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1429,8 +1462,23 @@
                 padding: 0.75rem 1rem; 
             }
             
+            /* Kit en móviles pequeños - mantener 2 columnas pero más compacto */
             .kit-grid { 
-                grid-template-columns: 1fr; 
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .kit-item {
+                padding: 1rem 0.5rem;
+            }
+
+            .kit-icon {
+                font-size: 1.75rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .kit-item h3 {
+                font-size: 0.8rem;
             }
             
             .countdown { 
@@ -1460,6 +1508,19 @@
 
             .account-number-main {
                 font-size: 1.5rem;
+            }
+
+            .contact-info {
+                gap: 0.5rem;
+            }
+
+            .contact-info p {
+                font-size: 0.85rem !important;
+                padding: 0.6rem 0.8rem !important;
+            }
+
+            .contact-section {
+                padding: 1.25rem 1rem;
             }
         }
 
@@ -1584,10 +1645,6 @@
                     <div class="account-highlight">
                         <span class="account-label">📋 Número de Cuenta:</span>
                         <div class="account-number-main">03208800016519</div>
-                    </div>
-                    <div class="contact-info">
-                        <p><strong>📞 Contacto:</strong> 34629621</p>
-                        <p><strong>📧 Email:</strong> 10k.embajadores.de.cristo@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -1825,6 +1882,17 @@
                 <p style="margin-top: 1.5rem; font-size: 1rem; font-weight: 700; position: relative; z-index: 1;">
                     📅 Fecha límite: 25 de Julio 2025
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="contact-title">📞 Información de Contacto</h2>
+            <div class="contact-info">
+                <p><strong>📞 Teléfono:</strong> 34629621</p>
+                <p><strong>📧 Email:</strong> 10k.embajadores.de.cristo@gmail.com</p>
             </div>
         </div>
     </section>
