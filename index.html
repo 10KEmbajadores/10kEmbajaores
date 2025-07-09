@@ -5,605 +5,472 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10K Embajadores de Cristo</title>
-<meta property="og:title" content="10K Embajadores de Cristo">
-<meta property="og:description" content="Inscríbete a la 7ma edición del 10K Embajadores. ¡Premios en efectivo, kit y más!">
-<meta property="og:image" content="https://i.postimg.cc/Z9fYWtRz/FB-IMG-1751868197575-2.jpg">
-<meta property="og:url" content="https://10kembajadores.github.io/10kEmbajaores/">
-<meta name="twitter:card" content="summary_large_image">
+    <meta property="og:title" content="10K Embajadores de Cristo">
+    <meta property="og:description" content="Inscríbete a la 7ma edición del 10K Embajadores. ¡Premios en efectivo, kit y más!">
+    <meta property="og:image" content="https://i.postimg.cc/Z9fYWtRz/FB-IMG-1751868197575-2.jpg">
+    <meta property="og:url" content="https://10kembajadores.github.io/10kEmbajaores/">
+    <meta name="twitter:card" content="summary_large_image">
     <style>
-        /* ------ GLOBAL ------ */
+        /* ------ RESET Y GLOBALES ------ */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            color: #333; 
-            background: linear-gradient(135deg, #f0f7ff 0%, #e1f0ff 50%, #f0f7ff 100%); 
-            line-height: 1.6; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            color: #1f2937; 
+            background: #ffffff; 
+            line-height: 1.5; 
             overflow-x: hidden;
         }
-        img { max-width: 100%; height: auto; border-radius: 10px;}
+        img { max-width: 100%; height: auto; border-radius: 8px;}
         a { color: inherit; text-decoration: none; }
         
-        /* ------ SCROLL ANIMATIONS ------ */
+        /* ------ VARIABLES CSS ------ */
+        :root {
+            --primary: #1d4ed8;
+            --secondary: #dc2626;
+            --accent: #2563eb;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-light: rgba(29, 78, 216, 0.1);
+            --shadow-sm: 0 2px 8px rgba(29, 78, 216, 0.08);
+            --shadow-md: 0 4px 15px rgba(29, 78, 216, 0.1);
+            --shadow-lg: 0 8px 25px rgba(29, 78, 216, 0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 30%, var(--accent) 100%);
+            --gradient-bg: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+        }
+
+        /* ------ ANIMACIONES ------ */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* ------ FLOATING ELEMENTS ------ */
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
 
-        /* ------ BACKDROP BLUR EFFECT ------ */
-        .backdrop-blur {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(37,99,235,0.1) 0%, rgba(220,38,38,0.05) 100%);
-            backdrop-filter: blur(2px);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-            pointer-events: none;
-        }
-        .backdrop-blur.active {
-            opacity: 1;
-        }
-
-        /* ------ HEADER/NAV ------ */
+        /* ------ HEADER COMPACTO ------ */
         .header { 
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 20%, #2563eb 100%); 
+            background: var(--gradient-primary); 
             color: #fff; 
-            padding: 0.8rem 0; 
+            padding: 0.75rem 0; 
             position: fixed; 
             width: 100%; 
             top: 0; 
             z-index: 1000; 
-            box-shadow: 0 2px 20px rgba(29,78,216,0.15);
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
         }
-        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 1rem;}
-        .logo { font-size: 1.3rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.18); flex: 1; }
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
-        .menu-toggle span { width: 25px; height: 3px; background: #fff; margin: 3px 0; border-radius: 2px; }
-        .nav-links { display: flex; list-style: none; gap: 1.5rem; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 1rem; padding: 0.5rem 1rem; border-radius: 22px; transition: background 0.2s;}
-        .nav-links a:hover { background: rgba(255,255,255,0.2);}
+        .nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 1rem;
+        }
+        .logo { 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            flex: 1; 
+        }
+        .menu-toggle { 
+            display: none; 
+            flex-direction: column; 
+            cursor: pointer; 
+        }
+        .menu-toggle span { 
+            width: 22px; 
+            height: 2px; 
+            background: #fff; 
+            margin: 2px 0; 
+            border-radius: 1px; 
+            transition: 0.3s;
+        }
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 1rem; 
+        }
+        .nav-links a { 
+            color: #fff; 
+            font-size: 0.9rem; 
+            padding: 0.4rem 0.8rem; 
+            border-radius: 20px; 
+            transition: background 0.2s;
+        }
+        .nav-links a:hover { 
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* ------ RESPONSIVE NAVIGATION ------ */
         @media (max-width: 768px) {
             .menu-toggle { display: flex;}
             .nav-links {
-                position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px);
-                background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 20%, #2563eb 100%);
-                flex-direction: column; justify-content: flex-start; align-items: center;
-                transition: left 0.3s ease; padding-top: 2rem;
+                position: fixed; 
+                top: 60px; 
+                left: -100%; 
+                width: 100%; 
+                height: calc(100vh - 60px);
+                background: var(--gradient-primary);
+                flex-direction: column; 
+                justify-content: flex-start; 
+                align-items: center;
+                transition: left 0.3s ease; 
+                padding-top: 1.5rem;
             }
             .nav-links.active { left: 0;}
-            .nav-links li { margin: 1rem 0;}
-            .nav-links a { font-size: 1.2rem; padding: 1rem 2rem; }
-            .logo { font-size: 1.08rem; }
+            .nav-links li { margin: 0.8rem 0;}
+            .nav-links a { font-size: 1.1rem; padding: 0.8rem 1.5rem; }
+            .logo { font-size: 1rem; }
         }
-        /* ------ HERO ------ */
+
+        /* ------ HERO COMPACTO ------ */
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg,rgba(0,0,0,0.7) 70%,rgba(29,78,216,.18)), url('Inicio1.jpg') center/cover no-repeat;
-            display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;
-            position: relative; margin-bottom: 2rem; padding: 2rem 1rem 1.2rem 1rem;
+            min-height: 70vh;
+            background: linear-gradient(135deg,rgba(0,0,0,0.6) 70%,rgba(29,78,216,.2)), url('Inicio1.jpg') center/cover no-repeat;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: #fff;
+            padding: 6rem 1rem 2rem;
+            margin-bottom: 1rem;
         }
         .hero-content {
-            background: rgba(0,0,0,0.25); border-radius: 20px; padding: 2rem 1rem 1.3rem 1rem; max-width: 500px; margin: auto; 
-            box-shadow: 0 8px 35px rgba(29,78,216,0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.3); 
+            border-radius: 15px; 
+            padding: 1.5rem 1rem; 
+            max-width: 480px; 
+            margin: auto; 
+            backdrop-filter: blur(8px);
         }
-        .hero h1 { font-size: clamp(2.15rem, 6vw, 3.7rem); text-shadow: 2px 2px 12px rgba(0,0,0,0.28); margin-bottom: 0.8rem; }
-        .hero .slogan { font-size: 1.15rem; margin-bottom: 2rem; color: #f3f4f6; font-weight: 500; text-shadow: 1px 1px 3px rgba(0,0,0,0.15); }
-        .countdown { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;}
-        .count-item { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 0.7rem 1.2rem; color: #fff; min-width: 55px; text-align: center; font-size: 1.25rem; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.08);}
-        .count-label { font-size: 0.8rem; color: #f0f3fa; font-weight: 400; }
-        .hero-details { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 1.5rem;}
-        .hero-detail { background: rgba(255,255,255,0.16); color: #fff; border-radius: 11px; padding: 0.55rem 1.1rem; font-size: 1rem; font-weight: 500; display: flex; align-items: center; gap: 0.3rem;}
+        .hero h1 { 
+            font-size: clamp(1.8rem, 5vw, 2.8rem); 
+            margin-bottom: 0.5rem; 
+            font-weight: 800;
+        }
+        .hero .slogan { 
+            font-size: 1rem; 
+            margin-bottom: 1.5rem; 
+            color: #f3f4f6; 
+            font-weight: 500; 
+        }
+        .hero-details { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 0.5rem; 
+            margin-bottom: 1.5rem;
+        }
+        .hero-detail { 
+            background: rgba(255,255,255,0.15); 
+            color: #fff; 
+            border-radius: 8px; 
+            padding: 0.4rem 0.8rem; 
+            font-size: 0.85rem; 
+            font-weight: 500;
+        }
         .cta-button {
-            display: block; width: 100%;
-            background: linear-gradient(135deg,#1d4ed8 0%, #dc2626 30%, #2563eb 100%);
-            color: #fff; padding: 1rem 2.2rem;
-            border-radius: 50px; font-size: 1.13rem; font-weight: bold;
-            box-shadow: 0 10px 30px rgba(29,78,216,0.3); margin: 1.7rem auto 0 auto;
-            border: none; cursor: pointer; outline: none; letter-spacing: 1px;
-            transition: transform 0.15s, box-shadow 0.2s, background 0.25s;
-            animation: pulse-btn 2s infinite;
+            display: block; 
+            width: 100%;
+            background: var(--gradient-primary);
+            color: #fff; 
+            padding: 0.9rem 2rem;
+            border-radius: 30px; 
+            font-size: 1rem; 
+            font-weight: bold;
+            box-shadow: var(--shadow-lg); 
+            border: none; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .cta-button:hover { 
-            transform: scale(1.04); 
-            background: linear-gradient(135deg,#2563eb 0%, #dc2626 30%, #1d4ed8 100%);
-        }
-        @keyframes pulse-btn { 
-            0%,100%{box-shadow:0 10px 30px rgba(29,78,216,0.25);} 
-            50%{box-shadow:0 14px 44px 2px rgba(29,78,216,0.35);} 
+            transform: translateY(-2px); 
+            box-shadow: 0 12px 30px rgba(29,78,216,0.3);
         }
 
         /* ------ SECCIONES COMPACTAS ------ */
         .section { 
-            padding: 3rem 1rem; 
-            position: relative;
-            z-index: 1;
+            padding: 1.5rem 1rem; 
         }
-        .section.compact { 
-            padding: 2rem 1rem; 
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
         }
         .section-title {
             text-align: center;
-            font-size: clamp(1.7rem, 4vw, 2.5rem);
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 30%, #2563eb 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            position: relative;
-            z-index: 2;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            font-weight: 700;
         }
 
         /* ------ INSCRIPCIÓN PRIORITARIA ------ */
         .priority-inscription {
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            padding: 1.5rem 1rem;
+            background: var(--gradient-bg);
+            padding: 1.5rem;
             text-align: center;
-            border-radius: 15px;
-            margin: 0 0 2rem 0;
-            border: 2px solid rgba(29, 78, 216, 0.3);
-            box-shadow: 0 10px 25px rgba(29,78,216,0.1);
+            border-radius: 12px;
+            margin: 1rem 0;
+            border: 2px solid var(--border-light);
+            box-shadow: var(--shadow-md);
         }
         .inscription-cta {
             display: inline-block;
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 30%, #2563eb 100%);
+            background: var(--gradient-primary);
             color: #fff;
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(29, 78, 216, 0.3);
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
             transition: all 0.3s ease;
-            text-decoration: none;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-        .inscription-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        .inscription-cta:hover::before {
-            left: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .inscription-cta:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.4);
-        }
-        .inscription-text {
-            font-size: 1.2rem;
-            color: #1e40af;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            font-weight: 600;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.3);
         }
         .price { 
-            font-size: 2.5rem; 
+            font-size: 2rem; 
             font-weight: bold; 
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            margin: 1rem 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            margin: 0.5rem 0;
         }
 
-        /* ------ CATEGORÍAS COMPACTAS ------ */
-        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem; margin-bottom:1.5rem;}
+        /* ------ CATEGORÍAS MEJORADAS ------ */
+        .categories-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); 
+            gap: 1.2rem; 
+            margin-bottom: 1.5rem;
+        }
         .category-card {
-            background:#fff; padding:1.5rem 1rem; border-radius:15px; 
-            box-shadow:0 8px 25px rgba(29,78,216,0.08); text-align:center; display:flex; flex-direction:column; gap:0.5rem; position:relative;
-            border: 2px solid transparent;
+            background: var(--bg-white); 
+            padding: 1.2rem; 
+            border-radius: 12px; 
+            box-shadow: var(--shadow-sm); 
+            text-align: center; 
+            border: 2px solid var(--border-light);
             transition: all 0.3s ease;
         }
         .category-card:hover {
-            border-color: rgba(29,78,216,0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(29,78,216,0.15);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
-        .category-card h3 { font-size: 1.2rem; margin-bottom: 0.3rem; color: #1d4ed8;}
-        .category-card .branches { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 0.5rem;}
-        .category-card .branch { 
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); 
-            padding:0.3rem 0.7rem; border-radius: 15px; font-size:0.85rem; color:#1e40af;
-            border: 1px solid rgba(29,78,216,0.2);
+        .category-card h3 { 
+            font-size: 1.3rem; 
+            margin-bottom: 0.5rem; 
+            color: var(--primary);
+            font-weight: 700;
         }
-        .category-card .prizes-list {list-style:none; color:#6b7280; margin-bottom:0; padding:0;}
-        .category-card .prizes-list li {margin-bottom:0.1rem; font-size: 0.9rem;}
-        
-        /* ------ KIT INCLUYE MEJORADO ------ */
-        .kit-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f0f7ff 100%);
-        }
-        .kit-section .kit-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 1rem;
-            justify-content: center;
+        .category-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
             margin-bottom: 1rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        }
+        .branches { 
+            display: flex; 
+            gap: 0.5rem; 
+            justify-content: center; 
+            margin-bottom: 1rem;
+        }
+        .branch { 
+            background: var(--gradient-bg); 
+            padding: 0.3rem 0.8rem; 
+            border-radius: 12px; 
+            font-size: 0.8rem; 
+            color: var(--primary);
+            border: 1px solid var(--border-light);
+            font-weight: 600;
+        }
+        .prizes-section {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        .prizes-section h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .prizes-list {
+            list-style: none; 
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.3rem;
+        }
+        .prizes-list li {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.2rem 0;
+        }
+
+        /* ------ KIT MEJORADO ------ */
+        .kit-section {
+            background: var(--gradient-bg);
+        }
+        .kit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto 1rem;
         }
         .kit-item {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            padding: 1.2rem 0.8rem;
-            border-radius: 15px;
+            background: var(--bg-white);
+            padding: 1rem 0.5rem;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 6px 20px rgba(29,78,216,0.08);
+            box-shadow: var(--shadow-sm);
             display: flex; 
             flex-direction: column; 
             align-items: center;
             transition: all 0.3s ease;
-            border: 1px solid rgba(59,130,246,0.1);
-            position: relative;
-            overflow: hidden;
+            border: 1px solid var(--border-light);
         }
         .kit-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(29,78,216,0.15);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
         .kit-icon { 
-            font-size: 2.2rem; 
-            margin-bottom: 0.6rem;
-            transition: transform 0.3s ease;
-        }
-        .kit-item:hover .kit-icon {
-            transform: scale(1.15) rotate(5deg);
+            font-size: 2rem; 
+            margin-bottom: 0.5rem;
         }
         .kit-item h3 { 
-            font-size: 0.9rem; 
-            color: #1f2937; 
-            margin-bottom: 0; 
+            font-size: 0.8rem; 
+            color: var(--text-dark); 
             font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        .kit-item:hover h3 {
-            color: #1d4ed8;
-        }
-        .special-bonus {
-            background: linear-gradient(145deg, #fef3c7 0%, #fbbf24 100%);
-            border: 2px solid #f59e0b;
-            animation: glow 2s ease-in-out infinite alternate;
-            position: relative;
-        }
-        .special-bonus::after {
-            content: '★';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #f59e0b;
-            color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            animation: sparkle 1.5s ease-in-out infinite;
-        }
-        @keyframes glow {
-            from { 
-                box-shadow: 0 6px 20px rgba(245,158,11,0.3);
-                transform: scale(1);
-            }
-            to { 
-                box-shadow: 0 10px 30px rgba(245,158,11,0.5);
-                transform: scale(1.02);
-            }
-        }
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.2) rotate(180deg); }
-        }
-        
-        /* Vista móvil mejorada */
-        @media (max-width: 768px) {
-            .kit-section .kit-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.8rem;
-                padding: 0 1rem;
-            }
-            .kit-item {
-                padding: 1rem 0.6rem;
-                min-height: 100px;
-            }
-            .kit-icon { 
-                font-size: 1.8rem;
-                margin-bottom: 0.4rem;
-            }
-            .kit-item h3 {
-                font-size: 0.8rem;
-            }
         }
 
-        /* ------ SECCIONES COLAPSABLES ------ */
-        .collapsible-section {
-            background: #fff;
-            border-radius: 15px;
-            margin: 2rem 0;
-            box-shadow: 0 8px 25px rgba(29,78,216,0.08);
-            border: 2px solid rgba(29,78,216,0.1);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .collapsible-header {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #1d4ed8;
-            transition: all 0.3s ease;
-        }
-        .collapsible-header:hover {
-            background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
-        }
-        .collapsible-arrow {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-            color: #dc2626;
-        }
-        .collapsible-section.active .collapsible-arrow {
-            transform: rotate(180deg);
-        }
-        .collapsible-content {
-            display: none;
-            padding: 0;
-            animation: slideDown 0.3s ease;
-        }
-        .collapsible-section.active .collapsible-content {
-            display: block;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ------ FAQ COLAPSABLE ------ */
-        .faq-section { 
-            background: #f0f7ff; 
-            padding: 2rem 1rem; 
-        }
-        .faq-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .faq-main-header {
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 30%, #2563eb 100%);
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text;
-            font-size: clamp(1.5rem, 4vw, 2.1rem);
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-        }
-        .faq-list { 
-            list-style: none; 
-            padding: 0;
-        }
-        .faq-item { 
-            margin-bottom: 0.5rem; 
-            border-radius: 10px; 
-            background: #fff; 
-            box-shadow: 0 4px 15px rgba(29,78,216,0.06);
-            border: 1px solid rgba(29,78,216,0.1);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        .faq-item:hover {
-            border-color: rgba(29,78,216,0.3);
-            transform: translateY(-2px);
-        }
-        .faq-question {
-            color: #1d4ed8;
-            font-weight: 600;
-            padding: 1rem 1.2rem;
-            font-size: 1rem;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-            position: relative;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-question:after {
-            content: '▼';
-            font-size: 0.9rem;
-            color: #dc2626;
-            transition: transform 0.2s;
-        }
-        .faq-item.active .faq-question:after { 
-            transform: rotate(-180deg);
-        }
-        .faq-answer {
-            display: none;
-            padding: 0 1.2rem 1rem 1.2rem;
-            color: #374151;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        .faq-item.active .faq-answer { 
-            display: block; 
-        }
-
-        /* ------ CONTACTO COMPACTO ------ */
-        .contact-section {
-            background: linear-gradient(135deg, #f8fafc 0%, #f0f7ff 100%);
-        }
-        .contact-grid { 
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .contact-card { 
-            background: #fff;
-            padding: 1.2rem;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(29,78,216,0.08);
-            text-align: center;
-            border: 2px solid rgba(29,78,216,0.1);
-            transition: all 0.3s ease;
-        }
-        .contact-card:hover {
-            border-color: rgba(29,78,216,0.3);
-            transform: translateY(-3px);
-        }
-        .contact-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            color: #fff;
-            font-size: 1.1rem;
-        }
-
-        /* ------ MAPA Y UBICACIÓN COMPACTO------ */
-        .map-container, .location-map-container {
-            background: linear-gradient(135deg, #f8fafc, #f0f7ff); 
-            border-radius: 15px; 
-            padding: 1.5rem 1rem;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(29,78,216,0.08); 
-            margin: 0 auto;
-            border: 2px solid rgba(29,78,216,0.1);
-        }
-        .location-map-container { 
-            max-width: 450px; 
-            margin-bottom: 1rem;
-        }
-        .location-map-container iframe, .location-map-container img { 
-            width: 100%; 
-            height: 280px; 
-            border: 0; 
-            display: block; 
+        /* ------ PAGO COMPACTO ------ */
+        .payment-info {
+            background: var(--bg-white);
             border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--border-light);
+            margin: 1rem 0;
+        }
+        .payment-info h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        .payment-details {
+            display: grid;
+            gap: 0.5rem;
+        }
+        .payment-details p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .account-number {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: bold;
+            text-align: center;
+            padding: 0.5rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin: 0.5rem 0;
+        }
+
+        /* ------ RECORRIDO Y UBICACIÓN COMPACTOS ------ */
+        .map-container {
+            background: var(--bg-white); 
+            border-radius: 12px; 
+            padding: 1rem;
+            box-shadow: var(--shadow-sm); 
+            border: 2px solid var(--border-light);
+        }
+        .map-container iframe { 
+            width: 100%; 
+            height: 250px; 
+            border: 0; 
+            border-radius: 8px;
         }
         .open-maps-btn {
             display: inline-block;
-            margin: 1rem auto 0 auto;
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 100%);
+            margin: 1rem auto 0;
+            background: var(--gradient-primary);
             color: #fff;
-            font-size: 1rem;
-            font-weight: bold;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(29,78,216,0.2);
+            box-shadow: var(--shadow-sm);
         }
         .open-maps-btn:hover {
-            background: linear-gradient(135deg, #dc2626 0%, #1d4ed8 100%); 
-            transform: translateY(-2px) scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
-        /* ------ GALERÍA CARRUSEL COMPACTA ------ */
-        .gallery-carrusel-container {
-            position: relative;
-            max-width: 420px;
+        /* ------ GALERÍA COMPACTA ------ */
+        .gallery-container {
+            max-width: 400px;
             margin: 0 auto;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(29,78,216,0.1);
-            background: #fff;
-        }
-        .gallery-carrusel-track {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-        }
-        .gallery-carrusel-slide {
-            min-width: 100%;
-            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+            background: var(--bg-white);
             position: relative;
+        }
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .gallery-slide {
+            min-width: 100%;
             cursor: pointer;
         }
-        .gallery-carrusel-slide img {
+        .gallery-slide img {
             width: 100%;
-            height: 280px;
+            height: 220px;
             object-fit: cover;
-            display: block;
             border-radius: 0;
         }
-        .gallery-carrusel-button {
+        .gallery-btn {
             position: absolute; 
             top: 50%; 
             transform: translateY(-50%);
-            background-color: rgba(255,255,255,0.9); 
+            background: rgba(255,255,255,0.9); 
             border: none; 
             border-radius: 50%;
-            width: 40px; 
-            height: 40px; 
+            width: 35px; 
+            height: 35px; 
             cursor: pointer; 
-            z-index: 10; 
-            font-size: 1.4rem; 
-            color: #1d4ed8; 
-            box-shadow: 0 4px 15px rgba(29,78,216,0.2); 
+            font-size: 1.2rem; 
+            color: var(--primary); 
+            box-shadow: var(--shadow-sm); 
             transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        .gallery-carrusel-button:hover { 
-            background-color: #fff; 
+        .gallery-btn:hover { 
+            background: #fff; 
+            color: var(--secondary);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(220,38,38,0.3);
-            color: #dc2626;
         }
-        .gallery-carrusel-button.prev { left: 12px;}
-        .gallery-carrusel-button.next { right: 12px;}
-        
-        @media (max-width: 600px) {
-            .gallery-carrusel-container { 
-                max-width: 95vw;
-                margin: 0 auto;
-            } 
-            .gallery-carrusel-slide img { 
-                height: 220px;
-            }
-            .gallery-carrusel-button {
-                width: 35px;
-                height: 35px;
-                font-size: 1.2rem;
-            }
-            .gallery-carrusel-button.prev { left: 8px;}
-            .gallery-carrusel-button.next { right: 8px;}
-        }
+        .gallery-btn.prev { left: 10px;}
+        .gallery-btn.next { right: 10px;}
 
-        /* ------ LIGHTBOX GALERÍA ------ */
+        /* ------ LIGHTBOX ------ */
         .lightbox { 
             display: none; 
             position: fixed; 
@@ -612,18 +479,14 @@
             top: 0; 
             width: 100vw; 
             height: 100vh; 
-            background: rgba(0,0,0,0.95); 
+            background: rgba(0,0,0,0.9); 
             justify-content: center; 
             align-items: center;
-            backdrop-filter: blur(5px);
         }
         .lightbox-content { 
             max-width: 90vw; 
             max-height: 80vh; 
-            border-radius: 10px; 
-            display: block; 
-            margin: auto; 
-            box-shadow: 0 8px 40px 10px rgba(29,78,216,0.20);
+            border-radius: 8px; 
             object-fit: contain;
         }
         .lightbox-close { 
@@ -631,243 +494,240 @@
             top: 20px; 
             right: 30px; 
             color: #fff; 
-            font-size: 35px; 
-            font-weight: bold; 
-            transition: 0.3s; 
+            font-size: 30px; 
             cursor: pointer;
-            z-index: 10000;
-            width: 45px;
-            height: 45px;
+            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
         }
         .lightbox-close:hover { 
-            color: #dc2626;
+            color: var(--secondary);
             background: rgba(255,255,255,0.2);
-            transform: scale(1.1);
-        }
-        .lightbox-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.9);
-            border: none;
-            border-radius: 50%;
-            font-size: 1.8rem;
-            width: 50px; 
-            height: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            color: #1d4ed8;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-        .lightbox-btn:hover { 
-            background: #fff;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 20px rgba(220,38,38,0.4);
-            color: #dc2626;
-        }
-        .lightbox-btn.prev { left: 20px; }
-        .lightbox-btn.next { right: 20px; }
-
-        @media (max-width: 768px) {
-            .lightbox-content {
-                max-width: 95vw;
-                max-height: 70vh;
-            }
-            .lightbox-close {
-                top: 10px;
-                right: 15px;
-                font-size: 30px;
-                width: 40px;
-                height: 40px;
-            }
-            .lightbox-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.6rem;
-            }
-            .lightbox-btn.prev { left: 10px; }
-            .lightbox-btn.next { right: 10px; }
         }
 
-        /* ------ PATROCINADORES CARRUSEL ------ */
+        /* ------ PATROCINADORES COMPACTO ------ */
         .sponsors-section { 
-            background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%); 
+            background: var(--gradient-bg); 
             padding: 1.5rem 0.5rem; 
-            text-align: center;
         }
-        .sponsors-title { 
-            font-size: 1.3rem; 
-            margin-bottom: 1rem; 
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 100%);
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text;
-            text-align: center;
-            font-weight: bold;
-        }
-        .sponsors-slider-container { 
-            position: relative; 
-            max-width: 1000px; 
+        .sponsors-container { 
+            max-width: 800px; 
             margin: 0 auto; 
             overflow: hidden;
+            position: relative;
         }
-        .sponsors-slider-track {
+        .sponsors-track {
             display: flex; 
-            gap: 1.2rem; 
-            transition: transform 0.5s cubic-bezier(.4,.8,.2,1.1); 
-            align-items: center;
-            will-change: transform;
+            gap: 1rem; 
+            animation: scroll 20s linear infinite;
         }
         .sponsor-logo {
-            width: 90px; 
-            height: 90px; 
+            width: 70px; 
+            height: 70px; 
             object-fit: contain; 
-            border-radius: 8px; 
-            background: #f8fafc; 
-            padding: 0.5rem; 
-            box-shadow: 0 4px 15px rgba(29,78,216,0.08); 
-            flex: 0 0 auto;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(29,78,216,0.1);
+            border-radius: 6px; 
+            background: var(--bg-white); 
+            padding: 0.4rem; 
+            box-shadow: var(--shadow-sm); 
+            flex-shrink: 0;
+            border: 1px solid var(--border-light);
         }
-        .sponsor-logo:hover { 
-            box-shadow: 0 6px 20px rgba(29,78,216,0.2);
-            transform: scale(1.05);
-        }
-        .sponsors-slider-button {
-            position: absolute; 
-            top: 50%; 
-            transform: translateY(-50%);
-            background-color: rgba(255,255,255,0.9); 
-            border: none; 
-            border-radius: 50%;
-            width: 35px; 
-            height: 35px; 
-            cursor: pointer; 
-            z-index: 5; 
-            font-size: 1.1rem; 
-            color: #1d4ed8; 
-            box-shadow: 0 4px 12px rgba(29,78,216,0.15); 
-            transition: all 0.2s;
-        }
-        .sponsors-slider-button.prev { left: 5px;}
-        .sponsors-slider-button.next { right: 5px;}
-        .sponsors-slider-button:hover { 
-            background: #fff;
-            box-shadow: 0 6px 18px rgba(220,38,38,0.3);
-            color: #dc2626;
-        }
-        @media(max-width: 600px) { 
-            .sponsor-logo { width: 60px; height: 60px; padding: 0.3rem;} 
-            .sponsors-slider-track { gap: 0.6rem;} 
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* ------ BOTÓN FLOTANTE WHATSAPP ------ */
+        /* ------ FAQ COMPACTO ------ */
+        .faq-section {
+            background: var(--bg-light);
+            padding: 1.5rem 1rem;
+        }
+        .faq-list { 
+            list-style: none; 
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .faq-item { 
+            margin-bottom: 0.5rem; 
+            border-radius: 8px; 
+            background: var(--bg-white); 
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+        .faq-question {
+            color: var(--primary);
+            font-weight: 600;
+            padding: 1rem;
+            font-size: 0.9rem;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question:after {
+            content: '▼';
+            font-size: 0.8rem;
+            color: var(--secondary);
+            transition: transform 0.2s;
+        }
+        .faq-item.active .faq-question:after { 
+            transform: rotate(-180deg);
+        }
+        .faq-answer {
+            display: none;
+            padding: 0 1rem 1rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .faq-item.active .faq-answer { 
+            display: block; 
+        }
+
+        /* ------ COUNTDOWN EN FOOTER ------ */
+        .countdown-section {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .countdown { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1rem; 
+            flex-wrap: wrap;
+        }
+        .count-item { 
+            background: rgba(255,255,255,0.15); 
+            border-radius: 8px; 
+            padding: 0.8rem; 
+            min-width: 60px; 
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .count-number {
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            display: block;
+        }
+        .count-label { 
+            font-size: 0.7rem; 
+            opacity: 0.9; 
+        }
+
+        /* ------ FOOTER COMPACTO ------ */
+        .footer { 
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%); 
+            color: #fff; 
+            text-align: center; 
+            padding: 1.5rem 1rem;
+        }
+        .social-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1rem; 
+            margin-bottom: 1rem; 
+        }
+        .social-link { 
+            width: 35px; 
+            height: 35px; 
+            background: var(--gradient-primary); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #fff; 
+            transition: transform 0.3s ease; 
+            font-size: 1rem;
+        }
+        .social-link:hover { 
+            transform: translateY(-2px) scale(1.1);
+        }
+
+        /* ------ BOTÓN WHATSAPP ------ */
         .whatsapp-float {
             position: fixed; 
-            width: 55px; 
-            height: 55px; 
+            width: 50px; 
+            height: 50px; 
             bottom: 20px; 
             right: 20px;
             background: linear-gradient(135deg, #25d366, #128c7e);
             color: white; 
             border-radius: 50%; 
             text-align: center;
-            font-size: 28px; 
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            font-size: 24px; 
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
             z-index: 1000; 
             display: flex; 
             align-items: center; 
             justify-content: center;
-            text-decoration: none; 
-            transition: all 0.3s ease; 
-            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
         }
-        .whatsapp-float svg { width: 30px; height: 30px; }
         .whatsapp-float:hover { 
             transform: scale(1.1); 
-            box-shadow: 0 8px 25px rgba(37,211,102,0.6);
-        }
-        @keyframes pulse { 
-            0% { box-shadow: 0 6px 20px rgba(37,211,102,0.4);} 
-            50% { box-shadow: 0 6px 25px rgba(37,211,102,0.6);} 
-            100% { box-shadow: 0 6px 20px rgba(37,211,102,0.4);} 
         }
 
-        /* ------ FOOTER ------ */
-        .footer { 
-            background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #1f2937 100%); 
-            color: #fff; 
-            text-align: center; 
-            padding: 1.5rem 1rem 1rem;
+        /* ------ RESPONSIVE MEJORAS ------ */
+        @media (max-width: 768px) {
+            .section { padding: 1rem; }
+            .hero { min-height: 60vh; padding: 5rem 1rem 1.5rem; }
+            .hero-content { padding: 1.2rem 0.8rem; }
+            .categories-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .kit-grid { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+            .kit-item { padding: 0.8rem 0.4rem; }
+            .kit-icon { font-size: 1.6rem; }
+            .kit-item h3 { font-size: 0.75rem; }
+            .gallery-slide img { height: 180px; }
+            .count-item { padding: 0.6rem; min-width: 50px; }
+            .count-number { font-size: 1.2rem; }
+            .prizes-list { grid-template-columns: 1fr; }
         }
-        .footer-content { 
-            max-width: 1000px; 
-            margin: 0 auto;
-        }
-        .social-links { 
-            display: flex; 
-            justify-content: center; 
-            gap: 1rem; 
-            margin-bottom: 1.2rem; 
-            flex-wrap: wrap; 
-        }
-        .social-link { 
-            width: 40px; 
-            height: 40px; 
-            background: linear-gradient(135deg, #1d4ed8 0%, #dc2626 100%); 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: #fff; 
-            text-decoration: none; 
-            transition: all 0.3s ease; 
-            font-size: 1.1rem;
-        }
-        .social-link:hover { 
-            transform: translateY(-3px) scale(1.1);
-        }
-        .footer p { 
-            font-size: 0.85rem; 
-            margin-bottom: 0.3rem;
+
+        @media (max-width: 480px) {
+            .hero-details { grid-template-columns: 1fr; gap: 0.3rem; }
+            .hero-detail { font-size: 0.8rem; padding: 0.3rem 0.6rem; }
+            .kit-grid { grid-template-columns: repeat(2, 1fr); }
+            .countdown { gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Backdrop blur element -->
-    <div class="backdrop-blur" id="backdropBlur"></div>
-
     <!-- Botón flotante WhatsApp -->
     <a href="https://wa.me/50234629621" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
-        <svg viewBox="0 0 32 32" fill="currentColor">
+        <svg viewBox="0 0 32 32" fill="currentColor" width="26" height="26">
             <path d="M16 3C9.373 3 4 8.373 4 15c0 2.448.805 4.73 2.168 6.627L4 29l7.561-2.039A12.919 12.919 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22.8c-2.155 0-4.24-.631-6.017-1.824l-.429-.272-4.497 1.211 1.203-4.381-.28-.436A10.792 10.792 0 0 1 5.2 15C5.2 9.251 9.947 4.5 16 4.5S26.8 9.251 26.8 15.001 22.053 25.8 16 25.8zm5.273-7.176c-.291-.145-1.748-.862-2.02-.96-.272-.099-.47-.145-.669.146-.197.291-.767.96-.94 1.157-.173.194-.346.22-.637.073-.291-.145-1.229-.454-2.341-1.448-.866-.772-1.45-1.726-1.62-2.017-.173-.291-.018-.448.128-.592.132-.13.291-.346.436-.518.145-.173.193-.292.29-.485.097-.194.048-.364-.024-.51-.073-.145-.669-1.614-.915-2.211-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.197 0-.519.073-.792.364-.272.291-1.04 1.017-1.04 2.479 0 1.46 1.065 2.874 1.213 3.073.145.194 2.094 3.208 5.079 4.374.711.249 1.264.398 1.697.509.714.182 1.364.156 1.879.095.573-.07 1.748-.714 1.997-1.403.246-.69.246-1.282.174-1.403-.072-.118-.264-.19-.555-.334z"/>
         </svg>
     </a>
     
-    <!-- HEADER/NAV -->
+    <!-- HEADER -->
     <header class="header">
         <nav class="nav">
             <div class="logo">10K Embajadores de Cristo</div>
-            <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#inscripcion">Inscripción</a></li>
                 <li><a href="#categorias">Categorías</a></li>
-                <li><a href="#kit">Tu Kit</a></li>
+                <li><a href="#kit">Kit</a></li>
                 <li><a href="#recorrido">Recorrido</a></li>
-                <li><a href="#ubicacion">Ubicación</a></li>
                 <li><a href="#galeria">Galería</a></li>
-                <li><a href="#info">Información</a></li>
+                <li><a href="#faq">Info</a></li>
             </ul>
         </nav>
     </header>
@@ -876,78 +736,111 @@
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>10K Embajadores de Cristo</h1>
-            <div class="slogan">
-                ¡No es solo correr. Es demostrar de qué estás hecho!
-            </div>
-            <div class="countdown" id="countdown"></div>
+            <div class="slogan">¡No es solo correr. Es demostrar de qué estás hecho!</div>
             <div class="hero-details">
                 <div class="hero-detail">📅 17 Agosto 2025</div>
                 <div class="hero-detail">⏰ 7:00 AM</div>
-                <div class="hero-detail">📍 Barrio Garibaldi, Zona 9</div>
-                <div class="hero-detail">💵 Q100 inscripción</div>
+                <div class="hero-detail">📍 Barrio Garibaldi</div>
+                <div class="hero-detail">💵 Q100</div>
             </div>
             <a href="https://sites.google.com/view/10k-inscripcion/inscripcion" class="cta-button" target="_blank">¡Inscríbete ahora!</a>
         </div>
     </section>
 
-    <!-- INFORMACIÓN DE PAGO -->
-    <section class="section compact" id="pago">
+    <!-- INSCRIPCIÓN -->
+    <section class="section" id="inscripcion">
         <div class="container">
-            <h2 class="section-title">Información de Pago</h2>
-            <div class="contact-grid" style="max-width: 600px; margin: 0 auto;">
-                <div class="contact-card" style="grid-column: 1 / -1;">
-                    <div class="contact-icon">💳</div>
-                    <h3>Cuenta para Depósito o Transferencia</h3>
+            <div class="priority-inscription">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.5rem;">¿Listo para el desafío?</h3>
+                <p class="price">Q100.00</p>
+                <p style="color: var(--primary); font-weight: 600; margin-bottom: 1.5rem; font-size: 1rem;">
+                    ¡Incluye playera, medalla, número, mochila y más!
+                </p>
+                <a href="https://sites.google.com/view/10k-inscripcion/inscripcion" class="inscription-cta" target="_blank">
+                    🏃‍♂️ Inscribirme Ahora 🏃‍♀️
+                </a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary); font-weight: 600;">
+                    📅 Fecha límite: 25 de Julio 2025
+                </p>
+            </div>
+
+            <!-- INFORMACIÓN DE PAGO -->
+            <div class="payment-info">
+                <h3>💳 Información de Pago</h3>
+                <div class="payment-details">
                     <p><strong>Banco:</strong> Banrural</p>
                     <p><strong>A nombre de:</strong> Asamblea de Dios Linaje de israel</p>
-                    <p style="font-size: 1.2rem; color: #1d4ed8; font-weight: bold; margin-top: 0.5rem;">
-                        <strong>Número de cuenta:</strong><br>03208800016519
+                    <div class="account-number">03208800016519</div>
+                    <p style="text-align: center; margin-top: 0.5rem;">
+                        <strong>📞 Contacto:</strong> 34629621<br>
+                        <strong>📧 Email:</strong> 10k.embajadores.de.cristo@gmail.com
                     </p>
                 </div>
-            </div>
-            <div style="text-align: center; margin-top: 1.5rem; padding: 1rem; background: #f0f7ff; border-radius: 10px; border: 2px solid rgba(29,78,216,0.2);">
-                <p style="color: #1d4ed8; font-weight: 600; margin-bottom: 0.5rem;">📞 <strong>Contacto para dudas:</strong></p>
-                <p><strong>Teléfono/WhatsApp:</strong> 34629621</p>
-                <p><strong>Email:</strong> 10k.embajadores.de.cristo@gmail.com</p>
             </div>
         </div>
     </section>
 
     <!-- CATEGORÍAS -->
-    <section class="section compact" id="categorias">
+    <section class="section" id="categorias">
         <div class="container">
             <h2 class="section-title">Categorías y Premios</h2>
             <div class="categories-grid">
                 <div class="category-card">
                     <h3>🏃‍♂️ Libre</h3>
                     <p>Categoría abierta para todos los corredores sin restricción de edad.</p>
-                    <div class="branches"><span class="branch">Masculino</span><span class="branch">Femenino</span></div>
-                    <div class="prizes">
-                        <h4>Premios</h4>
+                    <div class="branches">
+                        <span class="branch">Masculino</span>
+                        <span class="branch">Femenino</span>
+                    </div>
+                    <div class="prizes-section">
+                        <h4>🏆 Premios en Efectivo</h4>
                         <ul class="prizes-list">
-                            <li>🏆 Premios en efectivo</li>
+                            <li>🥇 1° lugar: Q1,000</li>
+                            <li>🥈 2° lugar: Q800</li>
+                            <li>🥉 3° lugar: Q700</li>
+                            <li style="grid-column: 1/-1; text-align: center; font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">
+                                *Premios para masculino y aparte para femenino
+                            </li>
                         </ul>
                     </div>
                 </div>
+
                 <div class="category-card">
                     <h3>🏆 Master</h3>
                     <p>Categoría especial para corredores de 40 años en adelante.</p>
-                    <div class="branches"><span class="branch">Masculino</span><span class="branch">Femenino</span></div>
-                    <div class="prizes">
-                        <h4>Premios</h4>
+                    <div class="branches">
+                        <span class="branch">Masculino</span>
+                        <span class="branch">Femenino</span>
+                    </div>
+                    <div class="prizes-section">
+                        <h4>🏆 Premios en Efectivo</h4>
                         <ul class="prizes-list">
-                            <li>🏆 Premios en efectivo</li>
+                            <li>🥇 1° lugar: Q800</li>
+                            <li>🥈 2° lugar: Q700</li>
+                            <li>🥉 3° lugar: Q600</li>
+                            <li style="grid-column: 1/-1; text-align: center; font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">
+                                *Premios para masculino y aparte para femenino
+                            </li>
                         </ul>
                     </div>
                 </div>
+
                 <div class="category-card">
                     <h3>🏠 Local</h3>
-                    <p>Categoría exclusiva para residentes del Barrio Garibaldi, Zona 9 Quetzaltenango.</p>
-                    <div class="branches"><span class="branch">Masculino</span><span class="branch">Femenino</span></div>
-                    <div class="prizes">
-                        <h4>Premios</h4>
+                    <p>Exclusiva para residentes del Barrio Garibaldi, Zona 9 Quetzaltenango.</p>
+                    <div class="branches">
+                        <span class="branch">Masculino</span>
+                        <span class="branch">Femenino</span>
+                    </div>
+                    <div class="prizes-section">
+                        <h4>🏆 Premios en Efectivo</h4>
                         <ul class="prizes-list">
-                            <li>🏆 Premios en efectivo</li>
+                            <li>🥇 1° lugar: Q600</li>
+                            <li>🥈 2° lugar: Q400</li>
+                            <li>🥉 3° lugar: Q300</li>
+                            <li style="grid-column: 1/-1; text-align: center; font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">
+                                *Premios para masculino y aparte para femenino
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -956,207 +849,174 @@
     </section>
 
     <!-- KIT -->
-    <section class="kit-section section compact" id="kit">
+    <section class="kit-section section" id="kit">
         <div class="container">
-            <h2 class="section-title">¿Qué Incluye tu Inscripción?</h2>
+            <h2 class="section-title">Tu Kit de Participación</h2>
             <div class="kit-grid">
-                <div class="kit-item"><div class="kit-icon">🎒</div><h3>Mochila</h3></div>
-                <div class="kit-item"><div class="kit-icon">🥤</div><h3>Pachón</h3></div>
-                <div class="kit-item"><div class="kit-icon">👕</div><h3>Playera</h3></div>
-                <div class="kit-item"><div class="kit-icon">🏅</div><h3>Medalla</h3></div>
-                <div class="kit-item"><div class="kit-icon">#️⃣</div><h3>Número</h3></div>
-                <div class="kit-item"><div class="kit-icon">💧</div><h3>Hidratación</h3></div>
+                <div class="kit-item">
+                    <div class="kit-icon">🎒</div>
+                    <h3>Mochila</h3>
+                </div>
+                <div class="kit-item">
+                    <div class="kit-icon">🥤</div>
+                    <h3>Pachón</h3>
+                </div>
+                <div class="kit-item">
+                    <div class="kit-icon">👕</div>
+                    <h3>Playera</h3>
+                </div>
+                <div class="kit-item">
+                    <div class="kit-icon">🏅</div>
+                    <h3>Medalla</h3>
+                </div>
+                <div class="kit-item">
+                    <div class="kit-icon">#️⃣</div>
+                    <h3>Número</h3>
+                </div>
+                <div class="kit-item">
+                    <div class="kit-icon">💧</div>
+                    <h3>Hidratación</h3>
+                </div>
             </div>
-            <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #f59e0b; font-weight: bold;">
-                ⭐ Mochila y Pachón solo para los primeros 200 en inscribirse
+            <p style="text-align: center; font-size: 0.85rem; color: #f59e0b; font-weight: 600;">
+                ⭐ Mochila y Pachón solo para los primeros 200 inscritos
             </p>
         </div>
     </section>
 
-        <section>
-            </div>
-            <a href="https://sites.google.com/view/10k-inscripcion/inscripcion" class="cta-button" target="_blank">¡Inscríbete ahora!</a>
-        </div>
-    </section>
-
     <!-- RECORRIDO -->
-    <section class="section compact" id="recorrido">
+    <section class="section" id="recorrido">
         <div class="container">
             <h2 class="section-title">Recorrido de la Carrera</h2>
             <div class="map-container">
-                <p style="margin-bottom: 1rem; color: #1d4ed8; font-weight: 600;">Conoce la ruta completa de 10 kilómetros que recorreremos juntos.</p>
-                <iframe id='mapmyfitness_route' src='https://www.mapmyrun.com/routes/view/embedded/6577150239?width=600&height=500&undefined&line_color=E61900DC&rgbhex=DC0019&distance_markers=0&unit_type=metric&map_mode=ROADMAP&show_marker_every=1&last_updated=2025-06-12T02:16:31+00:00' height='500px' width='100%' frameborder='0' ></iframe>
-                <div class="jss1639" id="embed-frame-footer">
-                    <a rel="noopener noreferrer" target="_blank" href="https://www.mapmyrun.com/routes/view/6577150239" class="jss1640">
-                        <p class="MuiTypography-root jss1641 MuiTypography-body1" string="Ver detalles de la ruta">Ver detalles de la ruta</p>
+                <p style="margin-bottom: 1rem; color: var(--primary); font-weight: 600; text-align: center;">
+                    Ruta completa de 10 kilómetros
+                </p>
+                <iframe src='https://www.mapmyrun.com/routes/view/embedded/6577150239?width=600&height=500&undefined&line_color=E61900DC&rgbhex=DC0019&distance_markers=0&unit_type=metric&map_mode=ROADMAP&show_marker_every=1&last_updated=2025-06-12T02:16:31+00:00'></iframe>
+                <div style="text-align: center;">
+                    <a href="https://www.mapmyrun.com/routes/view/6577150239" target="_blank" class="open-maps-btn">
+                        📍 Ver detalles de la ruta
                     </a>
-                    <div class="jss1642">
-                        <p class="MuiTypography-root jss1643 jss1664 MuiTypography-body1">
-                            Crear rutas o buscar una ruta en&nbsp;
-                            <span>
-                                <a rel="noopener noreferrer" target="_blank" href="https://www.mapmyrun.com/" string="MapMyRun." class="jss1641">MapMyRun.</a>
-                            </span>
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- UBICACIÓN -->
-    <section class="section compact" id="ubicacion">
+    <section class="section">
         <div class="container">
             <h2 class="section-title">Ubicación de Salida y Meta</h2>
-            <div class="location-map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7712.856539665466!2d-91.5517874!3d14.8573119!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858e990805c360f7%3A0x3f8e91a7598c3b65!2sIglesia%20Evang%C3%A9lica%20Linaje%20de%20Israel!5e0!3m2!1ses!2sgt!4v1749613147947!5m2!1ses!2sgt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de la salida y meta"></iframe>
-            </div>
-            <div style="text-align:center;">
-                <a href="https://maps.app.goo.gl/5rGbBgd8tUHMR1rM7" target="_blank" class="open-maps-btn">
-                    📍 Ver en Google Maps
-                </a>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7712.856539665466!2d-91.5517874!3d14.8573119!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858e990805c360f7%3A0x3f8e91a7598c3b65!2sIglesia%20Evang%C3%A9lica%20Linaje%20de%20Israel!5e0!3m2!1ses!2sgt!4v1749613147947!5m2!1ses!2sgt" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div style="text-align: center;">
+                    <a href="https://maps.app.goo.gl/5rGbBgd8tUHMR1rM7" target="_blank" class="open-maps-btn">
+                        📍 Ver en Google Maps
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- GALERIA -->
-    <section class="section compact" id="galeria">
+    <!-- GALERÍA -->
+    <section class="section" id="galeria">
         <div class="container">
             <h2 class="section-title">Ediciones Anteriores</h2>
-            <div class="gallery-carrusel-container">
-                <div class="gallery-carrusel-track" id="galleryTrack">
-                    <div class="gallery-carrusel-slide"><img src="1.jpg" alt="Foto Salida 2023" loading="lazy"></div>
-                    <div class="gallery-carrusel-slide"><img src="2.jpg" alt="Meta 2023" loading="lazy"></div>
-                    <div class="gallery-carrusel-slide"><img src="3.jpg" alt="Premiación" loading="lazy"></div>
-                    <div class="gallery-carrusel-slide"><img src="4.jpg" alt="Participantes" loading="lazy"></div>
-                    <div class="gallery-carrusel-slide"><img src="5.jpg" alt="Ambiente" loading="lazy"></div>
-                    <div class="gallery-carrusel-slide"><img src="6.1.jpg" alt="Comunidad" loading="lazy"></div>
+            <div class="gallery-container">
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-slide">
+                        <img src="1.jpg" alt="Foto Salida 2023" loading="lazy">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="2.jpg" alt="Meta 2023" loading="lazy">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="3.jpg" alt="Premiación" loading="lazy">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="4.jpg" alt="Participantes" loading="lazy">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="5.jpg" alt="Ambiente" loading="lazy">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="6.1.jpg" alt="Comunidad" loading="lazy">
+                    </div>
                 </div>
-                <button class="gallery-carrusel-button prev" id="galleryPrev">‹</button>
-                <button class="gallery-carrusel-button next" id="galleryNext">›</button>
+                <button class="gallery-btn prev" id="galleryPrev">‹</button>
+                <button class="gallery-btn next" id="galleryNext">›</button>
             </div>
+            
             <!-- Lightbox -->
             <div id="lightbox" class="lightbox">
                 <span class="lightbox-close" id="lightboxClose">&times;</span>
-                <button class="lightbox-btn prev" id="lightboxPrev">‹</button>
                 <img class="lightbox-content" id="lightboxImg" alt="Imagen ampliada">
-                <button class="lightbox-btn next" id="lightboxNext">›</button>
             </div>
         </div>
     </section>
 
     <!-- PATROCINADORES -->
-    <section class="sponsors-section compact" id="patrocinadores">
-        <div class="sponsors-title">Patrocinadores</div>
-        <div class="sponsors-slider-container">
-            <button class="sponsors-slider-button prev">‹</button>
-            <div class="sponsors-slider-track" id="sponsors-slider-track">
-                <img src="Patrocinador 1.jpg" alt="Patrocinador 1" class="sponsor-logo">
-                <img src="Patrocinador 2.jpg" alt="Patrocinador 2" class="sponsor-logo">
-                <img src="Patrocinador 3.PNG" alt="Patrocinador 3" class="sponsor-logo">
-                <img src="Patrocinador 1.jpg" alt="Patrocinador 1" class="sponsor-logo">
-                <img src="Patrocinador 2.jpg" alt="Patrocinador 2" class="sponsor-logo">
-                <img src="Patrocinador 3.PNG" alt="Patrocinador 3" class="sponsor-logo">
-                <img src="Patrocinador 1.jpg" alt="Patrocinador 1" class="sponsor-logo">
-                <img src="Patrocinador 2.jpg" alt="Patrocinador 2" class="sponsor-logo">
-                <img src="Patrocinador 3.PNG" alt="Patrocinador 3" class="sponsor-logo">
-                <img src="Patrocinador 1.jpg" alt="Patrocinador 1" class="sponsor-logo">
-                <img src="Patrocinador 2.jpg" alt="Patrocinador 2" class="sponsor-logo">
-                <img src="Patrocinador 3.PNG" alt="Patrocinador 3" class="sponsor-logo">
+    <section class="sponsors-section">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 1rem;">Patrocinadores</h2>
+            <div class="sponsors-container">
+                <div class="sponsors-track">
+                    <img src="Patrocinador 1.jpg" alt="Patrocinador 1" class="sponsor-logo">
+                    <img src="Patrocinador 2.jpg" alt="Patrocinador 2" class="sponsor-logo">
+                    <img src="Patrocinador 3.PNG" alt="Patrocinador 3" class="sponsor-logo">
+                    <img src="Patrocinador 1.jpg" alt="Patrocinador 1" class="sponsor-logo">
+                    <img src="Patrocinador 2.jpg" alt="Patrocinador 2" class="sponsor-logo">
+                    <img src="Patrocinador 3.PNG" alt="Patrocinador 3" class="sponsor-logo">
+                    <img src="Patrocinador 1.jpg" alt="Patrocinador 1" class="sponsor-logo">
+                    <img src="Patrocinador 2.jpg" alt="Patrocinador 2" class="sponsor-logo">
+                    <img src="Patrocinador 3.PNG" alt="Patrocinador 3" class="sponsor-logo">
+                    <img src="Patrocinador 1.jpg" alt="Patrocinador 1" class="sponsor-logo">
+                    <img src="Patrocinador 2.jpg" alt="Patrocinador 2" class="sponsor-logo">
+                    <img src="Patrocinador 3.PNG" alt="Patrocinador 3" class="sponsor-logo">
+                </div>
             </div>
-            <button class="sponsors-slider-button next">›</button>
         </div>
     </section>
 
-    <!-- INSCRIPCIÓN PRIORITARIA -->
-    <section class="priority-inscription section" id="inscripcion">
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
         <div class="container">
-            <h3 style="color: #1d4ed8; margin-bottom: 1rem; font-size: 1.8rem; font-weight: bold;">¿Listo para el desafío?</h3>
-            <p class="price">Q100.00</p>
-            <p class="inscription-text">
-                ¡Solo cuesta Q100! Elige tu categoría en el formulario y únete a la 7ª edición del 10K Embajadores de Cristo. 
-                <strong>Recibes playera, medalla, número, mochila y más!</strong>
-            </p>
-            <a href="https://sites.google.com/view/10k-inscripcion/inscripcion" class="inscription-cta" target="_blank">
-                🏃‍♂️ INSCRIBIRME AHORA 🏃‍♀️
-            </a>
-            <p style="margin-top: 1.5rem; font-size: 1rem; color: #dc2626; font-weight: 600;">
-                📅 Fecha límite: 25 de Julio 2025
-            </p>
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <ul class="faq-list">
+                <li class="faq-item">
+                    <button class="faq-question">¿Cómo me inscribo?</button>
+                    <div class="faq-answer">Haz clic en cualquier botón de inscripción y llena el formulario. Selecciona tu categoría y sube tu comprobante de pago. ¡Listo!</div>
+                </li>
+                <li class="faq-item">
+                    <button class="faq-question">¿Qué incluye mi inscripción?</button>
+                    <div class="faq-answer">Playera oficial, medalla de finalista, número, hidratación durante la carrera, mochila y pachón para los primeros 200 inscritos.</div>
+                </li>
+                <li class="faq-item">
+                    <button class="faq-question">¿Dónde es la salida y meta?</button>
+                    <div class="faq-answer">En Barrio Garibaldi, Zona 9, Quetzaltenango. Consulta la sección de "Ubicación" para ver el mapa.</div>
+                </li>
+                <li class="faq-item">
+                    <button class="faq-question">¿Hasta cuándo puedo inscribirme?</button>
+                    <div class="faq-answer">La fecha límite es el 25 de julio 2025 o hasta agotar cupos.</div>
+                </li>
+                <li class="faq-item">
+                    <button class="faq-question">¿Cómo pago la inscripción?</button>
+                    <div class="faq-answer">Mediante depósito o transferencia a Banrural cuenta 03208800016519 a nombre de Asamblea de Dios Linaje de israel.</div>
+                </li>
+            </ul>
         </div>
     </section>
 
-    <!-- INFORMACIÓN COLAPSABLE -->
-    <section class="section compact" id="info">
+    <!-- COUNTDOWN -->
+    <section class="countdown-section">
         <div class="container">
-            <h2 class="section-title">Información Adicional</h2>
-            
-            <!-- FAQ COLAPSABLE -->
-            <div class="collapsible-section" id="faqSection">
-                <div class="collapsible-header" onclick="toggleSection('faqSection')">
-                    <span>❓ Preguntas Frecuentes</span>
-                    <span class="collapsible-arrow">▼</span>
-                </div>
-                <div class="collapsible-content">
-                    <div class="faq-section">
-                        <ul class="faq-list" id="faq-list">
-                            <li class="faq-item">
-                                <button class="faq-question">¿Cómo me inscribo?</button>
-                                <div class="faq-answer">Haz clic en cualquier botón de inscripción y llena el formulario único. Selecciona tu categoría y sube tu comprobante de pago. ¡Listo!</div>
-                            </li>
-                            <li class="faq-item">
-                                <button class="faq-question">¿Qué incluye mi inscripción?</button>
-                                <div class="faq-answer">Playera oficial, medalla de finalista, número, hidratación durante la carrera, mochila y pachón para los primeros 200 inscritos.</div>
-                            </li>
-                            <li class="faq-item">
-                                <button class="faq-question">¿Dónde es la salida y meta?</button>
-                                <div class="faq-answer">En Barrio Garibaldi, Zona 9, Quetzaltenango. Consulta la sección de "Ubicación" para ver el mapa y obtener direcciones.</div>
-                            </li>
-                            <li class="faq-item">
-                                <button class="faq-question">¿Hasta cuándo puedo inscribirme?</button>
-                                <div class="faq-answer">La fecha límite de inscripción es el 25 de julio 2025 o hasta agotar cupos.</div>
-                            </li>
-                            <li class="faq-item">
-                                <button class="faq-question">¿Cómo pago la inscripción?</button>
-                                <div class="faq-answer">Puedes pagar mediante depósito o transferencia a la cuenta de Banrural 03208800016519 a nombre de Asamblea de Dios Linaje de israel.</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CONTACTO COLAPSABLE -->
-            <div class="collapsible-section" id="contactSection">
-                <div class="collapsible-header" onclick="toggleSection('contactSection')">
-                    <span>📞 Información de Contacto y Pago</span>
-                    <span class="collapsible-arrow">▼</span>
-                </div>
-                <div class="collapsible-content">
-                    <div class="contact-section" style="padding: 2rem 1rem;">
-                        <div class="contact-grid">
-                            <div class="contact-card">
-                                <div class="contact-icon">📱</div>
-                                <h3>Contacto</h3>
-                                <p><strong>Teléfono:</strong> 34629621</p>
-                                <p><strong>Email:</strong> 10k.embajadores.de.cristo@gmail.com</p>
-                                <p><strong>WhatsApp:</strong> 34629621</p>
-                            </div>
-                            <div class="contact-card">
-                                <div class="contact-icon">💳</div>
-                                <h3>Cuenta para Pago</h3>
-                                <p><strong>Banrural</strong></p>
-                                <p><strong>A nombre de:</strong> Asamblea de Dios Linaje de israel</p>
-                                <p><strong>Depósitos o transferencias:</strong><br>03208800016519</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="countdown-title">¡Faltan solo:</div>
+            <div class="countdown" id="countdown"></div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-content">
+        <div class="container">
             <div class="social-links">
                 <a href="#" class="social-link" title="Facebook">📘</a>
                 <a href="#" class="social-link" title="Instagram">📷</a>
@@ -1173,7 +1033,6 @@
         let galleryCurrentIndex = 0;
         let lightboxCurrentIndex = 0;
         let gallerySlides = [];
-        const backdropBlur = document.getElementById('backdropBlur');
 
         // Menú hamburguesa
         const menuToggle = document.getElementById('menuToggle');
@@ -1181,30 +1040,20 @@
         
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
         });
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
             });
         });
 
+        // Cerrar menú al hacer scroll
         window.addEventListener('scroll', () => {
             if (navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
             }
         });
-
-        // Función para alternar secciones colapsables
-        function toggleSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.classList.toggle('active');
-            }
-        }
 
         // Cuenta regresiva
         const countdownTarget = new Date('2025-08-17T07:00:00-06:00');
@@ -1221,10 +1070,22 @@
             const secs = Math.floor((diff / 1000) % 60);
             
             countdownContainer.innerHTML = `
-                <div class="count-item"><div>${days}</div><div class="count-label">Días</div></div>
-                <div class="count-item"><div>${hours}</div><div class="count-label">Horas</div></div>
-                <div class="count-item"><div>${mins}</div><div class="count-label">Min</div></div>
-                <div class="count-item"><div>${secs}</div><div class="count-label">Seg</div></div>
+                <div class="count-item">
+                    <span class="count-number">${days}</span>
+                    <span class="count-label">Días</span>
+                </div>
+                <div class="count-item">
+                    <span class="count-number">${hours}</span>
+                    <span class="count-label">Horas</span>
+                </div>
+                <div class="count-item">
+                    <span class="count-number">${mins}</span>
+                    <span class="count-label">Min</span>
+                </div>
+                <div class="count-item">
+                    <span class="count-number">${secs}</span>
+                    <span class="count-label">Seg</span>
+                </div>
             `;
         }
         
@@ -1244,7 +1105,7 @@
             });
         });
 
-        // GALERÍA CARRUSEL
+        // Galería
         function initGallery() {
             const galleryTrack = document.getElementById('galleryTrack');
             const galleryPrev = document.getElementById('galleryPrev');
@@ -1253,7 +1114,6 @@
             if (!galleryTrack) return;
             
             gallerySlides = Array.from(galleryTrack.children);
-            galleryCurrentIndex = 0;
             
             function updateGalleryPosition() {
                 const translateX = -galleryCurrentIndex * 100;
@@ -1270,256 +1130,60 @@
                 updateGalleryPosition();
             }
             
-            // Event listeners para botones
             galleryNext.addEventListener('click', nextSlide);
             galleryPrev.addEventListener('click', prevSlide);
             
-            // Touch events para móvil
+            // Touch events
             let startX = null;
-            let isDragging = false;
-            
             galleryTrack.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
-                isDragging = true;
             }, { passive: true });
             
-            galleryTrack.addEventListener('touchmove', (e) => {
-                if (!isDragging || !startX) return;
-                e.preventDefault();
-            });
-            
             galleryTrack.addEventListener('touchend', (e) => {
-                if (!isDragging || !startX) return;
-                
+                if (!startX) return;
                 const endX = e.changedTouches[0].clientX;
                 const diffX = startX - endX;
                 
                 if (Math.abs(diffX) > 50) {
-                    if (diffX > 0) {
-                        nextSlide();
-                    } else {
-                        prevSlide();
-                    }
+                    if (diffX > 0) nextSlide();
+                    else prevSlide();
                 }
-                
                 startX = null;
-                isDragging = false;
             }, { passive: true });
             
-            // Click para abrir lightbox
+            // Click para lightbox
             gallerySlides.forEach((slide, index) => {
-                slide.addEventListener('click', () => {
-                    openLightbox(index);
-                });
+                slide.addEventListener('click', () => openLightbox(index));
             });
             
             // Auto-play
-            let autoPlayInterval = setInterval(nextSlide, 4000);
-            
-            // Pausar auto-play en hover
-            galleryTrack.addEventListener('mouseenter', () => {
-                clearInterval(autoPlayInterval);
-            });
-            
-            galleryTrack.addEventListener('mouseleave', () => {
-                autoPlayInterval = setInterval(nextSlide, 4000);
-            });
-            
-            updateGalleryPosition();
+            setInterval(nextSlide, 4000);
         }
 
-        // LIGHTBOX
-        function initLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxClose = document.getElementById('lightboxClose');
-            const lightboxPrev = document.getElementById('lightboxPrev');
-            const lightboxNext = document.getElementById('lightboxNext');
-            
-            if (!lightbox) return;
-            
-            function showLightboxImage(index) {
-                if (gallerySlides.length === 0) return;
-                
-                lightboxCurrentIndex = index;
-                const img = gallerySlides[lightboxCurrentIndex].querySelector('img');
-                if (img) {
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt || 'Imagen de galería';
-                }
-            }
-            
-            function nextLightboxImage() {
-                const nextIndex = (lightboxCurrentIndex + 1) % gallerySlides.length;
-                showLightboxImage(nextIndex);
-            }
-            
-            function prevLightboxImage() {
-                const prevIndex = lightboxCurrentIndex === 0 ? gallerySlides.length - 1 : lightboxCurrentIndex - 1;
-                showLightboxImage(prevIndex);
-            }
-            
-            function closeLightbox() {
-                lightbox.style.display = 'none';
-                lightboxImg.src = '';
-                document.body.style.overflow = '';
-            }
-            
-            // Event listeners
-            lightboxClose.addEventListener('click', closeLightbox);
-            lightboxNext.addEventListener('click', nextLightboxImage);
-            lightboxPrev.addEventListener('click', prevLightboxImage);
-            
-            // Cerrar con click en fondo
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
-            });
-            
-            // Navegación con teclado
-            document.addEventListener('keydown', (e) => {
-                if (lightbox.style.display === 'flex') {
-                    switch(e.key) {
-                        case 'Escape':
-                            closeLightbox();
-                            break;
-                        case 'ArrowLeft':
-                            prevLightboxImage();
-                            break;
-                        case 'ArrowRight':
-                            nextLightboxImage();
-                            break;
-                    }
-                }
-            });
-            
-            // Touch events para móvil en lightbox
-            let lightboxStartX = null;
-            
-            lightbox.addEventListener('touchstart', (e) => {
-                lightboxStartX = e.touches[0].clientX;
-            }, { passive: true });
-            
-            lightbox.addEventListener('touchend', (e) => {
-                if (!lightboxStartX) return;
-                
-                const endX = e.changedTouches[0].clientX;
-                const diffX = lightboxStartX - endX;
-                
-                if (Math.abs(diffX) > 50) {
-                    if (diffX > 0) {
-                        nextLightboxImage();
-                    } else {
-                        prevLightboxImage();
-                    }
-                }
-                
-                lightboxStartX = null;
-            }, { passive: true });
-        }
-        
+        // Lightbox
         function openLightbox(index) {
             const lightbox = document.getElementById('lightbox');
-            if (lightbox && gallerySlides.length > 0) {
+            const lightboxImg = document.getElementById('lightboxImg');
+            
+            if (gallerySlides[index]) {
+                const img = gallerySlides[index].querySelector('img');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
                 lightbox.style.display = 'flex';
                 lightboxCurrentIndex = index;
-                const img = gallerySlides[index].querySelector('img');
-                if (img) {
-                    document.getElementById('lightboxImg').src = img.src;
-                    document.getElementById('lightboxImg').alt = img.alt || 'Imagen de galería';
-                }
                 document.body.style.overflow = 'hidden';
             }
         }
 
-        // PATROCINADORES carrusel
-        function initSponsorsCarousel() {
-            const sponsorsTrack = document.getElementById('sponsors-slider-track');
-            const sponsorsNext = document.querySelector('.sponsors-slider-button.next');
-            const sponsorsPrev = document.querySelector('.sponsors-slider-button.prev');
-            
-            if (!sponsorsTrack) return;
-            
-            let sponsorsLogos = Array.from(sponsorsTrack.children);
-            sponsorsTrack.innerHTML += sponsorsTrack.innerHTML; // Duplicar para infinito
-            
-            let sponsorsCurrent = 0;
-            let sponsorsMax = sponsorsLogos.length;
-            
-            function updateSponsorsCarousel() {
-                const logoWidth = sponsorsLogos[0] ? sponsorsLogos[0].offsetWidth + 19 : 90;
-                sponsorsTrack.style.transform = `translateX(-${sponsorsCurrent * logoWidth}px)`;
-            }
-            
-            function showSponsorSlide(idx) {
-                sponsorsCurrent = idx;
-                if (sponsorsCurrent < 0) sponsorsCurrent = sponsorsMax;
-                if (sponsorsCurrent > sponsorsMax) sponsorsCurrent = 0;
-                updateSponsorsCarousel();
-            }
-            
-            sponsorsNext.addEventListener('click', () => showSponsorSlide(sponsorsCurrent + 1));
-            sponsorsPrev.addEventListener('click', () => showSponsorSlide(sponsorsCurrent - 1));
-            
-            // Touch events
-            let sponsorsStartX = null;
-            sponsorsTrack.addEventListener('touchstart', e => { 
-                sponsorsStartX = e.touches[0].clientX; 
-            }, { passive: true });
-            
-            sponsorsTrack.addEventListener('touchend', e => {
-                if (sponsorsStartX === null) return;
-                const endX = e.changedTouches[0].clientX;
-                if (endX - sponsorsStartX > 35) showSponsorSlide(sponsorsCurrent - 1);
-                else if (sponsorsStartX - endX > 35) showSponsorSlide(sponsorsCurrent + 1);
-                sponsorsStartX = null;
-            }, { passive: true });
-            
-            // Auto-play
-            setInterval(() => showSponsorSlide(sponsorsCurrent + 1), 3500);
-            
-            window.addEventListener('resize', () => {
-                sponsorsLogos = Array.from(sponsorsTrack.children);
-                updateSponsorsCarousel();
-            });
-            
-            updateSponsorsCarousel();
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = '';
         }
 
-        // ANIMACIONES DE SCROLL
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // Activar backdrop blur en ciertas secciones
-                    if (entry.target.id === 'categorias' || entry.target.id === 'kit') {
-                        backdropBlur.classList.add('active');
-                    }
-                } else {
-                    // Desactivar backdrop blur cuando sale de vista
-                    if (entry.target.id === 'categorias' || entry.target.id === 'kit') {
-                        backdropBlur.classList.remove('active');
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observar elementos para animaciones
-        document.querySelectorAll('.section').forEach(section => {
-            section.classList.add('fade-in');
-            observer.observe(section);
-        });
-
-        // Animación de elementos flotantes
-        document.querySelectorAll('.kit-icon').forEach(icon => {
-            icon.classList.add('floating');
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
         });
 
         // Scroll suave
@@ -1528,101 +1192,27 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // INDICADOR DE SCROLL
-        const createScrollIndicator = () => {
-            const indicator = document.createElement('div');
-            indicator.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 0%;
-                height: 4px;
-                background: linear-gradient(90deg, #1d4ed8 0%, #dc2626 50%, #2563eb 100%);
-                z-index: 9999;
-                transition: width 0.3s ease;
-            `;
-            document.body.appendChild(indicator);
-            
-            window.addEventListener('scroll', () => {
-                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-                indicator.style.width = scrolled + '%';
+        // Animaciones de scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        };
+        }, { threshold: 0.1 });
 
-        // TOAST NOTIFICATIONS
-        const showToast = (message, type = 'info') => {
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: ${type === 'success' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : 'linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%)'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 10px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-                z-index: 10000;
-                transform: translateX(400px);
-                transition: transform 0.3s ease;
-                max-width: 300px;
-                font-size: 0.9rem;
-            `;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.style.transform = 'translateX(0)';
-            }, 100);
-            
-            setTimeout(() => {
-                toast.style.transform = 'translateX(400px)';
-                setTimeout(() => {
-                    if (document.body.contains(toast)) {
-                        document.body.removeChild(toast);
-                    }
-                }, 300);
-            }, 3000);
-        };
-
-        // Mostrar toast cuando se hace clic en botones de inscripción
-        document.querySelectorAll('.cta-button, .inscription-cta').forEach(btn => {
-            btn.addEventListener('click', () => {
-                showToast('¡Redirigiendo a formulario de inscripción!', 'success');
-            });
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('fade-in');
+            observer.observe(section);
         });
 
-        // PARALLAX EFFECT suave para el hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero && scrolled < hero.offsetHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.2}px)`;
-            }
-        });
-
-        // INICIALIZACIÓN
-        document.addEventListener('DOMContentLoaded', function() {
-            createScrollIndicator();
-            initGallery();
-            initLightbox();
-            initSponsorsCarousel();
-        });
-
-        // Asegurar que las imágenes se carguen correctamente
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('error', function() {
-                console.warn('Error cargando imagen:', this.src);
-                this.style.display = 'none';
-            });
-        });
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', initGallery);
     </script>
 </body>
 </html>
